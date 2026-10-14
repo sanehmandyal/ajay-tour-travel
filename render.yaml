@@ -1,0 +1,26 @@
+# Render Blueprint for the API. Create via Dashboard > New > Blueprint, or copy these settings by hand.
+services:
+  - type: web
+    name: ajay-tour-travels-api
+    runtime: node
+    rootDir: server
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - { key: NODE_VERSION, value: "20" }
+      - { key: NODE_ENV, value: production }
+      - { key: MONGODB_URI, sync: false }
+      - { key: JWT_SECRET, generateValue: true }
+      - { key: SITE_URL, sync: false }          # e.g. https://www.yourdomain.com
+      - { key: CLIENT_ORIGINS, sync: false }    # e.g. https://www.yourdomain.com (https only, comma-separated)
+      - { key: COOKIE_SAMESITE, value: lax }    # use "none" only if frontend and API are on unrelated domains
+      - { key: COOKIE_DOMAIN, sync: false }     # e.g. .yourdomain.com when using api.yourdomain.com
+      - { key: VERCEL_DEPLOY_HOOK_URL, sync: false }
+      - { key: SMTP_HOST, sync: false }
+      - { key: SMTP_PORT, value: "587" }
+      - { key: SMTP_USER, sync: false }
+      - { key: SMTP_PASS, sync: false }
+      - { key: SMTP_FROM, sync: false }

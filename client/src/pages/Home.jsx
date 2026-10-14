@@ -1,0 +1,215 @@
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import { ArrowRight, MessageCircle, Phone, Star, Plane, MapPin } from 'lucide-react';
+import { Seo } from '../lib/seo.jsx';
+import { api } from '../lib/api.js';
+import { useApi } from '../lib/data.jsx';
+import { useSettings } from '../lib/useSettings.js';
+import { Reveal, SectionHeading, Cta, CardGridSkeleton, EmptyState } from '../components/ui.jsx';
+import HeroShowcase from '../components/HeroShowcase.jsx';
+import TiltCard from '../components/TiltCard.jsx';
+import { DestinationCard, RouteCard, VehicleCard, PostCard } from '../components/cards.jsx';
+import ServiceGrid from '../components/ServiceGrid.jsx';
+import FaqList from '../components/FaqList.jsx';
+
+function Hero() {
+  const s = useSettings();
+  const nav = useNavigate();
+  const reduce = useReducedMotion();
+  const { scrollY } = useScroll();
+  const far = useTransform(scrollY, [0, 700], [0, reduce ? 0 : 70]);
+  const near = useTransform(scrollY, [0, 700], [0, reduce ? 0 : 130]);
+  const [q, setQ] = useState({ pickup: '', destination: '', date: '', passengers: '2', vehicle: '' });
+  const { data: vehicles } = useApi('vehicles', () => api.get('/api/vehicles'));
+  const set = (k) => (e) => setQ((p) => ({ ...p, [k]: e.target.value }));
+  const go = (e) => { e.preventDefault(); nav(`/book?${new URLSearchParams(Object.fromEntries(Object.entries(q).filter(([, v]) => v))).toString()}`); };
+  const wa = s.waHref('Hello Ajay Tour and Travels, I would like a travel quote.');
+  const today = new Date().toISOString().slice(0, 10);
+  const areas = s.business.serviceAreas || [];
+
+  return (
+    <section className="relative isolate overflow-hidden bg-navy-900 pb-20 pt-32 text-white sm:pt-40 lg:pb-28" aria-labelledby="hero-title">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(70%_60%_at_80%_10%,rgba(26,166,160,.4),transparent),radial-gradient(50%_50%_at_10%_90%,rgba(242,138,75,.25),transparent)]" aria-hidden="true" />
+      <motion.svg style={{ y: far }} viewBox="0 0 1200 300" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-56 w-full opacity-40" aria-hidden="true"><path d="M0 300V170l120-90 110 70 150-120 140 110 120-60 170 120 130-80 130 70 130-40v150z" fill="#12294A" /></motion.svg>
+      <motion.svg style={{ y: near }} viewBox="0 0 1200 300" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 w-full opacity-70" aria-hidden="true"><path d="M0 300V200l140-70 120 60 160-90 150 100 140-50 160 90 140-60 190 60v110z" fill="#0B1B33" /></motion.svg>
+
+      <div className="container-x grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr]">
+        <div>
+          <p className="eyebrow !text-teal-300">Amb Andaura · Una · Ludhiana · Chandigarh</p>
+          <h1 id="hero-title" className="h-display mt-3 !text-white">{s.home?.heroHeadline || 'Comfortable rides across Punjab, Himachal and Chandigarh'}</h1>
+          <p className="lead mt-5 max-w-xl !text-white/80">{s.home?.heroSubheadline || 'Local, outstation and airport transfers. Request a quote in minutes.'}</p>
+          <div className="mt-8 flex flex-wrap items-center gap-3.5">
+            <Link
+              to="/book"
+              className="group inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-sunset-500 to-amber-500 px-7 py-3 text-base font-bold text-navy-950 shadow-lg shadow-sunset-500/30 transition-all duration-200 hover:from-sunset-400 hover:to-amber-400 hover:shadow-xl hover:shadow-sunset-500/40 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              <span>Book Your Ride</span>
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </Link>
+            <Link
+              to="/destinations"
+              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-base font-semibold text-white backdrop-blur-md shadow-sm transition-all duration-200 hover:border-white/60 hover:bg-white/20 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              <span>Explore Destinations</span>
+            </Link>
+          </div>
+          <div className="mt-6 flex flex-wrap items-center gap-3 text-sm">
+            {wa && (
+              <a
+                href={wa}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-[#25D366]/40 bg-[#25D366]/15 px-4 py-2 text-xs font-semibold text-[#25D366] transition hover:bg-[#25D366]/25 hover:border-[#25D366]/60 shadow-sm"
+              >
+                <MessageCircle size={15} aria-hidden="true" />
+                <span>WhatsApp Booking</span>
+              </a>
+            )}
+            {s.callHref && (
+              <a
+                href={s.callHref}
+                className="inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-500/10 px-4 py-2 text-xs font-semibold text-teal-300 transition hover:bg-teal-500/20 hover:border-teal-400/50 shadow-sm"
+              >
+                <Phone size={14} aria-hidden="true" />
+                <span>Call {s.phone}</span>
+              </a>
+            )}
+          </div>
+        </div>
+        <div className="relative hidden lg:block">
+          <HeroShowcase className="w-full" />
+        </div>
+      </div>
+
+      <form onSubmit={go} aria-label="Quick booking" className="container-x mt-12">
+        <div className="glass grid gap-3 rounded-3xl p-4 shadow-float sm:grid-cols-2 sm:p-5 lg:grid-cols-[1fr_1fr_.8fr_.6fr_.8fr_auto]">
+          {[['pickup', 'Pickup', 'text'], ['destination', 'Destination', 'text']].map(([k, l, t]) => (
+            <div key={k}><label htmlFor={`hq-${k}`} className="mb-1 block text-xs font-medium text-white/80">{l}</label><input id={`hq-${k}`} required type={t} list="hq-areas" value={q[k]} onChange={set(k)} autoComplete="off" className="field" placeholder={k === 'pickup' ? 'e.g. Amb Andaura' : 'e.g. Chandigarh'} /></div>
+          ))}
+          <datalist id="hq-areas">{areas.map((a) => <option key={a} value={a} />)}</datalist>
+          <div><label htmlFor="hq-date" className="mb-1 block text-xs font-medium text-white/80">Travel date</label><input id="hq-date" type="date" min={today} value={q.date} onChange={set('date')} className="field" /></div>
+          <div><label htmlFor="hq-pax" className="mb-1 block text-xs font-medium text-white/80">Passengers</label><input id="hq-pax" type="number" min="1" max="60" inputMode="numeric" value={q.passengers} onChange={set('passengers')} className="field" /></div>
+          <div><label htmlFor="hq-veh" className="mb-1 block text-xs font-medium text-white/80">Vehicle</label>
+            <select id="hq-veh" value={q.vehicle} onChange={set('vehicle')} className="field"><option value="">Any</option>{(vehicles || []).map((v) => <option key={v.slug} value={v.name}>{v.name}</option>)}</select></div>
+          <div className="flex items-end"><button type="submit" className="btn-primary w-full">Get a Travel Quote</button></div>
+        </div>
+      </form>
+    </section>
+  );
+}
+
+const Wave = ({ from = '#0B1B33', className = '' }) => (
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className={`block h-10 w-full sm:h-14 ${className}`} aria-hidden="true"><path d="M0 0h1440v20c-240 40-480 40-720 20S240 20 0 40z" fill={from} /></svg>
+);
+
+export default function Home() {
+  const s = useSettings();
+  const routes = useApi('routes', () => api.get('/api/routes'));
+  const dests = useApi('destinations', () => api.get('/api/destinations'));
+  const vehicles = useApi('vehicles', () => api.get('/api/vehicles'));
+  const faqs = useApi('faqs', () => api.get('/api/faqs'));
+  const blog = useApi('blog:1', () => api.getWithMeta('/api/blog?page=1&limit=9'));
+  const places = (dests.data || []).filter((d) => d.kind === 'place');
+  const why = s.home?.whyChoose || [];
+  const steps = s.home?.processSteps || [];
+  const reviews = s.reviews || [];
+
+  return (
+    <>
+      <Seo path="/" title="Ajay Tour and Travels | Taxi and Tour Service in Amb Andaura, Una, Ludhiana, Chandigarh"
+        description="Request a quote for local, outstation, airport and railway station taxi trips across Amb Andaura, Una, Ludhiana and Chandigarh with Ajay Tour and Travels." />
+      <Hero />
+      <Wave from="#0B1B33" className="-mt-px" />
+
+      <section className="section" aria-labelledby="routes-h"><div className="container-x">
+        <SectionHeading eyebrow="Popular routes" title={<span id="routes-h">Routes our customers ask for</span>} intro="Tap a route to see pickup details and request a quote." />
+        <div className="mt-10">
+          {routes.loading ? <CardGridSkeleton /> : (routes.data || []).length
+            ? <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{routes.data.slice(0, 6).map((r, i) => <Reveal key={r.slug} delay={i * 70}><RouteCard r={r} i={i} /></Reveal>)}</div>
+            : <EmptyState title="Routes coming soon">Use the booking form and tell us where you want to go.</EmptyState>}
+        </div>
+      </div></section>
+
+      <section className="section bg-ivory-100" aria-labelledby="dest-h"><div className="container-x">
+        <SectionHeading eyebrow="Featured destinations" title={<span id="dest-h">Explore where we travel</span>} intro="Local guidance for each of our main service areas." />
+        <div className="mt-10">
+          {dests.loading ? <CardGridSkeleton n={4} /> : places.length
+            ? <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{places.slice(0, 8).map((d, i) => <Reveal key={d.slug} delay={i * 70}><DestinationCard d={d} i={i} /></Reveal>)}</div>
+            : <EmptyState title="Destinations coming soon" />}
+          <div className="mt-8 text-center"><Cta to="/destinations" variant="ghost">View all destinations</Cta></div>
+        </div>
+      </div></section>
+
+      <section className="section bg-navy-900 text-white" aria-labelledby="svc-h"><div className="container-x">
+        <SectionHeading light eyebrow="Services" title={<span id="svc-h">Every kind of trip, one team</span>} intro="From a short local ride to a customised multi-day tour." />
+        <div className="mt-10"><ServiceGrid dark /></div>
+        <div className="mt-8"><Cta to="/services" variant="ghost-light">See all services</Cta></div>
+      </div></section>
+
+      {(vehicles.data || []).length > 0 && (
+        <section className="section" aria-labelledby="veh-h"><div className="container-x">
+          <SectionHeading eyebrow="Vehicles" title={<span id="veh-h">Choose the right vehicle</span>} intro="Tell us your group size and luggage and we confirm the best fit." />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{vehicles.data.slice(0, 6).map((v, i) => <Reveal key={v.slug} delay={i * 70}><VehicleCard v={v} i={i} /></Reveal>)}</div>
+          <div className="mt-8 text-center"><Cta to="/vehicles" variant="ghost">All vehicles</Cta></div>
+        </div></section>
+      )}
+
+      {why.length > 0 && (
+        <section className="section bg-ivory-100" aria-labelledby="why-h"><div className="container-x">
+          <SectionHeading center eyebrow="Why choose us" title={<span id="why-h">Why choose {s.business.name}</span>} />
+          <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{why.map((w, i) => (
+            <Reveal as="li" key={w.title} delay={i * 70} className="rounded-3xl bg-white p-6 shadow-soft"><span className="font-display text-3xl text-sunset-500" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><h3 className="mt-2 text-lg font-semibold">{w.title}</h3><p className="mt-2 text-[15px] leading-7 text-navy-700">{w.text}</p></Reveal>))}</ul>
+        </div></section>
+      )}
+
+      {steps.length > 0 && (
+        <section className="section" aria-labelledby="how-h"><div className="container-x">
+          <SectionHeading center eyebrow="How it works" title={<span id="how-h">Book in three simple steps</span>} />
+          <ol className="mt-10 grid gap-6 md:grid-cols-3">{steps.map((st, i) => (
+            <Reveal as="li" key={st.title} delay={i * 90} className="relative rounded-3xl border border-navy-900/10 bg-white p-6">
+              <span className="grid h-11 w-11 place-items-center rounded-full bg-teal-600 font-semibold text-white" aria-hidden="true">{i + 1}</span>
+              <h3 className="mt-4 text-xl font-semibold"><span className="sr-only">Step {i + 1}: </span>{st.title}</h3><p className="mt-2 text-navy-700">{st.text}</p></Reveal>))}</ol>
+        </div></section>
+      )}
+
+      {reviews.length > 0 && (
+        <section className="section bg-navy-900 text-white" aria-labelledby="rev-h"><div className="container-x">
+          <SectionHeading light eyebrow="Reviews" title={<span id="rev-h">What customers say</span>} />
+          <ul className="mt-10 grid gap-5 md:grid-cols-3">{reviews.map((r, i) => (
+            <li key={i} className="glass rounded-3xl p-6">
+              {r.rating ? <p className="flex gap-1 text-sunset-400" aria-label={`${r.rating} out of 5 stars`}>{Array.from({ length: r.rating }, (_, k) => <Star key={k} size={16} fill="currentColor" aria-hidden="true" />)}</p> : null}
+              <blockquote className="mt-3 text-white/90">“{r.text}”</blockquote><p className="mt-3 text-sm font-semibold">{r.author}{r.source ? <span className="font-normal text-white/60"> · {r.source}</span> : null}</p></li>))}</ul>
+        </div></section>
+      )}
+
+      {(faqs.data || []).length > 0 && (
+        <section className="section" aria-labelledby="faq-h"><div className="container-x grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+          <SectionHeading eyebrow="FAQ" title={<span id="faq-h">Questions, answered</span>} intro="Cannot find what you need? Message us and we will help." />
+          <div><FaqList items={faqs.data.slice(0, 6)} idPrefix="hfaq" /><p className="mt-4"><Link to="/faq" className="font-semibold text-teal-700 underline underline-offset-2">See all questions</Link></p></div>
+        </div></section>
+      )}
+
+      {(blog.data?.data || []).length > 0 && (
+        <section className="section bg-ivory-100" aria-labelledby="blog-h"><div className="container-x">
+          <SectionHeading eyebrow="Travel insights" title={<span id="blog-h">From the travel desk</span>} />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{blog.data.data.slice(0, 3).map((p, i) => <Reveal key={p.slug} delay={i * 70}><PostCard p={p} /></Reveal>)}</div>
+          <div className="mt-8 text-center"><Cta to="/blog" variant="ghost">More travel tips</Cta></div>
+        </div></section>
+      )}
+
+      <section className="relative overflow-hidden bg-navy-900 py-16 text-center text-white sm:py-20">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_80%_at_50%_0%,rgba(26,166,160,.35),transparent)]" aria-hidden="true" />
+        <div className="container-x relative">
+          <h2 className="h-section !text-white">Ready to plan your trip?</h2>
+          <p className="lead mx-auto mt-3 max-w-xl !text-white/80">Send your details and our team will get back to you with a quote.</p>
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <Cta to="/book">Book Your Ride</Cta>
+            {s.waHref('Hello Ajay Tour and Travels, I would like a travel quote.') ? <Cta href={s.waHref('Hello Ajay Tour and Travels, I would like a travel quote.')} external variant="ghost-light"><MessageCircle size={18} aria-hidden="true" />WhatsApp</Cta> : <Cta to="/contact" variant="ghost-light">Contact us</Cta>}
+            {s.callHref && <Cta href={s.callHref} variant="ghost-light"><Phone size={18} aria-hidden="true" />Call now</Cta>}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
