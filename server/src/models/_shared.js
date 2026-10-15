@@ -11,10 +11,10 @@ export const slugField = {
 };
 
 export const seoSchemaDef = {
-  title: { type: String, trim: true, maxlength: 70 },
-  description: { type: String, trim: true, maxlength: 170 },
-  canonicalUrl: { type: String, trim: true, maxlength: 500 },
-  ogImage: { type: String, trim: true, maxlength: 500 },
+  title: { type: String, trim: true, maxlength: 120 },
+  description: { type: String, trim: true, maxlength: 300 },
+  canonicalUrl: { type: String, trim: true, maxlength: 1000 },
+  ogImage: { type: String, trim: true, maxlength: 1000 },
   noindex: { type: Boolean, default: false },
 };
 

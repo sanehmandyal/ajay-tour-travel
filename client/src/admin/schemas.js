@@ -1,7 +1,7 @@
 // Field definitions that drive the admin forms. Server-side Zod/Mongoose validation is the source of truth.
 const seo = { name: 'seo', label: 'SEO', type: 'group', fields: [
-  { name: 'title', label: 'SEO title', hint: 'Aim for 60 characters or fewer', maxLength: 70 },
-  { name: 'description', label: 'Meta description', type: 'textarea', rows: 3, hint: 'Aim for 70-160 characters', maxLength: 170 },
+  { name: 'title', label: 'SEO title', hint: 'Aim for 60 characters or fewer', maxLength: 120 },
+  { name: 'description', label: 'Meta description', type: 'textarea', rows: 3, hint: 'Aim for 70-160 characters', maxLength: 300 },
   { name: 'canonicalUrl', label: 'Canonical URL (optional)', type: 'url', hint: 'Leave empty to use the page URL' },
   { name: 'ogImage', label: 'Social sharing image URL', type: 'text' },
   { name: 'noindex', label: 'Hide from search engines', type: 'checkbox', help: 'Add noindex and leave out of the sitemap' },

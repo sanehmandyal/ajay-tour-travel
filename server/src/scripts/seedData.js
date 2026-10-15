@@ -772,7 +772,7 @@ export const vehicles = [
     status: 'published',
     isSample: false,
     sortOrder: 5,
-    seo: { title: 'Tempo Traveller Hire in Una & Amb Andaura (12-17 Seater) | Ajay Travels', description: 'Book luxury 12 to 17 seater Force Tempo Traveller for family pilgrimage, wedding groups & Himachal tours. Best rates.' },
+    seo: { title: 'Tempo Traveller Hire in Una & Amb Andaura | Ajay Travels', description: 'Book luxury 12 to 17 seater Force Tempo Traveller for family pilgrimage, wedding groups & Himachal tours. Best rates.' },
   },
 ];
 
