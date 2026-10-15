@@ -59,8 +59,8 @@ function NavDropdown({ label, to, items, viewAllLabel, viewAllTo }) {
       <NavLink
         to={to}
         className={({ isActive }) =>
-          `inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-1.5 text-xs lg:text-[13px] font-medium tracking-wide transition-all ${
-            isActive || open ? 'bg-white/15 text-white shadow-inner' : 'text-white/80 hover:bg-white/10 hover:text-white'
+          `inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-1.5 text-xs font-medium tracking-wide transition-all xl:px-3 xl:text-[13px] ${
+            isActive || open ? 'bg-white/15 text-white shadow-inner font-semibold' : 'text-white/80 hover:bg-white/10 hover:text-white'
           }`
         }
         aria-expanded={open}
@@ -165,8 +165,8 @@ export function Navbar() {
   }, [open]);
 
   const link = ({ isActive }) =>
-    `whitespace-nowrap rounded-full px-3 py-1.5 text-xs lg:text-[13px] font-medium tracking-wide transition-all ${
-      isActive ? 'bg-white/15 text-white shadow-inner' : 'text-white/80 hover:bg-white/10 hover:text-white'
+    `whitespace-nowrap rounded-full px-2.5 py-1.5 text-xs font-medium tracking-wide transition-all xl:px-3 xl:text-[13px] ${
+      isActive ? 'bg-white/15 text-white shadow-inner font-semibold' : 'text-white/80 hover:bg-white/10 hover:text-white'
     }`;
 
   return (
@@ -186,7 +186,8 @@ export function Navbar() {
         </Link>
 
         {/* Clean Desktop Navigation with Spatial Dropdowns */}
-        <nav aria-label="Main" className="hidden items-center gap-1 xl:flex">
+        <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex xl:gap-1">
+          <NavLink to="/" end className={link}>Home</NavLink>
           <NavDropdown label="Destinations" to="/destinations" items={DESTINATION_DROPDOWNS} viewAllLabel="Explore All Destinations →" viewAllTo="/destinations" />
           <NavDropdown label="Vehicles" to="/vehicles" items={VEHICLE_DROPDOWNS} viewAllLabel="View Full Fleet Lineup →" viewAllTo="/vehicles" />
           <NavDropdown label="Packages" to="/packages" items={PACKAGE_DROPDOWNS} viewAllLabel="Browse All Tour Packages →" viewAllTo="/packages" />
@@ -243,7 +244,7 @@ export function Navbar() {
           <button
             ref={btnRef}
             type="button"
-            className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-white hover:bg-white/10 xl:hidden"
+            className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-white hover:bg-white/10 lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? 'Close menu' : 'Open menu'}
@@ -259,7 +260,7 @@ export function Navbar() {
         {open && (
           <motion.div id="mobile-menu" ref={panelRef} role="dialog" aria-modal="true" aria-label="Site menu"
             initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.2 }}
-            className="pointer-events-auto mx-auto mt-2 max-h-[calc(100dvh-5.5rem)] max-w-7xl overflow-y-auto rounded-3xl bg-navy-900 p-4 shadow-float xl:hidden">
+            className="pointer-events-auto mx-auto mt-2 max-h-[calc(100dvh-5.5rem)] max-w-7xl overflow-y-auto rounded-3xl bg-navy-900 p-4 shadow-float lg:hidden">
             <ul className="grid gap-1">
               {[
                 ['/', 'Home'],
