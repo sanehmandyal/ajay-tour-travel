@@ -15,7 +15,7 @@ services:
       - { key: MONGODB_URI, sync: false }
       - { key: JWT_SECRET, generateValue: true }
       - { key: SITE_URL, sync: false }          # e.g. https://www.yourdomain.com
-      - { key: CLIENT_ORIGINS, sync: false }    # e.g. https://www.yourdomain.com (https only, comma-separated)
+      - { key: CLIENT_ORIGINS, sync: false }    # Optional: defaults to SITE_URL if left blank. Comma-separated https URLs (e.g. https://www.yourdomain.com)
       - { key: COOKIE_SAMESITE, value: lax }    # use "none" only if frontend and API are on unrelated domains
       - { key: COOKIE_DOMAIN, sync: false }     # e.g. .yourdomain.com when using api.yourdomain.com
       - { key: VERCEL_DEPLOY_HOOK_URL, sync: false }

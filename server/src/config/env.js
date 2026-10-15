@@ -6,11 +6,12 @@ const schema = z
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
     PORT: z.coerce.number().int().positive().default(5000),
     MONGODB_URI: z.string().min(1, 'MONGODB_URI is required'),
-    SITE_URL: z.string().url(),
+    SITE_URL: z.string().url().default('http://localhost:5173'),
     CLIENT_ORIGINS: z
       .string()
-      .min(1)
-      .transform((s) => s.split(',').map((x) => x.trim().replace(/\/$/, '')).filter(Boolean)),
+      .optional()
+      .default('')
+      .transform((s) => (s ? s.split(',').map((x) => x.trim().replace(/^['"]|['"]$/g, '').replace(/\/$/, '')).filter(Boolean) : [])),
     JWT_SECRET: z.string().min(32, 'JWT_SECRET must be at least 32 characters'),
     JWT_EXPIRES_IN: z.string().default('8h'),
     COOKIE_DOMAIN: z.string().optional().default(''),
@@ -25,6 +26,36 @@ const schema = z
     SMTP_PASS: z.string().optional().default(''),
     SMTP_FROM: z.string().optional().default(''),
     VERCEL_DEPLOY_HOOK_URL: z.string().optional().default(''),
+  })
+  .transform((data) => {
+    const origins = Array.isArray(data.CLIENT_ORIGINS) ? [...data.CLIENT_ORIGINS] : [];
+    if (data.SITE_URL) {
+      const siteOrigin = data.SITE_URL.replace(/\/$/, '');
+      if (!origins.includes(siteOrigin)) {
+        origins.push(siteOrigin);
+      }
+      try {
+        const u = new URL(siteOrigin);
+        if (u.protocol === 'https:') {
+          if (u.hostname.startsWith('www.')) {
+            const bare = `${u.protocol}//${u.hostname.slice(4)}${u.port ? `:${u.port}` : ''}`;
+            if (!origins.includes(bare)) origins.push(bare);
+          } else if (
+            !u.hostname.endsWith('.onrender.com') &&
+            !u.hostname.endsWith('.vercel.app') &&
+            !u.hostname.includes('localhost')
+          ) {
+            const withWww = `${u.protocol}//www.${u.hostname}${u.port ? `:${u.port}` : ''}`;
+            if (!origins.includes(withWww)) origins.push(withWww);
+          }
+        }
+      } catch {}
+    }
+    return {
+      ...data,
+      SITE_URL: data.SITE_URL.replace(/\/$/, ''),
+      CLIENT_ORIGINS: origins,
+    };
   })
   .superRefine((env, ctx) => {
     if (env.NODE_ENV !== 'production') return;
@@ -41,6 +72,8 @@ const schema = z
       ctx.addIssue({ code: 'custom', path: ['SITE_URL'], message: 'SITE_URL must be https in production' });
     }
   });
+
+export const envSchema = schema;
 
 const parsed = schema.safeParse(process.env);
 if (!parsed.success) {
