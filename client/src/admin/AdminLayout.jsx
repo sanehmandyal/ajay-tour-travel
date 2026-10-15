@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { LayoutDashboard, Inbox, MapPinned, Route, Car, Package, Newspaper, HelpCircle, Settings, Search, ImageIcon, KeyRound, LogOut, Menu, X, ExternalLink } from 'lucide-react';
+import { LayoutDashboard, Inbox, MapPinned, Route, Car, Package, Newspaper, HelpCircle, Settings, ImageIcon, KeyRound, LogOut, Menu, X, ExternalLink } from 'lucide-react';
 import { useAuth } from './auth.jsx';
 
 const NAV = [
   ['/admin', 'Dashboard', LayoutDashboard, true], ['/admin/inquiries', 'Inquiries', Inbox], ['/admin/destinations', 'Destinations', MapPinned], ['/admin/routes', 'Routes', Route],
   ['/admin/vehicles', 'Vehicles', Car], ['/admin/packages', 'Packages', Package], ['/admin/blog', 'Blog', Newspaper], ['/admin/faqs', 'FAQs', HelpCircle],
-  ['/admin/settings', 'Settings', Settings], ['/admin/seo', 'SEO & redirects', Search], ['/admin/media', 'Media', ImageIcon], ['/admin/account', 'Account', KeyRound],
+  ['/admin/settings', 'Settings', Settings], ['/admin/media', 'Media', ImageIcon], ['/admin/account', 'Account', KeyRound],
 ];
 
 export default function AdminLayout() {
@@ -71,7 +71,6 @@ export default function AdminLayout() {
                 <option value="/admin/blog">📝 Blog Posts</option>
                 <option value="/admin/faqs">❓ FAQs</option>
                 <option value="/admin/settings">⚙️ Settings</option>
-                <option value="/admin/seo">🔎 SEO & Redirects</option>
                 <option value="/admin/media">🖼️ Media Library</option>
                 <option value="/admin/account">🔑 Account Security</option>
               </select>

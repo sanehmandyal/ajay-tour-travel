@@ -55,8 +55,8 @@ export default function Dashboard() {
       <div className="grid gap-4 sm:grid-cols-2">
         <section className="rounded-2xl bg-white p-5 shadow-soft"><h2 className="text-lg font-semibold">Published content</h2>
           <p className="mt-2 text-sm text-slate-600">{d.content.destinations} destinations · {d.content.routes} routes · {d.content.vehicles} vehicles · {d.content.packages} packages · {d.content.posts} posts</p></section>
-        <section className="rounded-2xl bg-white p-5 shadow-soft"><h2 className="text-lg font-semibold">SEO completeness</h2>
-          <p className="mt-2 text-sm text-slate-600">{seo ? (seo.issueCount ? `${seo.issueCount} issue${seo.issueCount > 1 ? 's' : ''} across ${seo.checked} pages.` : `All ${seo.checked} pages pass the basic checks.`) : 'Checking…'} <Link to="/admin/seo" className="text-teal-800 underline">Open SEO tools</Link></p></section>
+        <section className="rounded-2xl bg-white p-5 shadow-soft"><h2 className="text-lg font-semibold">Search Engine Status</h2>
+          <p className="mt-2 text-sm text-slate-600">{seo ? (seo.issueCount ? `${seo.issueCount} recommendation${seo.issueCount > 1 ? 's' : ''} across ${seo.checked} pages.` : `All ${seo.checked} core pages pass checks with automated meta tags & schema markup.`) : 'Checking status…'}</p></section>
       </div>
     </div>
   );
