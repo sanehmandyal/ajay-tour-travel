@@ -19,7 +19,13 @@ export default function BlogPost() {
     <>
       <Seo path={path} override={false} type="article" title={p.seo?.title || `${p.title} | Ajay Tour and Travels`} description={p.seo?.description || p.excerpt}
         canonical={p.seo?.canonicalUrl || undefined} image={p.seo?.ogImage || p.featuredImage?.url} noindex={p.seo?.noindex} jsonLd={[breadcrumbLd(crumbs), articleLd(p, s)]} />
-      <PageHero eyebrow={p.category || 'Travel tips'} title={p.title} intro={p.excerpt} crumbs={crumbs}>
+      <PageHero
+        bgImage={p.featuredImage?.url}
+        eyebrow={p.category || 'Travel tips'}
+        title={p.title}
+        intro={p.excerpt}
+        crumbs={crumbs}
+      >
         <p className="mt-4 text-sm text-white/70">By {p.author} · <time dateTime={p.publishedAt}>{fmtDate(p.publishedAt)}</time></p>
       </PageHero>
       <article className="container-x py-12"><div className="mx-auto max-w-3xl">

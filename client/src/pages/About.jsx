@@ -19,7 +19,13 @@ export default function About() {
         description="Learn about Ajay Tour and Travels: 15+ years experience providing reliable taxi services, verified courteous drivers, sanitized cabs, and transparent quotes across Amb Andaura, Una, Punjab & Himachal."
         jsonLd={[breadcrumbLd(crumbs)]}
       />
-      <PageHero eyebrow="About us" title={`About ${s.business.name}`} intro="A local travel service helping families, pilgrims and business travellers move between Himachal Pradesh, Punjab and Chandigarh." crumbs={crumbs} />
+      <PageHero
+        bgImage="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1920&q=80"
+        eyebrow="About us"
+        title={`About ${s.business.name}`}
+        intro="A local travel service helping families, pilgrims and business travellers move between Himachal Pradesh, Punjab and Chandigarh."
+        crumbs={crumbs}
+      />
       <div className="container-x section grid items-center gap-12 lg:grid-cols-2">
         <div className="prose-ajt">
           <h2 className="!mt-0">How we work</h2>

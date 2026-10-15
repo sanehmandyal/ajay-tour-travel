@@ -28,6 +28,16 @@ export default function Login() {
 
   return (
     <div className="relative isolate flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-navy-950 px-4 py-12 text-white">
+      {/* Background Travel Scene with Deep Dark Vignette */}
+      <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          className="h-full w-full object-cover object-center filter brightness-[0.16] contrast-[1.15] blur-[2px] scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/90 via-navy-950/80 to-navy-950/95" />
+      </div>
+
       {/* VisionOS Ambient Spatial Glow & Depth Accents */}
       <div className="pointer-events-none absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-teal-500/20 blur-[130px] filter" aria-hidden="true" />
       <div className="pointer-events-none absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-sunset-500/15 blur-[130px] filter" aria-hidden="true" />

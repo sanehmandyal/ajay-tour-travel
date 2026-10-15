@@ -17,7 +17,13 @@ export default function Destinations() {
         description="Explore 13+ verified travel destinations and cab routes: Amb Andaura Station, Chintpurni, Chandigarh, Dharamshala, Amritsar & Delhi. Instant upfront taxi quotes."
         jsonLd={[breadcrumbLd(crumbs)]}
       />
-      <PageHero eyebrow="Where we travel" title="Destinations and routes" intro="Pickup guidance, travel suggestions and quote requests for each place we serve." crumbs={crumbs} />
+      <PageHero
+        bgImage="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"
+        eyebrow="Where we travel"
+        title="Destinations and routes"
+        intro="Pickup guidance, travel suggestions and quote requests for each place we serve."
+        crumbs={crumbs}
+      />
       <div className="container-x section space-y-14">
         {loading && <CardGridSkeleton n={6} />}
         {error && <ErrorState message="We could not load destinations right now." />}

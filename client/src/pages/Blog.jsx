@@ -15,7 +15,13 @@ export default function Blog() {
     <>
       {/* Paginated views beyond page 1 are kept out of the index to avoid thin/duplicate listing pages. */}
       <Seo path="/blog" title="Travel Tips and Insights | Ajay Tour and Travels" description="Practical travel tips for road trips, airport and railway transfers and family travel around Punjab, Himachal and Chandigarh." noindex={page > 1} jsonLd={[breadcrumbLd(crumbs)]} />
-      <PageHero eyebrow="Travel insights" title="Travel tips and guides" intro="Practical advice for planning smoother journeys." crumbs={crumbs} />
+      <PageHero
+        bgImage="https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1920&q=80"
+        eyebrow="Travel insights"
+        title="Travel tips and guides"
+        intro="Practical advice for planning smoother journeys."
+        crumbs={crumbs}
+      />
       <div className="container-x section">
         {loading && <CardGridSkeleton />}
         {error && <ErrorState />}

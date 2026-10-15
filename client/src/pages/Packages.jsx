@@ -16,7 +16,13 @@ export default function Packages() {
         description="Book customized tour packages for Chintpurni, Dharamshala, Dalhousie, Manali & Shimla with private cab & driver. Transparent upfront quotes for families and groups."
         jsonLd={[breadcrumbLd(crumbs), ...(data || []).map((p) => packageLd(p)).filter(Boolean)]}
       />
-      <PageHero eyebrow="Tour packages" title="Trips planned around you" intro="Packages are starting points. We adjust the plan, vehicle and timing to suit your group." crumbs={crumbs} />
+      <PageHero
+        bgImage="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1920&q=80"
+        eyebrow="Tour packages"
+        title="Trips planned around you"
+        intro="Packages are starting points. We adjust the plan, vehicle and timing to suit your group."
+        crumbs={crumbs}
+      />
       <div className="container-x section space-y-8">
         {loading && <CardGridSkeleton n={2} />}
         {error && <ErrorState message="We could not load packages right now." />}

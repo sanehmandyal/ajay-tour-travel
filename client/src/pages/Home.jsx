@@ -29,10 +29,20 @@ function Hero() {
   const areas = s.business.serviceAreas || [];
 
   return (
-    <section className="relative isolate overflow-hidden bg-navy-900 pb-20 pt-32 text-white sm:pt-40 lg:pb-28" aria-labelledby="hero-title">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(70%_60%_at_80%_10%,rgba(26,166,160,.4),transparent),radial-gradient(50%_50%_at_10%_90%,rgba(242,138,75,.25),transparent)]" aria-hidden="true" />
-      <motion.svg style={{ y: far }} viewBox="0 0 1200 300" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-56 w-full opacity-40" aria-hidden="true"><path d="M0 300V170l120-90 110 70 150-120 140 110 120-60 170 120 130-80 130 70 130-40v150z" fill="#12294A" /></motion.svg>
-      <motion.svg style={{ y: near }} viewBox="0 0 1200 300" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 w-full opacity-70" aria-hidden="true"><path d="M0 300V200l140-70 120 60 160-90 150 100 140-50 160 90 140-60 190 60v110z" fill="#0B1B33" /></motion.svg>
+    <section className="relative isolate overflow-hidden bg-navy-950 pb-20 pt-32 text-white sm:pt-40 lg:pb-28" aria-labelledby="hero-title">
+      {/* Immersive Scenic Mountain Road Background */}
+      <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=80"
+          alt=""
+          className="h-full w-full object-cover object-center scale-105 filter brightness-[0.32] contrast-[1.12] saturate-[1.2]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/85 via-navy-950/60 to-navy-950" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/50 to-transparent" />
+      </div>
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(70%_60%_at_80%_10%,rgba(26,166,160,.35),transparent),radial-gradient(50%_50%_at_10%_90%,rgba(242,138,75,.2),transparent)]" aria-hidden="true" />
+      <motion.svg style={{ y: far }} viewBox="0 0 1200 300" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-56 w-full opacity-35" aria-hidden="true"><path d="M0 300V170l120-90 110 70 150-120 140 110 120-60 170 120 130-80 130 70 130-40v150z" fill="#12294A" /></motion.svg>
+      <motion.svg style={{ y: near }} viewBox="0 0 1200 300" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 w-full opacity-60" aria-hidden="true"><path d="M0 300V200l140-70 120 60 160-90 150 100 140-50 160 90 140-60 190 60v110z" fill="#0B1B33" /></motion.svg>
 
       <div className="container-x grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr]">
         <div>
@@ -149,11 +159,22 @@ export default function Home() {
         </div>
       </div></section>
 
-      <section className="section bg-navy-900 text-white" aria-labelledby="svc-h"><div className="container-x">
-        <SectionHeading light eyebrow="Services" title={<span id="svc-h">Every kind of trip, one team</span>} intro="From a short local ride to a customised multi-day tour." />
-        <div className="mt-10"><ServiceGrid dark /></div>
-        <div className="mt-8"><Cta to="/services" variant="ghost-light">See all services</Cta></div>
-      </div></section>
+      <section className="relative isolate overflow-hidden bg-navy-950 py-20 text-white" aria-labelledby="svc-h">
+        <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            className="h-full w-full object-cover object-center filter brightness-[0.22] contrast-[1.12]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/80 to-navy-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950" />
+        </div>
+        <div className="container-x relative">
+          <SectionHeading light eyebrow="Services" title={<span id="svc-h">Every kind of trip, one team</span>} intro="From a short local ride to a customised multi-day tour." />
+          <div className="mt-10"><ServiceGrid dark /></div>
+          <div className="mt-8"><Cta to="/services" variant="ghost-light">See all services</Cta></div>
+        </div>
+      </section>
 
       {(vehicles.data || []).length > 0 && (
         <section className="section" aria-labelledby="veh-h"><div className="container-x">
@@ -182,13 +203,24 @@ export default function Home() {
       )}
 
       {reviews.length > 0 && (
-        <section className="section bg-navy-900 text-white" aria-labelledby="rev-h"><div className="container-x">
-          <SectionHeading light eyebrow="Reviews" title={<span id="rev-h">What customers say</span>} />
-          <ul className="mt-10 grid gap-5 md:grid-cols-3">{reviews.map((r, i) => (
-            <li key={i} className="glass rounded-3xl p-6">
-              {r.rating ? <p className="flex gap-1 text-sunset-400" aria-label={`${r.rating} out of 5 stars`}>{Array.from({ length: r.rating }, (_, k) => <Star key={k} size={16} fill="currentColor" aria-hidden="true" />)}</p> : null}
-              <blockquote className="mt-3 text-white/90">“{r.text}”</blockquote><p className="mt-3 text-sm font-semibold">{r.author}{r.source ? <span className="font-normal text-white/60"> · {r.source}</span> : null}</p></li>))}</ul>
-        </div></section>
+        <section className="relative isolate overflow-hidden bg-navy-950 py-24 text-white" aria-labelledby="rev-h">
+          <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=80"
+              alt=""
+              className="h-full w-full object-cover object-center filter brightness-[0.24] contrast-[1.15]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/80 to-navy-950" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(26,166,160,0.2),transparent_70%)]" />
+          </div>
+          <div className="container-x relative">
+            <SectionHeading light eyebrow="Reviews" title={<span id="rev-h">What customers say</span>} />
+            <ul className="mt-10 grid gap-5 md:grid-cols-3">{reviews.map((r, i) => (
+              <li key={i} className="glass rounded-3xl p-6 backdrop-blur-xl border border-white/15 transition duration-300 hover:border-white/30">
+                {r.rating ? <p className="flex gap-1 text-sunset-400" aria-label={`${r.rating} out of 5 stars`}>{Array.from({ length: r.rating }, (_, k) => <Star key={k} size={16} fill="currentColor" aria-hidden="true" />)}</p> : null}
+                <blockquote className="mt-3 text-white/90">“{r.text}”</blockquote><p className="mt-3 text-sm font-semibold text-teal-200">{r.author}{r.source ? <span className="font-normal text-white/60"> · {r.source}</span> : null}</p></li>))}</ul>
+          </div>
+        </section>
       )}
 
       {(faqs.data || []).length > 0 && (
@@ -206,8 +238,17 @@ export default function Home() {
         </div></section>
       )}
 
-      <section className="relative overflow-hidden bg-navy-900 py-16 text-center text-white sm:py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_80%_at_50%_0%,rgba(26,166,160,.35),transparent)]" aria-hidden="true" />
+      <section className="relative isolate overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
+        <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2000&q=80"
+            alt=""
+            className="h-full w-full object-cover object-center filter brightness-[0.26] contrast-[1.12]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/75 to-navy-950" />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-navy-950" />
+          <div className="absolute inset-0 bg-[radial-gradient(50%_80%_at_50%_50%,rgba(26,166,160,.3),transparent)]" />
+        </div>
         <div className="container-x relative">
           <h2 className="h-section !text-white">Ready to plan your trip?</h2>
           <p className="lead mx-auto mt-3 max-w-xl !text-white/80">Send your details and our team will get back to you with a quote.</p>

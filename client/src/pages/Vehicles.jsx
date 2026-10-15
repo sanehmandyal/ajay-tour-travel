@@ -23,6 +23,7 @@ export default function Vehicles() {
         jsonLd={[breadcrumbLd(crumbs)]}
       />
       <PageHero
+        bgImage="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1920&q=80"
         eyebrow="Our Fleet"
         title="Verified Vehicles for Every Group Size & Mountain Journey"
         intro="From comfortable sedans for station transfers to luxury Innova Crysta for hill tours and Tempo Travellers for family pilgrimages."
@@ -100,8 +101,17 @@ export default function Vehicles() {
         </section>
 
         {/* Fleet Guarantees */}
-        <section aria-labelledby="fleet-promise-heading" className="spatial-card-dark p-8 text-white sm:p-12">
-          <div className="grid items-center gap-8 lg:grid-cols-[1.2fr_.8fr]">
+        <section aria-labelledby="fleet-promise-heading" className="relative isolate overflow-hidden rounded-3xl bg-navy-950 p-8 text-white sm:p-12 border border-white/10 shadow-2xl">
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1600&q=80"
+              alt=""
+              className="h-full w-full object-cover object-center filter brightness-[0.24] contrast-[1.1]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-950/70" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(26,166,160,0.25),transparent_70%)]" />
+          </div>
+          <div className="relative grid items-center gap-8 lg:grid-cols-[1.2fr_.8fr]">
             <div>
               <p className="eyebrow !text-teal-300">Ajay Tour &amp; Travels Quality Standard</p>
               <h2 id="fleet-promise-heading" className="h-display mt-2 !text-white">

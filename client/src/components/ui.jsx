@@ -93,10 +93,29 @@ export const EmptyState = ({ title, children }) => (
   </div>
 );
 
-export function PageHero({ eyebrow, title, intro, crumbs, children }) {
+export function PageHero({
+  eyebrow,
+  title,
+  intro,
+  crumbs,
+  children,
+  bgImage = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
+}) {
   return (
-    <header className="relative overflow-hidden bg-navy-900 pb-14 pt-36 text-white sm:pb-20 sm:pt-40">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_80%_at_85%_0%,rgba(26,166,160,.35),transparent),radial-gradient(40%_60%_at_0%_100%,rgba(242,138,75,.18),transparent)]" aria-hidden="true" />
+    <header className="relative isolate overflow-hidden bg-navy-950 pb-16 pt-36 text-white sm:pb-24 sm:pt-40">
+      {/* Immersive Scenic Travel Background Photo */}
+      {bgImage && (
+        <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
+          <img
+            src={bgImage}
+            alt=""
+            className="h-full w-full object-cover object-center filter brightness-[0.28] contrast-[1.12] saturate-[1.2]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-950/85 via-navy-950/65 to-navy-950" />
+          <div className="absolute inset-0 bg-[radial-gradient(70%_70%_at_80%_20%,rgba(26,166,160,.28),transparent_70%)]" />
+        </div>
+      )}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_85%_0%,rgba(26,166,160,.3),transparent),radial-gradient(40%_60%_at_0%_100%,rgba(242,138,75,.15),transparent)]" aria-hidden="true" />
       <div className="container-x relative">
         {crumbs && <div className="mb-5"><Breadcrumbs items={crumbs} light /></div>}
         {eyebrow && <p className="eyebrow !text-teal-300">{eyebrow}</p>}

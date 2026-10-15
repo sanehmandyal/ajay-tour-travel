@@ -71,7 +71,13 @@ export default function Contact() {
         description="Get in touch with Ajay Tour and Travels. 24/7 taxi booking helpline, WhatsApp inquiry, and instant upfront quotes for Amb Andaura station, Una & Himachal tours."
         jsonLd={[breadcrumbLd(crumbs)]}
       />
-      <PageHero eyebrow="Contact" title="Talk to our team" intro="Send a message, request a quote or reach us directly." crumbs={crumbs} />
+      <PageHero
+        bgImage="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80"
+        eyebrow="Contact"
+        title="Talk to our team"
+        intro="Send a message, request a quote or reach us directly."
+        crumbs={crumbs}
+      />
       <div className="container-x grid gap-8 py-14 lg:grid-cols-[.9fr_1.1fr]">
         <div className="space-y-5">
           <div className="rounded-3xl bg-white p-6 shadow-soft">

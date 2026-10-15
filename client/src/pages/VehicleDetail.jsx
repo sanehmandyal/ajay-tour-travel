@@ -61,8 +61,16 @@ export default function VehicleDetail() {
       />
 
       {/* Hero Header */}
-      <header className="relative isolate overflow-hidden bg-navy-900 pb-16 pt-36 text-white sm:pb-24 sm:pt-40">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(70%_60%_at_80%_10%,rgba(26,166,160,.4),transparent),radial-gradient(50%_50%_at_10%_90%,rgba(242,138,75,.25),transparent)]" aria-hidden="true" />
+      <header className="relative isolate overflow-hidden bg-navy-950 pb-16 pt-36 text-white sm:pb-24 sm:pt-40">
+        <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
+          <img
+            src={v.images?.[0]?.url || 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1920&q=80'}
+            alt=""
+            className="h-full w-full object-cover object-center filter brightness-[0.22] contrast-[1.12]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-950/85 via-navy-950/70 to-navy-950" />
+          <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_80%_10%,rgba(26,166,160,.25),transparent),radial-gradient(50%_50%_at_10%_90%,rgba(242,138,75,.18),transparent)]" />
+        </div>
 
         <div className="container-x">
           <div className="mb-6">
