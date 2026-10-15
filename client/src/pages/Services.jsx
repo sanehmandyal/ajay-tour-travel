@@ -6,7 +6,12 @@ export default function Services() {
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }];
   return (
     <>
-      <Seo path="/services" title="Taxi and Tour Services | Ajay Tour and Travels" description="Local travel, outstation trips, airport and railway station transfers, family trips and customised tours across Amb Andaura, Una, Ludhiana and Chandigarh." jsonLd={[breadcrumbLd(crumbs)]} />
+      <Seo
+        path="/services"
+        title="24/7 Taxi Services & Outstation Cab Booking | Ajay Tour and Travels"
+        description="Book 24/7 taxi services: Amb Andaura railway station pickup, Una cab booking, outstation travel to Chandigarh, Ludhiana, Delhi, and Shaktipeeth pilgrimage tours."
+        jsonLd={[breadcrumbLd(crumbs)]}
+      />
       <PageHero eyebrow="Services" title="Travel services for every kind of trip" intro="Tell us what you need and we will arrange the right vehicle and plan." crumbs={crumbs} />
       <div className="container-x section">
         <ServiceGrid />

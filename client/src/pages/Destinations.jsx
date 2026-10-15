@@ -11,7 +11,12 @@ export default function Destinations() {
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Destinations', path: '/destinations' }];
   return (
     <>
-      <Seo path="/destinations" title="Destinations and Routes | Ajay Tour and Travels" description="Explore the places and routes we serve: Amb Andaura, Una, Ludhiana, Chandigarh and routes between them. Request a quote online." jsonLd={[breadcrumbLd(crumbs)]} />
+      <Seo
+        path="/destinations"
+        title="Top Travel Destinations & Cab Routes in Himachal | Ajay Tour and Travels"
+        description="Explore 13+ verified travel destinations and cab routes: Amb Andaura Station, Chintpurni, Chandigarh, Dharamshala, Amritsar & Delhi. Instant upfront taxi quotes."
+        jsonLd={[breadcrumbLd(crumbs)]}
+      />
       <PageHero eyebrow="Where we travel" title="Destinations and routes" intro="Pickup guidance, travel suggestions and quote requests for each place we serve." crumbs={crumbs} />
       <div className="container-x section space-y-14">
         {loading && <CardGridSkeleton n={6} />}

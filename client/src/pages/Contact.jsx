@@ -65,7 +65,12 @@ export default function Contact() {
   const wa = s.waHref('Hello Ajay Tour and Travels, I have a question.');
   return (
     <>
-      <Seo path="/contact" title="Contact Ajay Tour and Travels" description="Contact Ajay Tour and Travels for taxi and tour inquiries in Amb Andaura, Una, Ludhiana and Chandigarh. Send a message or request a quote." jsonLd={[breadcrumbLd(crumbs)]} />
+      <Seo
+        path="/contact"
+        title="Contact Us & 24/7 Cab Booking Helpline | Ajay Tour and Travels"
+        description="Get in touch with Ajay Tour and Travels. 24/7 taxi booking helpline, WhatsApp inquiry, and instant upfront quotes for Amb Andaura station, Una & Himachal tours."
+        jsonLd={[breadcrumbLd(crumbs)]}
+      />
       <PageHero eyebrow="Contact" title="Talk to our team" intro="Send a message, request a quote or reach us directly." crumbs={crumbs} />
       <div className="container-x grid gap-8 py-14 lg:grid-cols-[.9fr_1.1fr]">
         <div className="space-y-5">

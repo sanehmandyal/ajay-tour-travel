@@ -1,4 +1,4 @@
-import { Destination, Vehicle, BlogPost, PageMeta, Redirect } from '../models/index.js';
+import { Destination, Vehicle, TourPackage, BlogPost, PageMeta, Redirect } from '../models/index.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { ok } from '../utils/respond.js';
 import { env } from '../config/env.js';
@@ -9,10 +9,11 @@ const base = () => env.SITE_URL.replace(/\/$/, '');
 
 /** Canonical, published, indexable URLs only. */
 async function collectUrls() {
-  const [metas, dests, vehicles, posts] = await Promise.all([
+  const [metas, dests, vehicles, packages, posts] = await Promise.all([
     PageMeta.find().lean(),
     Destination.find({ status: 'published', 'seo.noindex': { $ne: true } }).select('slug updatedAt').lean(),
     Vehicle.find({ status: 'published', 'seo.noindex': { $ne: true } }).select('slug updatedAt').lean(),
+    TourPackage.find({ status: 'published', 'seo.noindex': { $ne: true } }).select('slug updatedAt').lean(),
     BlogPost.find({ status: 'published', publishedAt: { $lte: new Date() }, 'seo.noindex': { $ne: true } }).select('slug updatedAt').lean(),
   ]);
   const noindex = new Set(metas.filter((m) => m.noindex).map((m) => m.path));
@@ -20,6 +21,7 @@ async function collectUrls() {
     ...STATIC_PAGES.filter((p) => !noindex.has(p.path)).map((p) => ({ path: p.path })),
     ...dests.map((d) => ({ path: `/destinations/${d.slug}`, lastmod: d.updatedAt })),
     ...vehicles.map((v) => ({ path: `/vehicles/${v.slug}`, lastmod: v.updatedAt })),
+    ...packages.map((pkg) => ({ path: `/packages`, lastmod: pkg.updatedAt })),
     ...posts.map((b) => ({ path: `/blog/${b.slug}`, lastmod: b.updatedAt })),
   ];
 }

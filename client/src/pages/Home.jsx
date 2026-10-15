@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { ArrowRight, MessageCircle, Phone, Star, Plane, MapPin } from 'lucide-react';
-import { Seo } from '../lib/seo.jsx';
+import { Seo, localBusinessLd, faqPageLd, breadcrumbLd } from '../lib/seo.jsx';
 import { api } from '../lib/api.js';
 import { useApi } from '../lib/data.jsx';
 import { useSettings } from '../lib/useSettings.js';
@@ -117,8 +117,16 @@ export default function Home() {
 
   return (
     <>
-      <Seo path="/" title="Ajay Tour and Travels | Taxi and Tour Service in Amb Andaura, Una, Ludhiana, Chandigarh"
-        description="Request a quote for local, outstation, airport and railway station taxi trips across Amb Andaura, Una, Ludhiana and Chandigarh with Ajay Tour and Travels." />
+      <Seo
+        path="/"
+        title="Ajay Tour & Travels | #1 Taxi & Cab Service in Amb Andaura, Una & Himachal"
+        description="Book top-rated 24/7 cab service in Amb Andaura, Una, Chintpurni, Ludhiana & Chandigarh. Clean Dzire, Innova Crysta & Tempo Traveller with professional drivers. Instant upfront quotes!"
+        jsonLd={[
+          localBusinessLd(s),
+          faqPageLd(faqs.data),
+          breadcrumbLd([{ name: 'Home', path: '/' }]),
+        ]}
+      />
       <Hero />
       <Wave from="#0B1B33" className="-mt-px" />
 

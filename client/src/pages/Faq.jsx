@@ -1,4 +1,4 @@
-import { Seo, breadcrumbLd } from '../lib/seo.jsx';
+import { Seo, breadcrumbLd, faqPageLd } from '../lib/seo.jsx';
 import { api } from '../lib/api.js';
 import { useApi } from '../lib/data.jsx';
 import { PageHero, ErrorState, EmptyState, Cta, Skeleton } from '../components/ui.jsx';
@@ -9,7 +9,12 @@ export default function Faq() {
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'FAQ', path: '/faq' }];
   return (
     <>
-      <Seo path="/faq" title="Frequently Asked Questions | Ajay Tour and Travels" description="Answers about booking, quotes, round trips, service areas and how we handle your details." jsonLd={[breadcrumbLd(crumbs)]} />
+      <Seo
+        path="/faq"
+        title="Cab Booking & Tour FAQ | Ajay Tour and Travels"
+        description="Answers to common questions about booking, upfront quotes, fleet options, Shaktipeeth pilgrimage circuits, and railway station transfers in Amb Andaura & Una."
+        jsonLd={[breadcrumbLd(crumbs), faqPageLd(data)].filter(Boolean)}
+      />
       <PageHero eyebrow="FAQ" title="Frequently asked questions" intro="Quick answers about booking and travelling with us." crumbs={crumbs} />
       <div className="container-x section"><div className="mx-auto max-w-3xl">
         {loading && <Skeleton className="h-64" />}

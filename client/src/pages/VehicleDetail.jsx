@@ -14,7 +14,7 @@ import {
   Calendar,
   IndianRupee,
 } from 'lucide-react';
-import { Seo, breadcrumbLd } from '../lib/seo.jsx';
+import { Seo, breadcrumbLd, vehicleLd } from '../lib/seo.jsx';
 import { api } from '../lib/api.js';
 import { useApi } from '../lib/data.jsx';
 import { useSettings } from '../lib/useSettings.js';
@@ -57,7 +57,7 @@ export default function VehicleDetail() {
         title={v.seo?.title || `${v.name} Taxi Booking | Ajay Tour and Travels`}
         description={v.seo?.description || v.description}
         image={v.images?.[0]?.url}
-        jsonLd={[breadcrumbLd(crumbs)]}
+        jsonLd={[breadcrumbLd(crumbs), vehicleLd(v)]}
       />
 
       {/* Hero Header */}

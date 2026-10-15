@@ -1,14 +1,117 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X, Phone, MessageCircle, MapPin, Mail, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
+import {
+  Menu, X, Phone, MessageCircle, MapPin, Mail, Clock, Facebook, Instagram, Youtube,
+  Lock, ChevronDown, Car, Compass, Package, ArrowRight, ShieldCheck, Sparkles, Navigation
+} from 'lucide-react';
 import { useSettings } from '../lib/useSettings.js';
 import { useApi } from '../lib/data.jsx';
 import { api } from '../lib/api.js';
 import { localBusinessLd } from '../lib/seo.jsx';
 import { Helmet } from 'react-helmet-async';
 
-const NAV = [['/destinations', 'Destinations'], ['/services', 'Services'], ['/vehicles', 'Vehicles'], ['/packages', 'Packages'], ['/blog', 'Travel Tips'], ['/about', 'About'], ['/contact', 'Contact']];
+const DESTINATION_DROPDOWNS = [
+  { name: 'Amb Andaura Station', desc: 'Vande Bharat & express train pickup', to: '/destinations/amb-andaura', icon: MapPin },
+  { name: 'Chintpurni & Shaktipeeths', desc: 'Sacred Himachal pilgrimage circuit', to: '/destinations/chintpurni', icon: Sparkles },
+  { name: 'Chandigarh & Mohali', desc: 'Airport & business transit hub', to: '/destinations/chandigarh', icon: Compass },
+  { name: 'Dharamshala & Dalhousie', desc: 'Kangra valley mountain retreat', to: '/destinations/dharamshala', icon: Compass },
+  { name: 'Amritsar & Golden Temple', desc: 'Spiritual & heritage taxi tour', to: '/destinations/amritsar', icon: MapPin },
+  { name: 'Delhi & IGI Airport', desc: 'Comfortable long-distance outstation', to: '/destinations/delhi-airport', icon: Navigation },
+];
+
+const VEHICLE_DROPDOWNS = [
+  { name: 'Maruti Suzuki Dzire', desc: 'Comfort Sedan · 4 Passengers · 2 Bags', to: '/vehicles/maruti-dzire', icon: Car },
+  { name: 'Toyota Innova Crysta', desc: 'Luxury MUV · 6-7 Passengers · 4 Bags', to: '/vehicles/toyota-innova-crysta', icon: Car },
+  { name: 'Maruti Suzuki Ertiga', desc: 'Spacious Family MUV · 6 Passengers', to: '/vehicles/maruti-ertiga', icon: Car },
+  { name: 'Mahindra Scorpio-N', desc: 'Rugged Hill SUV · 6 Passengers', to: '/vehicles/mahindra-scorpio', icon: Car },
+  { name: 'Force Tempo Traveller', desc: 'Luxury Group Coach · 12-17 Seats', to: '/vehicles/tempo-traveller', icon: Car },
+];
+
+const PACKAGE_DROPDOWNS = [
+  { name: 'Himachal Pilgrimage Circuit', desc: 'Chintpurni, Jawala Ji, Kangra & Chamunda', to: '/packages', icon: Package },
+  { name: 'Dharamshala & Dalhousie Tour', desc: 'Scenic mountain holiday package', to: '/packages', icon: Package },
+  { name: 'Manali & Rohtang Pass Adventure', desc: 'Snow peaks & valley sightseeing', to: '/packages', icon: Package },
+  { name: 'Delhi & Chandigarh Express', desc: 'Direct airport transfer & outstation travel', to: '/packages', icon: Package },
+];
+
+const SERVICE_DROPDOWNS = [
+  { name: 'Outstation Cab Service', desc: 'Himachal, Punjab, Haryana & Delhi NCR', to: '/services', icon: Navigation },
+  { name: 'Railway Station Pickup & Drop', desc: 'Amb Andaura, Una, Nangal & Hoshiarpur', to: '/services', icon: Compass },
+  { name: 'Airport Transfers', desc: 'Chandigarh (IXC), Amritsar (ATQ), Delhi (DEL)', to: '/services', icon: Compass },
+  { name: 'Local Hourly Car Rental', desc: 'Flexible shopping & family local trips', to: '/services', icon: Car },
+];
+
+function NavDropdown({ label, to, items, viewAllLabel, viewAllTo }) {
+  const [open, setOpen] = useState(false);
+  const timeoutRef = useRef(null);
+
+  const onEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpen(true);
+  };
+  const onLeave = () => {
+    timeoutRef.current = setTimeout(() => setOpen(false), 150);
+  };
+
+  return (
+    <div className="relative" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+      <NavLink
+        to={to}
+        className={({ isActive }) =>
+          `inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition ${
+            isActive || open ? 'bg-white/15 text-white' : 'text-white/85 hover:bg-white/10 hover:text-white'
+          }`
+        }
+        aria-expanded={open}
+      >
+        <span>{label}</span>
+        <ChevronDown size={14} className={`transition-transform duration-200 ${open ? 'rotate-180 text-teal-300' : 'text-white/60'}`} />
+      </NavLink>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 6, scale: 0.98 }}
+            transition={{ duration: 0.16 }}
+            className="absolute left-1/2 top-full z-50 mt-2 w-80 -translate-x-1/2 overflow-hidden rounded-2xl border border-white/20 bg-navy-950/95 p-2.5 shadow-2xl backdrop-blur-2xl [box-shadow:inset_0_1px_1px_0_rgba(255,255,255,0.25),0_20px_45px_-12px_rgba(0,0,0,0.7)]"
+          >
+            <div className="space-y-1">
+              {items.map((item) => (
+                <Link
+                  key={item.to + item.name}
+                  to={item.to}
+                  onClick={() => setOpen(false)}
+                  className="group flex items-start gap-2.5 rounded-xl px-3 py-2 text-left transition hover:bg-white/10"
+                >
+                  {item.icon && <item.icon size={16} className="mt-0.5 shrink-0 text-teal-400 group-hover:text-teal-300" />}
+                  <div>
+                    <div className="text-xs font-semibold text-white group-hover:text-teal-200">{item.name}</div>
+                    {item.desc && <div className="text-[11px] text-white/60 line-clamp-1">{item.desc}</div>}
+                  </div>
+                </Link>
+              ))}
+            </div>
+            {viewAllTo && (
+              <div className="mt-2 border-t border-white/10 pt-2 text-center">
+                <Link
+                  to={viewAllTo}
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center justify-center gap-1 text-[11px] font-bold text-teal-300 hover:text-teal-200"
+                >
+                  <span>{viewAllLabel || 'View All Options'}</span>
+                  <ArrowRight size={12} />
+                </Link>
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export function AnnouncementBar() {
   const s = useSettings();
@@ -50,7 +153,7 @@ export function Navbar() {
     panelRef.current?.querySelector('a,button')?.focus();
     const onKey = (e) => {
       if (e.key === 'Escape') { setOpen(false); btnRef.current?.focus(); }
-      if (e.key === 'Tab' && panelRef.current) { // keep focus inside the open menu
+      if (e.key === 'Tab' && panelRef.current) {
         const f = [...panelRef.current.querySelectorAll('a,button')].concat(btnRef.current);
         const first = f[0]; const last = f[f.length - 1];
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
@@ -70,10 +173,30 @@ export function Navbar() {
           <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1AA6A0" /><path d="M12 44c10-2 14-18 24-18s10 10 16 8" fill="none" stroke="#0B1B33" strokeWidth="6" strokeLinecap="round" /><circle cx="50" cy="34" r="5" fill="#F28A4B" /></svg>
           <span className="max-w-[9.5rem] truncate sm:max-w-none">{s.business.name}</span>
         </Link>
-        <nav aria-label="Main" className="hidden items-center gap-1 xl:flex">
-          {NAV.map(([to, label]) => <NavLink key={to} to={to} className={link}>{label}</NavLink>)}
+
+        {/* Desktop Navigation with Spatial Dropdowns */}
+        <nav aria-label="Main" className="hidden items-center gap-0.5 xl:flex">
+          <NavDropdown label="Destinations" to="/destinations" items={DESTINATION_DROPDOWNS} viewAllLabel="Explore All Destinations →" viewAllTo="/destinations" />
+          <NavDropdown label="Vehicles & Cabs" to="/vehicles" items={VEHICLE_DROPDOWNS} viewAllLabel="View Full Fleet Lineup →" viewAllTo="/vehicles" />
+          <NavDropdown label="Tour Packages" to="/packages" items={PACKAGE_DROPDOWNS} viewAllLabel="Browse All Tour Packages →" viewAllTo="/packages" />
+          <NavDropdown label="Services" to="/services" items={SERVICE_DROPDOWNS} viewAllLabel="View All Services →" viewAllTo="/services" />
+          <NavLink to="/blog" className={link}>Travel Tips</NavLink>
+          <NavLink to="/about" className={link}>About</NavLink>
+          <NavLink to="/contact" className={link}>Contact</NavLink>
         </nav>
-        <div className="flex items-center gap-2.5">
+
+        {/* Action Buttons: Phone + Admin Access + Book CTA */}
+        <div className="flex items-center gap-2">
+          {/* Admin Login Button on Public Navbar */}
+          <Link
+            to="/admin"
+            className="hidden items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/90 backdrop-blur-md transition-all hover:border-teal-400/50 hover:bg-white/15 hover:text-white md:inline-flex shadow-sm"
+            title="Admin Management Console"
+          >
+            <Lock size={12} className="text-teal-400" aria-hidden="true" />
+            <span>Admin</span>
+          </Link>
+
           {s.callHref && (
             <a
               href={s.callHref}
@@ -88,12 +211,14 @@ export function Navbar() {
               <span>{s.phone}</span>
             </a>
           )}
+
           <Link
             to="/book"
             className="hidden items-center justify-center rounded-full bg-gradient-to-r from-sunset-500 to-amber-500 px-5 py-2 text-sm font-bold text-navy-950 shadow-md shadow-sunset-500/25 transition-all duration-200 hover:from-sunset-400 hover:to-amber-400 hover:shadow-lg hover:shadow-sunset-500/35 hover:-translate-y-0.5 active:translate-y-0 sm:inline-flex"
           >
             Book Your Ride
           </Link>
+
           {s.callHref && (
             <a
               href={s.callHref}
@@ -103,6 +228,7 @@ export function Navbar() {
               <Phone size={18} aria-hidden="true" />
             </a>
           )}
+
           <button
             ref={btnRef}
             type="button"
@@ -116,16 +242,40 @@ export function Navbar() {
           </button>
         </div>
       </div>
+
+      {/* Mobile Drawer Navigation */}
       <AnimatePresence>
         {open && (
           <motion.div id="mobile-menu" ref={panelRef} role="dialog" aria-modal="true" aria-label="Site menu"
             initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.2 }}
             className="pointer-events-auto mx-auto mt-2 max-h-[calc(100dvh-5.5rem)] max-w-7xl overflow-y-auto rounded-3xl bg-navy-900 p-4 shadow-float xl:hidden">
             <ul className="grid gap-1">
-              {[['/', 'Home'], ...NAV, ['/faq', 'FAQ']].map(([to, label]) => (
+              {[
+                ['/', 'Home'],
+                ['/destinations', 'Destinations'],
+                ['/vehicles', 'Vehicles & Cabs'],
+                ['/packages', 'Tour Packages'],
+                ['/services', 'Services'],
+                ['/blog', 'Travel Tips'],
+                ['/about', 'About'],
+                ['/contact', 'Contact'],
+                ['/faq', 'FAQ']
+              ].map(([to, label]) => (
                 <li key={to}><NavLink to={to} end={to === '/'} className={({ isActive }) => `flex min-h-[48px] items-center rounded-2xl px-4 text-base font-medium ${isActive ? 'bg-white/15 text-white' : 'text-white/90 hover:bg-white/10'}`}>{label}</NavLink></li>
               ))}
+              
+              {/* Admin Portal in Mobile Menu */}
+              <li className="mt-2 border-t border-white/10 pt-2">
+                <Link
+                  to="/admin"
+                  className="flex min-h-[48px] items-center gap-2.5 rounded-2xl bg-teal-500/15 px-4 text-base font-semibold text-teal-300 transition hover:bg-teal-500/25"
+                >
+                  <Lock size={16} className="text-teal-400" aria-hidden="true" />
+                  <span>Admin Portal Login</span>
+                </Link>
+              </li>
             </ul>
+
             <div className="mt-4 grid grid-cols-2 gap-2">
               {s.callHref && (
                 <a href={s.callHref} className="flex min-h-[44px] items-center justify-center gap-2 rounded-2xl bg-white/10 text-sm font-semibold text-white">
@@ -174,7 +324,7 @@ export function Footer() {
         <nav aria-label="Company">
           <p className="font-semibold">Explore</p>
           <ul className="mt-3 space-y-2">
-            {[['/services', 'Services'], ['/vehicles', 'Our Vehicles'], ['/packages', 'Tour Packages'], ['/blog', 'Travel Tips'], ['/faq', 'FAQ'], ['/about', 'About Us'], ['/contact', 'Contact'], ['/book', 'Book a Trip']].map(([to, l]) => <li key={to}><Link className={col} to={to}>{l}</Link></li>)}
+            {[['/services', 'Services'], ['/vehicles', 'Our Vehicles'], ['/packages', 'Tour Packages'], ['/blog', 'Travel Tips'], ['/faq', 'FAQ'], ['/about', 'About Us'], ['/contact', 'Contact'], ['/book', 'Book a Trip'], ['/admin', 'Admin Portal']].map(([to, l]) => <li key={to}><Link className={col} to={to}>{l}</Link></li>)}
           </ul>
           <p className="mt-5 font-semibold">Legal</p>
           <ul className="mt-3 space-y-2"><li><Link className={col} to="/privacy-policy">Privacy Policy</Link></li><li><Link className={col} to="/terms-and-conditions">Terms and Conditions</Link></li></ul>
@@ -193,7 +343,11 @@ export function Footer() {
           {b.googleBusinessProfileUrl && <a href={b.googleBusinessProfileUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-sm underline underline-offset-2">Find us on Google</a>}
         </div>
       </div>
-      <div className="border-t border-white/10 py-5 text-center text-xs text-white/60">{s.footer?.copyright || `© ${new Date().getFullYear()} ${b.name}. All rights reserved.`}</div>
+      <div className="border-t border-white/10 py-5 text-center text-xs text-white/60">
+        <span>{s.footer?.copyright || `© ${new Date().getFullYear()} ${b.name}. All rights reserved.`}</span>
+        <span className="mx-2 text-white/20">|</span>
+        <Link to="/admin" className="text-white/40 hover:text-teal-300 transition-colors">Admin Sign In</Link>
+      </div>
     </footer>
   );
 }

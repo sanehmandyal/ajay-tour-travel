@@ -1,4 +1,4 @@
-import { Seo, breadcrumbLd, mediaUrl } from '../lib/seo.jsx';
+import { Seo, breadcrumbLd, packageLd, mediaUrl } from '../lib/seo.jsx';
 import { api } from '../lib/api.js';
 import { useApi } from '../lib/data.jsx';
 import { PageHero, Reveal, CardGridSkeleton, ErrorState, EmptyState, Img, Art, Cta } from '../components/ui.jsx';
@@ -10,7 +10,12 @@ export default function Packages() {
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Tour Packages', path: '/packages' }];
   return (
     <>
-      <Seo path="/packages" title="Tour Packages | Ajay Tour and Travels" description="Customised family trips and day tours planned around your dates and interests. Request a quote for your package." jsonLd={[breadcrumbLd(crumbs)]} />
+      <Seo
+        path="/packages"
+        title="Himachal Tour Packages & Custom Taxi Tours | Ajay Tour and Travels"
+        description="Book customized tour packages for Chintpurni, Dharamshala, Dalhousie, Manali & Shimla with private cab & driver. Transparent upfront quotes for families and groups."
+        jsonLd={[breadcrumbLd(crumbs), ...(data || []).map((p) => packageLd(p)).filter(Boolean)]}
+      />
       <PageHero eyebrow="Tour packages" title="Trips planned around you" intro="Packages are starting points. We adjust the plan, vehicle and timing to suit your group." crumbs={crumbs} />
       <div className="container-x section space-y-8">
         {loading && <CardGridSkeleton n={2} />}

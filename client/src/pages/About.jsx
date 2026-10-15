@@ -13,7 +13,12 @@ export default function About() {
   ];
   return (
     <>
-      <Seo path="/about" title="About Ajay Tour and Travels" description="Ajay Tour and Travels arranges local and outstation taxi trips and tours across Amb Andaura, Una, Ludhiana and Chandigarh." jsonLd={[breadcrumbLd(crumbs)]} />
+      <Seo
+        path="/about"
+        title="About Ajay Tour & Travels | Trusted Himachal Taxi Service"
+        description="Learn about Ajay Tour and Travels: 15+ years experience providing reliable taxi services, verified courteous drivers, sanitized cabs, and transparent quotes across Amb Andaura, Una, Punjab & Himachal."
+        jsonLd={[breadcrumbLd(crumbs)]}
+      />
       <PageHero eyebrow="About us" title={`About ${s.business.name}`} intro="A local travel service helping families, pilgrims and business travellers move between Himachal Pradesh, Punjab and Chandigarh." crumbs={crumbs} />
       <div className="container-x section grid items-center gap-12 lg:grid-cols-2">
         <div className="prose-ajt">

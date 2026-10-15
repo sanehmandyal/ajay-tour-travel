@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { MapPin, Clock, Route as RouteIcon, MessageCircle, Phone, Lightbulb, Landmark, ArrowRight, ShieldCheck } from 'lucide-react';
-import { Seo, breadcrumbLd, serviceLd } from '../lib/seo.jsx';
+import { Seo, breadcrumbLd, serviceLd, faqPageLd } from '../lib/seo.jsx';
 import { api, API_BASE } from '../lib/api.js';
 import { useApi } from '../lib/data.jsx';
 import { useSettings } from '../lib/useSettings.js';
@@ -31,8 +31,8 @@ export default function DestinationDetail() {
 
   return (
     <>
-      <Seo path={path} override={false} title={d.seo?.title || `${d.h1 || d.name} | Ajay Tour and Travels`} description={d.seo?.description || d.summary}
-        canonical={d.seo?.canonicalUrl || undefined} image={d.seo?.ogImage || d.heroImage?.url} noindex={d.seo?.noindex} jsonLd={[breadcrumbLd(crumbs), serviceLd(d)]} />
+      <Seo path={path} override={false} title={d.seo?.title || `${d.h1 || d.name} Taxi Service | Ajay Tour and Travels`} description={d.seo?.description || d.summary}
+        canonical={d.seo?.canonicalUrl || undefined} image={d.seo?.ogImage || d.heroImage?.url} noindex={d.seo?.noindex} jsonLd={[breadcrumbLd(crumbs), serviceLd(d), faqPageLd(d.faqs)].filter(Boolean)} />
       <header className="relative isolate overflow-hidden bg-navy-900 pb-14 pt-28 text-white sm:pb-20 sm:pt-36">
         {d.heroImage?.url
           ? <Img src={d.heroImage.url} alt={d.heroImage.alt || ''} priority sizes="100vw" className="absolute inset-0 -z-20 h-full w-full object-cover" />

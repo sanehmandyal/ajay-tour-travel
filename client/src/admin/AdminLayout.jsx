@@ -46,11 +46,40 @@ export default function AdminLayout() {
         <p className="mb-4 px-3 font-display text-lg text-white">Ajay Tour <span className="text-sunset-400">Admin</span></p>{links}{foot}
       </aside>
       <div className="min-w-0">
-        <header className="sticky top-0 z-30 flex items-center justify-between bg-white px-4 py-2 shadow-sm lg:px-8">
-          <button ref={btn} type="button" className="grid h-11 w-11 place-items-center rounded-xl hover:bg-slate-100 lg:hidden" aria-label="Open navigation" aria-expanded={open} aria-controls="admin-drawer" onClick={() => setOpen(true)}><Menu aria-hidden="true" /></button>
-          <p className="hidden text-sm text-navy-700 lg:block">Signed in as <strong>{user?.name}</strong></p>
-          <p className="text-sm font-semibold lg:hidden">Admin</p>
-          <span className="w-11 lg:hidden" />
+        <header className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-2.5 shadow-sm backdrop-blur-md lg:px-8">
+          <div className="flex items-center gap-3">
+            <button ref={btn} type="button" className="grid h-10 w-10 place-items-center rounded-xl hover:bg-slate-100 lg:hidden" aria-label="Open navigation" aria-expanded={open} aria-controls="admin-drawer" onClick={() => setOpen(true)}><Menu aria-hidden="true" size={20} /></button>
+            <div className="relative">
+              <label htmlFor="admin-quick-jump" className="sr-only">Quick Jump Resource</label>
+              <select
+                id="admin-quick-jump"
+                value={NAV.some(([to]) => to === pathname) ? pathname : ''}
+                onChange={(e) => { if (e.target.value) window.location.pathname = e.target.value; }}
+                className="rounded-xl border border-slate-300 bg-slate-50/80 px-3 py-1.5 text-xs font-semibold text-navy-900 shadow-inner transition hover:border-teal-500 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20 sm:text-sm"
+              >
+                <option value="" disabled>⚡ Quick Switch Section...</option>
+                <option value="/admin">📊 Dashboard</option>
+                <option value="/admin/destinations">📍 Destinations (Manage / Add)</option>
+                <option value="/admin/vehicles">🚗 Cabs & Vehicles (Fleet)</option>
+                <option value="/admin/packages">📦 Tour Packages</option>
+                <option value="/admin/routes">🛣️ Routes & Fares</option>
+                <option value="/admin/inquiries">📨 Customer Inquiries</option>
+                <option value="/admin/blog">📝 Blog Posts</option>
+                <option value="/admin/faqs">❓ FAQs</option>
+                <option value="/admin/settings">⚙️ Settings</option>
+                <option value="/admin/seo">🔎 SEO & Redirects</option>
+                <option value="/admin/media">🖼️ Media Library</option>
+                <option value="/admin/account">🔑 Account Security</option>
+              </select>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <a href="/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 hover:text-teal-700">
+              <ExternalLink size={13} aria-hidden="true" />
+              <span className="hidden sm:inline">View Site</span>
+            </a>
+            <p className="hidden text-xs text-navy-600 sm:block">Logged in: <strong className="text-navy-900">{user?.name}</strong></p>
+          </div>
         </header>
         {open && (
           <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true" aria-label="Admin navigation">
