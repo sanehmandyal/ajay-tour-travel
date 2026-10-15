@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Plus, Pencil, Trash2, X, Loader2, ExternalLink } from 'lucide-react';
 import { adminApi } from '../lib/api.js';
+import { invalidateData } from '../lib/data.jsx';
 import { FormFields, toPayload, errorMap } from './FormKit.jsx';
 import { RESOURCES } from './schemas.js';
 
@@ -23,6 +24,8 @@ function Editor({ cfg, item, onClose, onSaved }) {
     try {
       const payload = toPayload(form, cfg.fields);
       const saved = isNew ? await adminApi.post(cfg.endpoint, payload) : await adminApi.put(`${cfg.endpoint}/${item._id}`, payload);
+      invalidateData(cfg.singular);
+      invalidateData('all');
       onSaved(saved);
     } catch (ex) { setErrors(errorMap(ex)); setBanner(ex.message); document.getElementById('editor-top')?.scrollIntoView({ block: 'nearest' }); } finally { setBusy(false); }
   }
@@ -75,7 +78,13 @@ export default function ResourcePage({ name }) {
 
   async function remove(r) {
     if (!window.confirm(`Delete this ${cfg.singular}? This cannot be undone.`)) return;
-    try { await adminApi.del(`${cfg.endpoint}/${r._id}`); setNotice(`${cfg.singular} deleted`); load(); } catch (ex) { setNotice(ex.message); }
+    try {
+      await adminApi.del(`${cfg.endpoint}/${r._id}`);
+      invalidateData(cfg.singular);
+      invalidateData('all');
+      setNotice(`${cfg.singular} deleted`);
+      load();
+    } catch (ex) { setNotice(ex.message); }
   }
 
   return (

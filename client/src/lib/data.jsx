@@ -26,8 +26,43 @@ export function useApi(key, fetcher) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
 
+  // Live real-time sync: when admin saves/deletes data, immediately re-fetch latest data
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const onInvalidate = (e) => {
+      const target = e.detail?.key;
+      if (!target || target === 'all' || target === key || key.startsWith(`${target}:`) || key.startsWith(target)) {
+        fetcher()
+          .then((d) => {
+            cache.set(key, { t: Date.now(), v: d });
+            setSt({ key, data: d, error: null });
+          })
+          .catch((err) => {
+            setSt({ key, data: null, error: err });
+          });
+      }
+    };
+    window.addEventListener('ajt:data-invalidated', onInvalidate);
+    return () => window.removeEventListener('ajt:data-invalidated', onInvalidate);
+  }, [key, fetcher]);
+
   const current = st.key === key;
   return { data: current ? st.data : null, loading: !current, error: current ? st.error : null };
 }
 
-export const clearApiCache = () => cache.clear();
+export const clearApiCache = (key) => {
+  if (!key || key === 'all') {
+    cache.clear();
+  } else {
+    for (const k of cache.keys()) {
+      if (k === key || k.startsWith(`${key}:`) || k.startsWith(key)) cache.delete(k);
+    }
+  }
+};
+
+export const invalidateData = (key = 'all') => {
+  clearApiCache(key);
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('ajt:data-invalidated', { detail: { key } }));
+  }
+};

@@ -21,15 +21,20 @@ const MEDIA = /^\/api\/media\/[a-f0-9]{24}$/i;
 const WIDTHS = [480, 960, 1600];
 
 /** Responsive image. Uploaded media gets a WebP srcset; fixed width/height or ratio prevents layout shift. */
-export function Img({ src, alt = '', width, height, priority = false, sizes = '(min-width:1024px) 33vw, 100vw', className = '', ratio = '' }) {
+export function Img({ src, alt = '', width, height, priority = false, sizes = '(min-width:1024px) 33vw, 100vw', className = '', ratio = '', onError }) {
   if (!src) return null;
-  const media = MEDIA.test(src);
-  const props = media
-    ? { src: `${API_BASE}${src}/960`, srcSet: WIDTHS.map((w) => `${API_BASE}${src}/${w} ${w}w`).join(', '), sizes }
-    : { src };
+  const isMedia = MEDIA.test(src);
+  const resolvedSrc = isMedia
+    ? `${API_BASE}${src}/960`
+    : src.startsWith('/api/media/')
+      ? `${API_BASE}${src}`
+      : src;
+  const props = isMedia
+    ? { src: resolvedSrc, srcSet: WIDTHS.map((w) => `${API_BASE}${src}/${w} ${w}w`).join(', '), sizes }
+    : { src: resolvedSrc };
   return (
     <img {...props} alt={alt} width={width} height={height} decoding="async" loading={priority ? 'eager' : 'lazy'}
-      {...(priority ? { fetchpriority: 'high' } : {})} className={`${ratio} ${className}`} />
+      {...(priority ? { fetchpriority: 'high' } : {})} className={`${ratio} ${className}`} onError={onError} />
   );
 }
 

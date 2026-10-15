@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Loader2, ExternalLink, Copy } from 'lucide-react';
 import { adminApi, API_BASE } from '../lib/api.js';
+import { invalidateData } from '../lib/data.jsx';
 import { FormFields, toPayload, errorMap } from './FormKit.jsx';
 
 const META_FIELDS = [
@@ -28,7 +29,11 @@ export default function SeoPage() {
   async function save(e) {
     e.preventDefault();
     setBusy(true); setErrors({}); setMsg('');
-    try { await adminApi.put('/seo', { path: edit.path, ...toPayload(form, META_FIELDS) }); setEdit(null); setMsg('SEO settings saved'); load(); } catch (ex) { setErrors(errorMap(ex)); setMsg(ex.message); } finally { setBusy(false); }
+    try {
+      await adminApi.put('/seo', { path: edit.path, ...toPayload(form, META_FIELDS) });
+      invalidateData('all');
+      setEdit(null); setMsg('SEO settings saved'); load();
+    } catch (ex) { setErrors(errorMap(ex)); setMsg(ex.message); } finally { setBusy(false); }
   }
   if (!data) return <p role="status">{msg || 'Loading SEO tools…'}</p>;
 

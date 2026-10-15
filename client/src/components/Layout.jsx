@@ -164,6 +164,37 @@ export function Navbar() {
     return () => { document.body.style.overflow = prev; document.removeEventListener('keydown', onKey); };
   }, [open]);
 
+  const { data: dbDests } = useApi('destinations', () => api.get('/api/destinations'));
+  const { data: dbVehicles } = useApi('vehicles', () => api.get('/api/vehicles'));
+  const { data: dbPackages } = useApi('packages', () => api.get('/api/packages'));
+
+  const destinationItems = (dbDests && dbDests.length > 0)
+    ? dbDests.slice(0, 7).map((d) => ({
+        name: d.name,
+        desc: d.summary || (d.kind === 'route' ? 'Himachal taxi route' : 'Verified destination'),
+        to: `/destinations/${d.slug}`,
+        icon: d.kind === 'route' ? Navigation : Compass,
+      }))
+    : DESTINATION_DROPDOWNS;
+
+  const vehicleItems = (dbVehicles && dbVehicles.length > 0)
+    ? dbVehicles.slice(0, 6).map((v) => ({
+        name: v.name,
+        desc: `${v.category || 'Taxi'} · ${v.seats || 4} Seats · ${v.airConditioning || 'Full AC'}`,
+        to: `/vehicles/${v.slug}`,
+        icon: Car,
+      }))
+    : VEHICLE_DROPDOWNS;
+
+  const packageItems = (dbPackages && dbPackages.length > 0)
+    ? dbPackages.slice(0, 5).map((p) => ({
+        name: p.title,
+        desc: p.summary || `${p.durationDays || 'Multi'}-day custom tour`,
+        to: '/packages',
+        icon: Package,
+      }))
+    : PACKAGE_DROPDOWNS;
+
   const link = ({ isActive }) =>
     `whitespace-nowrap rounded-full px-2.5 py-1.5 text-xs font-medium tracking-wide transition-all xl:px-3 xl:text-[13px] ${
       isActive ? 'bg-white/15 text-white shadow-inner font-semibold' : 'text-white/80 hover:bg-white/10 hover:text-white'
@@ -188,9 +219,9 @@ export function Navbar() {
         {/* Clean Desktop Navigation with Spatial Dropdowns */}
         <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex xl:gap-1">
           <NavLink to="/" end className={link}>Home</NavLink>
-          <NavDropdown label="Destinations" to="/destinations" items={DESTINATION_DROPDOWNS} viewAllLabel="Explore All Destinations →" viewAllTo="/destinations" />
-          <NavDropdown label="Vehicles" to="/vehicles" items={VEHICLE_DROPDOWNS} viewAllLabel="View Full Fleet Lineup →" viewAllTo="/vehicles" />
-          <NavDropdown label="Packages" to="/packages" items={PACKAGE_DROPDOWNS} viewAllLabel="Browse All Tour Packages →" viewAllTo="/packages" />
+          <NavDropdown label="Destinations" to="/destinations" items={destinationItems} viewAllLabel="Explore All Destinations →" viewAllTo="/destinations" />
+          <NavDropdown label="Vehicles" to="/vehicles" items={vehicleItems} viewAllLabel="View Full Fleet Lineup →" viewAllTo="/vehicles" />
+          <NavDropdown label="Packages" to="/packages" items={packageItems} viewAllLabel="Browse All Tour Packages →" viewAllTo="/packages" />
           <NavDropdown label="Services" to="/services" items={SERVICE_DROPDOWNS} viewAllLabel="View All Travel Services →" viewAllTo="/services" />
           <NavLink to="/about" className={link}>About</NavLink>
           <NavLink to="/contact" className={link}>Contact</NavLink>

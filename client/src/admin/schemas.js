@@ -6,7 +6,7 @@ const seo = { name: 'seo', label: 'SEO', type: 'group', fields: [
   { name: 'ogImage', label: 'Social sharing image URL', type: 'text' },
   { name: 'noindex', label: 'Hide from search engines', type: 'checkbox', help: 'Add noindex and leave out of the sitemap' },
 ] };
-const status = { name: 'status', label: 'Status', type: 'select', options: [['draft', 'Draft (hidden)'], ['published', 'Published']] };
+const status = { name: 'status', label: 'Publication Status', type: 'select', options: [['published', '🟢 Published (Visible on website)'], ['draft', '⚪ Draft (Hidden from website)']] };
 const pricing = { name: 'pricing', label: 'Pricing', type: 'group', fields: [
   { name: 'mode', label: 'Price display', type: 'select', options: [['quote', 'Quote on request (no price shown)'], ['from', 'From amount'], ['fixed', 'Fixed amount']] },
   { name: 'amount', label: 'Amount (INR)', type: 'number', nullable: true, hint: 'Only used for "from" and "fixed"' },
@@ -21,7 +21,7 @@ export const RESOURCES = {
     preview: (r) => `/destinations/${r.slug}`,
     filters: [{ key: 'status', label: 'Status', options: [['', 'All'], ['published', 'Published'], ['draft', 'Draft']] }, { key: 'kind', label: 'Type', options: [['', 'All'], ['place', 'Place'], ['route', 'Route page']] }],
     columns: [['name', 'Name'], ['slug', 'URL', (r) => `/destinations/${r.slug}`], ['kind', 'Type'], ['status', 'Status'], ['viewCount', 'Views']],
-    blank: () => ({ kind: 'place', status: 'draft', needsVerification: true, sections: [], attractions: [], travelTips: [], faqs: [], vehicleSlugs: [], relatedSlugs: [], heroImage: {}, seo: {} }),
+    blank: () => ({ kind: 'place', status: 'published', needsVerification: false, sections: [], attractions: [], travelTips: [], faqs: [], vehicleSlugs: [], relatedSlugs: [], heroImage: {}, seo: {} }),
     fields: [
       { name: 'name', label: 'Name' }, { name: 'slug', label: 'URL slug', hint: 'Lowercase letters, numbers, hyphens. Auto-generated if empty.' },
       { name: 'kind', label: 'Type', type: 'select', options: [['place', 'Place'], ['route', 'Route page']] }, status,
@@ -59,7 +59,7 @@ export const RESOURCES = {
     preview: (r) => `/vehicles/${r.slug}`,
     filters: [{ key: 'status', label: 'Status', options: [['', 'All'], ['published', 'Published'], ['draft', 'Draft']] }],
     columns: [['name', 'Name'], ['category', 'Category'], ['seats', 'Seats'], ['availability', 'Availability'], ['status', 'Status']],
-    blank: () => ({ status: 'draft', availability: 'on-request', features: [], included: [], images: [], seo: {} }),
+    blank: () => ({ status: 'published', availability: 'available', features: [], included: [], images: [], seo: {} }),
     fields: [
       { name: 'name', label: 'Name' }, { name: 'slug', label: 'Slug' }, { name: 'category', label: 'Category' }, status,
       { name: 'seats', label: 'Seating capacity', type: 'number', min: 1 }, { name: 'luggageCapacity', label: 'Luggage capacity' },
@@ -81,7 +81,7 @@ export const RESOURCES = {
     preview: () => '/packages',
     filters: [{ key: 'status', label: 'Status', options: [['', 'All'], ['published', 'Published'], ['draft', 'Draft']] }],
     columns: [['title', 'Title'], ['durationDays', 'Days'], ['status', 'Status']],
-    blank: () => ({ status: 'draft', pricing: { mode: 'quote' }, itinerary: [], inclusions: [], exclusions: [], images: [], seo: {} }),
+    blank: () => ({ status: 'published', pricing: { mode: 'quote' }, itinerary: [], inclusions: [], exclusions: [], images: [], seo: {} }),
     fields: [
       { name: 'title', label: 'Title' }, { name: 'slug', label: 'Slug' }, status, { name: 'sortOrder', label: 'Sort order', type: 'number' },
       { name: 'durationDays', label: 'Days', type: 'number', min: 1 }, { name: 'durationNights', label: 'Nights', type: 'number', min: 0 },
@@ -95,7 +95,7 @@ export const RESOURCES = {
     title: 'Blog posts', singular: 'post', endpoint: '/blog', search: true,
     filters: [{ key: 'status', label: 'Status', options: [['', 'All'], ['published', 'Published'], ['draft', 'Draft']] }],
     columns: [['title', 'Title'], ['category', 'Category'], ['status', 'Status'], ['publishedAt', 'Published', (r) => (r.publishedAt ? new Date(r.publishedAt).toLocaleDateString('en-IN') : '')]],
-    blank: () => ({ status: 'draft', tags: [], featuredImage: {}, seo: {}, author: 'Ajay Tour and Travels' }),
+    blank: () => ({ status: 'published', tags: [], featuredImage: {}, seo: {}, author: 'Ajay Tour and Travels' }),
     preview: (r) => `/blog/${r.slug}`,
     fields: [
       { name: 'title', label: 'Title' }, { name: 'slug', label: 'Slug' }, { name: 'author', label: 'Author' }, { name: 'category', label: 'Category' }, status,

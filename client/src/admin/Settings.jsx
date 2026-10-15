@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { adminApi } from '../lib/api.js';
+import { invalidateData } from '../lib/data.jsx';
 import { FormFields, toPayload, errorMap } from './FormKit.jsx';
 import { SETTINGS_TABS } from './schemas.js';
 
@@ -20,6 +21,8 @@ export default function Settings() {
     setBusy(true); setErrors({}); setMsg({ type: '', text: '' });
     try {
       const saved = await adminApi.put('/settings', toPayload(form, allFields));
+      invalidateData('settings');
+      invalidateData('all');
       setForm(saved); setMsg({ type: 'ok', text: 'Settings saved. Changes appear on the public website straight away.' });
     } catch (ex) { setErrors(errorMap(ex)); setMsg({ type: 'error', text: ex.message }); } finally { setBusy(false); }
   }

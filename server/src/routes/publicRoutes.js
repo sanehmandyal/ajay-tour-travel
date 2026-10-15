@@ -26,6 +26,7 @@ router.get('/blog', c.listBlog);
 router.get('/blog/:slug', c.getBlogPost);
 router.get('/faqs', c.listFaqs);
 router.get('/settings/public', c.getPublicSettings);
+router.get('/media/:id', serveMedia);
 router.get('/media/:id/:width', serveMedia);
 router.get('/sitemap.xml', seo.sitemapXml);
 router.get('/sitemap', seo.sitemapJson);
