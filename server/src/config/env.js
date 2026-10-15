@@ -51,6 +51,13 @@ const schema = z
         }
       } catch {}
     }
+    const KNOWN_PROD_ORIGINS = [
+      'https://ajay-tour-travel.vercel.app',
+      'https://ajay-tour-travels.vercel.app',
+    ];
+    for (const ko of KNOWN_PROD_ORIGINS) {
+      if (!origins.includes(ko)) origins.push(ko);
+    }
     return {
       ...data,
       SITE_URL: data.SITE_URL.replace(/\/$/, ''),

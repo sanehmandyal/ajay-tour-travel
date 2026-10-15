@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://ajay-tour-travel-api.onrender.com/api/:path*" },
+    { "source": "/admin", "destination": "/_shell.html" },
+    { "source": "/admin/:path*", "destination": "/_shell.html" },
+    { "source": "/((?!assets/|_shell\\.html|api/|.*\\..*).*)", "destination": "/index.html" }
+  ]
+}

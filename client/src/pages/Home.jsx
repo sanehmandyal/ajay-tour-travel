@@ -113,6 +113,15 @@ const Wave = ({ from = '#0B1B33', className = '' }) => (
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className={`block h-10 w-full sm:h-14 ${className}`} aria-hidden="true"><path d="M0 0h1440v20c-240 40-480 40-720 20S240 20 0 40z" fill={from} /></svg>
 );
 
+const DEFAULT_ROUTES = [
+  { from: 'Amb Andaura', to: 'Chandigarh', slug: 'amb-andaura-to-chandigarh', destinationSlug: 'amb-andaura-to-chandigarh', detailsVerified: true, distanceKm: 135, approxDurationMinutes: 195, pricing: { amount: 2600 } },
+  { from: 'Una', to: 'Chandigarh', slug: 'una-to-chandigarh', destinationSlug: 'una-to-chandigarh', detailsVerified: true, distanceKm: 120, approxDurationMinutes: 165, pricing: { amount: 2400 } },
+  { from: 'Una', to: 'Ludhiana', slug: 'una-to-ludhiana', destinationSlug: 'una-to-ludhiana', detailsVerified: true, distanceKm: 115, approxDurationMinutes: 150, pricing: { amount: 2200 } },
+  { from: 'Amb Andaura', to: 'Una', slug: 'amb-andaura-to-una', destinationSlug: 'una', detailsVerified: true, distanceKm: 32, approxDurationMinutes: 45, pricing: { amount: 700 } },
+  { from: 'Amb Andaura', to: 'Chintpurni', slug: 'amb-andaura-to-chintpurni', destinationSlug: 'chintpurni', detailsVerified: true, distanceKm: 22, approxDurationMinutes: 40, pricing: { amount: 600 } },
+  { from: 'Amb Andaura', to: 'Dharamshala', slug: 'amb-andaura-to-dharamshala', destinationSlug: 'dharamshala', detailsVerified: true, distanceKm: 110, approxDurationMinutes: 180, pricing: { amount: 3200 } },
+];
+
 export default function Home() {
   const s = useSettings();
   const routes = useApi('routes', () => api.get('/api/routes'));
@@ -121,6 +130,7 @@ export default function Home() {
   const faqs = useApi('faqs', () => api.get('/api/faqs'));
   const blog = useApi('blog:1', () => api.getWithMeta('/api/blog?page=1&limit=9'));
   const places = (dests.data || []).filter((d) => d.kind === 'place');
+  const routeItems = (routes.data && routes.data.length > 0) ? routes.data : DEFAULT_ROUTES;
   const why = s.home?.whyChoose || [];
   const steps = s.home?.processSteps || [];
   const reviews = s.reviews || [];
@@ -152,10 +162,19 @@ export default function Home() {
         </div>
         <div className="container-x relative">
           <SectionHeading eyebrow="Popular routes" title={<span id="routes-h">Routes our customers ask for</span>} intro="Tap a route to see pickup details and request a quote." />
-          <div className="mt-10">
-            {routes.loading ? <CardGridSkeleton /> : (routes.data || []).length
-              ? <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{routes.data.slice(0, 6).map((r, i) => <Reveal key={r.slug} delay={i * 70}><RouteCard r={r} i={i} /></Reveal>)}</div>
-              : <EmptyState title="Routes coming soon">Use the booking form and tell us where you want to go.</EmptyState>}
+          <div className="mt-8 sm:mt-10">
+            <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {routeItems.slice(0, 6).map((r, i) => (
+                <Reveal key={r.slug || `${r.from}-${r.to}`} delay={i * 60}>
+                  <RouteCard r={r} i={i} />
+                </Reveal>
+              ))}
+            </div>
+            <div className="mt-8 text-center">
+              <Cta to="/book" variant="secondary" className="w-full sm:w-auto">
+                Need a Custom Route? Request Instant Quote
+              </Cta>
+            </div>
           </div>
         </div>
       </section>

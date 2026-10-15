@@ -9,7 +9,7 @@
     "build:server": "vite build --ssr src/entry-server.jsx --outDir dist-server",
     "build": "npm run build:client && npm run build:server && node scripts/prerender.mjs",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "node --max-old-space-size=4096 node_modules/vitest/vitest.mjs run"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.1.0",

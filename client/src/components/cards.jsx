@@ -31,28 +31,44 @@ export function DestinationCard({ d, i = 0 }) {
 
 export function RouteCard({ r, i = 0 }) {
   const to = r.destinationSlug ? `/destinations/${r.destinationSlug}` : `/book?pickup=${encodeURIComponent(r.from)}&destination=${encodeURIComponent(r.to)}`;
+  const hrs = r.approxDurationMinutes ? Math.floor(r.approxDurationMinutes / 60) : 0;
+  const mins = r.approxDurationMinutes ? r.approxDurationMinutes % 60 : 0;
+  const durationStr = hrs || mins ? `~${hrs ? `${hrs}h ` : ''}${mins ? `${mins}m` : ''}`.trim() : null;
+
   return (
     <TiltCard className="h-full rounded-3xl spatial-card-dark text-white">
-      <Link to={to} className="group relative flex h-full flex-col overflow-hidden rounded-3xl p-6">
+      <Link to={to} className="group relative flex h-full flex-col overflow-hidden rounded-3xl p-5 sm:p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-teal-900/30">
         <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-teal-500/20 blur-2xl" aria-hidden="true" />
-        <p className="eyebrow !text-teal-300">Popular route</p>
-        <h3 className="mt-3 font-display text-2xl !text-white">
+        <div className="flex items-center justify-between gap-2">
+          <p className="eyebrow !text-teal-300">Popular route</p>
+          {r.detailsVerified && <span className="rounded-full bg-teal-500/20 px-2 py-0.5 text-[11px] font-semibold text-teal-300 ring-1 ring-teal-400/30">Verified</span>}
+        </div>
+        <h3 className="mt-2.5 font-display text-xl sm:text-2xl !text-white leading-snug break-words">
           {r.from} <span className="text-sunset-400" aria-hidden="true">→</span><span className="sr-only"> to </span> {r.to}
         </h3>
-        <dl className="mt-5 space-y-1.5 text-sm text-white/80">
-          {r.detailsVerified && r.distanceKm ? (
-            <div className="flex gap-2">
+        <dl className="mt-4 space-y-1.5 text-xs sm:text-sm text-white/80">
+          {r.distanceKm ? (
+            <div className="flex justify-between gap-2 border-b border-white/10 pb-1.5">
               <dt className="text-white/60">Distance:</dt>
               <dd className="font-semibold text-white">~{r.distanceKm} km</dd>
             </div>
           ) : null}
-          <div className="flex gap-2">
+          {durationStr ? (
+            <div className="flex justify-between gap-2 border-b border-white/10 pb-1.5">
+              <dt className="text-white/60">Travel Time:</dt>
+              <dd className="font-semibold text-white">{durationStr}</dd>
+            </div>
+          ) : null}
+          <div className="flex justify-between gap-2 pt-0.5">
             <dt className="text-white/60">Fare:</dt>
-            <dd className="font-semibold text-sunset-300">Quote on Request</dd>
+            <dd className="font-semibold text-sunset-300">
+              {r.pricing?.amount ? `From ₹${r.pricing.amount.toLocaleString('en-IN')}` : 'Quote on Request'}
+            </dd>
           </div>
         </dl>
-        <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-bold text-sunset-300 transition group-hover:text-sunset-200">
-          Request Quote <ArrowUpRight size={16} aria-hidden="true" />
+        <span className="mt-auto inline-flex min-h-[44px] items-center gap-2 pt-5 text-sm font-bold text-sunset-300 transition group-hover:text-sunset-200">
+          <span>Book This Route</span>
+          <ArrowUpRight size={17} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </span>
       </Link>
     </TiltCard>
