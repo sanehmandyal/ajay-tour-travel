@@ -4,6 +4,7 @@ import { env, isProd } from '../config/env.js';
 import { AdminUser } from '../models/AdminUser.js';
 import { ApiError } from '../utils/ApiError.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
+import { isOriginAllowed } from '../utils/origin.js';
 
 export const COOKIE_NAME = 'ajt_admin';
 
@@ -58,7 +59,7 @@ const SAFE = new Set(['GET', 'HEAD', 'OPTIONS']);
 export function csrfProtect(req, _res, next) {
   if (SAFE.has(req.method)) return next();
   const origin = req.get('origin');
-  if (origin && !env.CLIENT_ORIGINS.includes(origin)) return next(ApiError.forbidden('Origin not allowed'));
+  if (origin && !isOriginAllowed(origin)) return next(ApiError.forbidden('Origin not allowed'));
   const sent = Buffer.from(req.get('x-csrf-token') || '');
   const expected = Buffer.from(req.csrf || '');
   if (!sent.length || sent.length !== expected.length || !crypto.timingSafeEqual(sent, expected)) {

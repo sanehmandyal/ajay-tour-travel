@@ -1,13 +1,13 @@
 import cors from 'cors';
 import helmet from 'helmet';
-import { env } from '../config/env.js';
+import { isOriginAllowed } from '../utils/origin.js';
 
-/** Exact-match allowlist. Credentialed requests never get a wildcard origin. */
+/** Allowlist with support for project domains, previews, and localhost. Credentialed requests never get a wildcard origin. */
 export const corsMiddleware = cors({
   origin(origin, cb) {
     // Requests without an Origin header (curl, health checks, server-to-server) are not browser CORS requests.
     if (!origin) return cb(null, true);
-    return cb(null, env.CLIENT_ORIGINS.includes(origin));
+    return cb(null, isOriginAllowed(origin));
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],

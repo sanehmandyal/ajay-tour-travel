@@ -11,7 +11,7 @@
     "start": "node src/server.js",
     "seed": "node src/scripts/seed.js",
     "bootstrap-admin": "node src/scripts/bootstrapAdmin.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand --forceExit"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

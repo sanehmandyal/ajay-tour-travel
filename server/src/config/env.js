@@ -15,7 +15,7 @@ const schema = z
     JWT_SECRET: z.string().min(32, 'JWT_SECRET must be at least 32 characters'),
     JWT_EXPIRES_IN: z.string().default('8h'),
     COOKIE_DOMAIN: z.string().optional().default(''),
-    COOKIE_SAMESITE: z.enum(['lax', 'strict', 'none']).default('lax'),
+    COOKIE_SAMESITE: z.enum(['lax', 'strict', 'none']).default(process.env.NODE_ENV === 'production' ? 'none' : 'lax'),
     ADMIN_ID: z.string().optional().default('admin'),
     ADMIN_EMAIL: z.string().optional().default('admin@ajaytourtravels.com'),
     ADMIN_PASSWORD: z.string().optional().default(''),
