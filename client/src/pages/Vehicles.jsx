@@ -23,7 +23,7 @@ export default function Vehicles() {
         jsonLd={[breadcrumbLd(crumbs)]}
       />
       <PageHero
-        bgImage="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1920&q=80"
+        bgImage="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Force_Traveller%2C_Leh-Manali_Highway.jpg/1280px-Force_Traveller%2C_Leh-Manali_Highway.jpg"
         eyebrow="Our Fleet"
         title="Verified Vehicles for Every Group Size & Mountain Journey"
         intro="From comfortable sedans for station transfers to luxury Innova Crysta for hill tours and Tempo Travellers for family pilgrimages."
@@ -104,8 +104,8 @@ export default function Vehicles() {
         <section aria-labelledby="fleet-promise-heading" className="relative isolate overflow-hidden rounded-3xl bg-navy-950 p-8 text-white sm:p-12 border border-white/10 shadow-2xl">
           <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1600&q=80"
-              alt=""
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Toyota_Innova_Crysta_2.4_Z_front_right.jpg/1280px-Toyota_Innova_Crysta_2.4_Z_front_right.jpg"
+              alt="Toyota Innova Crysta luxury tour vehicle for Himachal mountain trips"
               className="h-full w-full object-cover object-center filter brightness-[0.24] contrast-[1.1]"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-950/70" />

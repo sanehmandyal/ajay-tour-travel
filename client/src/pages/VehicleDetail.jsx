@@ -64,7 +64,7 @@ export default function VehicleDetail() {
       <header className="relative isolate overflow-hidden bg-navy-950 pb-16 pt-36 text-white sm:pb-24 sm:pt-40">
         <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
           <img
-            src={v.images?.[0]?.url || 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1920&q=80'}
+            src={v.images?.[0]?.url || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Toyota_Innova_Crysta.jpg/1280px-Toyota_Innova_Crysta.jpg'}
             alt=""
             className="h-full w-full object-cover object-center filter brightness-[0.22] contrast-[1.12]"
           />

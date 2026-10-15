@@ -17,7 +17,7 @@ export default function Packages() {
         jsonLd={[breadcrumbLd(crumbs), ...(data || []).map((p) => packageLd(p)).filter(Boolean)]}
       />
       <PageHero
-        bgImage="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1920&q=80"
+        bgImage="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Solang_valley.jpg/1280px-Solang_valley.jpg"
         eyebrow="Tour packages"
         title="Trips planned around you"
         intro="Packages are starting points. We adjust the plan, vehicle and timing to suit your group."
@@ -26,8 +26,8 @@ export default function Packages() {
       <div className="relative isolate overflow-hidden bg-ivory-100/60">
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1920&q=80"
-            alt=""
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Atal_Tunnel_Entrance_%28South_Portal%29%2C_Manali.jpg/1280px-Atal_Tunnel_Entrance_%28South_Portal%29%2C_Manali.jpg"
+            alt="Atal Tunnel Entrance near Manali Himachal Pradesh"
             className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-ivory via-ivory/85 to-ivory-100/90" />

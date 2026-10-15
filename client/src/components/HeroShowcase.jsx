@@ -8,8 +8,8 @@ export default function HeroShowcase({ className = '' }) {
         {/* Main Professional Showcase Image */}
         <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-navy-900 sm:aspect-[16/11]">
           <img
-            src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80"
-            alt="Ajay Tour & Travels professional sedan cab travelling on scenic Himachal mountain highway"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Toyota_Innova_Crysta.jpg/1280px-Toyota_Innova_Crysta.jpg"
+            alt="Toyota Innova Crysta luxury tour vehicle serving Amb Andaura, Una, and Himachal Pradesh"
             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             loading="eager"
             decoding="async"

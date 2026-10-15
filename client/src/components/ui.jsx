@@ -99,7 +99,7 @@ export function PageHero({
   intro,
   crumbs,
   children,
-  bgImage = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
+  bgImage = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Rohtang_pass.jpg/1280px-Rohtang_pass.jpg',
 }) {
   return (
     <header className="relative isolate overflow-hidden bg-navy-950 pb-16 pt-36 text-white sm:pb-24 sm:pt-40">

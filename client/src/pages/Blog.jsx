@@ -16,7 +16,7 @@ export default function Blog() {
       {/* Paginated views beyond page 1 are kept out of the index to avoid thin/duplicate listing pages. */}
       <Seo path="/blog" title="Travel Tips and Insights | Ajay Tour and Travels" description="Practical travel tips for road trips, airport and railway transfers and family travel around Punjab, Himachal and Chandigarh." noindex={page > 1} jsonLd={[breadcrumbLd(crumbs)]} />
       <PageHero
-        bgImage="https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1920&q=80"
+        bgImage="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/The_Ridge%2C_Shimla.jpg/1280px-The_Ridge%2C_Shimla.jpg"
         eyebrow="Travel insights"
         title="Travel tips and guides"
         intro="Practical advice for planning smoother journeys."
@@ -25,8 +25,8 @@ export default function Blog() {
       <div className="relative isolate overflow-hidden bg-ivory-100/60">
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1920&q=80"
-            alt=""
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Dhauladhar.jpg/1280px-Dhauladhar.jpg"
+            alt="Dhauladhar mountains in Himachal Pradesh"
             className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-ivory via-ivory/85 to-ivory-100/90" />

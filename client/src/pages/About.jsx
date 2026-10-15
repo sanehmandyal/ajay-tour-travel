@@ -20,7 +20,7 @@ export default function About() {
         jsonLd={[breadcrumbLd(crumbs)]}
       />
       <PageHero
-        bgImage="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1920&q=80"
+        bgImage="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Dhauladhar.jpg/1280px-Dhauladhar.jpg"
         eyebrow="About us"
         title={`About ${s.business.name}`}
         intro="A local travel service helping families, pilgrims and business travellers move between Himachal Pradesh, Punjab and Chandigarh."
@@ -29,9 +29,9 @@ export default function About() {
       <div className="relative isolate overflow-hidden bg-slate-50/50">
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1920&q=80"
-            alt=""
-            className="h-full w-full object-cover object-center opacity-[0.07] filter contrast-125"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Force_Traveller%2C_Leh-Manali_Highway.jpg/1280px-Force_Traveller%2C_Leh-Manali_Highway.jpg"
+            alt="Himachal highway travel"
+            className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-slate-50/90" />
         </div>
@@ -48,8 +48,8 @@ export default function About() {
             <div className="relative overflow-hidden rounded-3xl border border-navy-900/10 bg-navy-900 shadow-float">
               <div className="relative aspect-[16/10] w-full overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80"
-                  alt="Ajay Tour & Travels cab service at Amb Andaura Railway Station"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Toyota_Innova_Crysta.jpg/1280px-Toyota_Innova_Crysta.jpg"
+                  alt="Toyota Innova Crysta luxury tour vehicle for Himachal trips"
                   className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                   loading="lazy"
                 />
@@ -88,8 +88,8 @@ export default function About() {
       <section className="relative isolate section overflow-hidden bg-ivory-100/70" aria-labelledby="val-h">
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"
-            alt=""
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Christ_Church%2C_Shimla.jpg/1280px-Christ_Church%2C_Shimla.jpg"
+            alt="Christ Church Shimla Himachal Pradesh"
             className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-ivory via-ivory/85 to-ivory-100/90" />

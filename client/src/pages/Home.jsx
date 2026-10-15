@@ -33,9 +33,9 @@ function Hero() {
       {/* Immersive Scenic Mountain Road Background */}
       <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=80"
-          alt=""
-          className="h-full w-full object-cover object-center scale-105 filter brightness-[0.32] contrast-[1.12] saturate-[1.2]"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Rohtang_pass.jpg/1280px-Rohtang_pass.jpg"
+          alt="Scenic Rohtang Pass mountain highway in Himachal Pradesh"
+          className="h-full w-full object-cover object-center scale-105 filter brightness-[0.34] contrast-[1.14] saturate-[1.2]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950/85 via-navy-950/60 to-navy-950" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/50 to-transparent" />
@@ -143,9 +143,9 @@ export default function Home() {
       <section className="relative isolate section overflow-hidden bg-slate-50/60" aria-labelledby="routes-h">
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"
-            alt=""
-            className="h-full w-full object-cover object-center opacity-[0.07] filter contrast-125 saturate-150"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Force_Traveller%2C_Leh-Manali_Highway.jpg/1280px-Force_Traveller%2C_Leh-Manali_Highway.jpg"
+            alt="Tourist cab on scenic Himachal mountain highway"
+            className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125 saturate-150"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-slate-50/90" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(26,166,160,0.06),transparent_60%)]" />
@@ -163,9 +163,9 @@ export default function Home() {
       <section className="relative isolate section overflow-hidden bg-ivory-100/70" aria-labelledby="dest-h">
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1920&q=80"
-            alt=""
-            className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125 saturate-150"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Dhauladhar.jpg/1280px-Dhauladhar.jpg"
+            alt="Snow-clad Dhauladhar mountains in Himachal Pradesh"
+            className="h-full w-full object-cover object-center opacity-[0.09] filter contrast-125 saturate-150"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-ivory via-ivory/80 to-ivory-100/90" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(242,138,75,0.07),transparent_60%)]" />
@@ -184,9 +184,9 @@ export default function Home() {
       <section className="relative isolate overflow-hidden bg-navy-950 py-20 text-white" aria-labelledby="svc-h">
         <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1920&q=80"
-            alt=""
-            className="h-full w-full object-cover object-center filter brightness-[0.22] contrast-[1.12]"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Toyota_Innova_Crysta_2.4_Z_front_right.jpg/1280px-Toyota_Innova_Crysta_2.4_Z_front_right.jpg"
+            alt="Toyota Innova Crysta luxury tour vehicle for Himachal trips"
+            className="h-full w-full object-cover object-center filter brightness-[0.24] contrast-[1.12]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/80 to-navy-950" />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950" />
@@ -202,8 +202,8 @@ export default function Home() {
         <section className="relative isolate section overflow-hidden bg-slate-50/70" aria-labelledby="veh-h">
           <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1920&q=80"
-              alt=""
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Toyota_Innova_Crysta.jpg/1280px-Toyota_Innova_Crysta.jpg"
+              alt="Toyota Innova Crysta touring vehicle in Himachal"
               className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125 saturate-150"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-slate-100/80" />
@@ -221,8 +221,8 @@ export default function Home() {
         <section className="relative isolate section overflow-hidden bg-ivory-100/70" aria-labelledby="why-h">
           <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1920&q=80"
-              alt=""
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Christ_Church%2C_Shimla.jpg/1280px-Christ_Church%2C_Shimla.jpg"
+              alt="Christ Church Shimla Himachal Pradesh"
               className="h-full w-full object-cover object-center opacity-[0.09] filter contrast-125 saturate-150"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-ivory-100/90 via-ivory/85 to-ivory-100/90" />
@@ -245,9 +245,9 @@ export default function Home() {
         <section className="relative isolate section overflow-hidden bg-white" aria-labelledby="how-h">
           <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=80"
-              alt=""
-              className="h-full w-full object-cover object-center opacity-[0.07] filter contrast-125 saturate-150"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Atal_Tunnel_Entrance_%28South_Portal%29%2C_Manali.jpg/1280px-Atal_Tunnel_Entrance_%28South_Portal%29%2C_Manali.jpg"
+              alt="Atal Tunnel Entrance South Portal near Manali Himachal Pradesh"
+              className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125 saturate-150"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-white" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(242,138,75,0.07),transparent_60%)]" />
@@ -269,8 +269,8 @@ export default function Home() {
         <section className="relative isolate overflow-hidden bg-navy-950 py-24 text-white" aria-labelledby="rev-h">
           <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=80"
-              alt=""
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Dharamshala_Cricket_Stadium_Landscape.jpg/1280px-Dharamshala_Cricket_Stadium_Landscape.jpg"
+              alt="HPCA Stadium Dharamshala Himachal Pradesh"
               className="h-full w-full object-cover object-center filter brightness-[0.24] contrast-[1.15]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/80 to-navy-950" />
@@ -290,9 +290,9 @@ export default function Home() {
         <section className="relative isolate section overflow-hidden bg-slate-50/70" aria-labelledby="faq-h">
           <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"
-              alt=""
-              className="h-full w-full object-cover object-center opacity-[0.07] filter contrast-125"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Khajjiar.jpg/1280px-Khajjiar.jpg"
+              alt="Khajjiar meadow in Chamba Himachal Pradesh"
+              className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-slate-50/90" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(26,166,160,0.06),transparent_60%)]" />
@@ -308,8 +308,8 @@ export default function Home() {
         <section className="relative isolate section overflow-hidden bg-ivory-100/80" aria-labelledby="blog-h">
           <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1920&q=80"
-              alt=""
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/The_Ridge%2C_Shimla.jpg/1280px-The_Ridge%2C_Shimla.jpg"
+              alt="The Ridge in Shimla Himachal Pradesh"
               className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125 saturate-150"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-ivory-100/90 via-ivory/80 to-ivory-100/90" />
@@ -326,9 +326,9 @@ export default function Home() {
       <section className="relative isolate overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
         <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2000&q=80"
-            alt=""
-            className="h-full w-full object-cover object-center filter brightness-[0.26] contrast-[1.12]"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Solang_valley.jpg/1280px-Solang_valley.jpg"
+            alt="Solang Valley Manali Himachal Pradesh"
+            className="h-full w-full object-cover object-center filter brightness-[0.28] contrast-[1.12]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/75 to-navy-950" />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-navy-950" />
