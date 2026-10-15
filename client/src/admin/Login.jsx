@@ -55,8 +55,15 @@ export default function Login() {
             
             {/* Header Badge & Title */}
             <div className="text-center">
-              <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl border border-teal-400/30 bg-gradient-to-br from-teal-500/25 to-teal-900/40 text-teal-300 shadow-inner">
-                <Lock size={26} aria-hidden="true" />
+              <div className="relative mx-auto mb-4 inline-block">
+                <img
+                  src="/logo-round.png"
+                  alt="Ajay Tour and Travels"
+                  className="h-16 w-16 rounded-full object-cover ring-2 ring-teal-400/50 shadow-lg shadow-teal-500/20"
+                />
+                <span className="absolute -bottom-1 -right-1 grid h-6 w-6 place-items-center rounded-full border border-teal-300 bg-teal-600 text-white shadow">
+                  <Lock size={12} aria-hidden="true" />
+                </span>
               </div>
               <h1 className="font-display text-2xl font-bold tracking-tight text-white">
                 Admin Control Portal

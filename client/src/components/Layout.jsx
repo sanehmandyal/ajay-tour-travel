@@ -173,9 +173,15 @@ export function Navbar() {
     <div className="pointer-events-none w-full px-3 pt-2.5 sm:px-6 sm:pt-3">
       <div className="pointer-events-auto mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/15 bg-navy-900/95 py-2 pl-4 pr-2.5 shadow-float backdrop-blur-md">
         
-        {/* Crisp Brand Name without Truncation */}
-        <Link to="/" className="flex shrink-0 items-center gap-2 font-display text-base font-bold text-white transition hover:opacity-95 sm:text-lg" aria-label={`${s.business.name} home`}>
-          <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" className="shrink-0"><rect width="64" height="64" rx="14" fill="#1AA6A0" /><path d="M12 44c10-2 14-18 24-18s10 10 16 8" fill="none" stroke="#0B1B33" strokeWidth="6" strokeLinecap="round" /><circle cx="50" cy="34" r="5" fill="#F28A4B" /></svg>
+        {/* Crisp Brand Name with Official Circular Logo */}
+        <Link to="/" className="flex shrink-0 items-center gap-2.5 font-display text-base font-bold text-white transition hover:opacity-95 sm:text-lg" aria-label={`${s.business.name} home`}>
+          <img
+            src="/logo-round.png"
+            alt="Ajay Tour and Travels Logo"
+            width="34"
+            height="34"
+            className="h-8 w-8 sm:h-9 sm:w-9 shrink-0 rounded-full object-cover shadow-sm ring-1 ring-teal-400/40"
+          />
           <span className="whitespace-nowrap tracking-tight">{s.business.name}</span>
         </Link>
 
@@ -314,7 +320,16 @@ export function Footer() {
     <footer className="bg-navy-950 text-white">
       <div className="container-x grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-display text-xl">{b.name}</p>
+          <div className="flex items-center gap-3">
+            <img
+              src="/logo-round.png"
+              alt="Ajay Tour and Travels"
+              width="40"
+              height="40"
+              className="h-10 w-10 shrink-0 rounded-full object-cover shadow-md ring-1 ring-teal-400/40"
+            />
+            <p className="font-display text-xl">{b.name}</p>
+          </div>
           <p className="mt-3 text-sm leading-6 text-white/70">{s.footer?.about || b.tagline || 'Local and outstation taxi service and tour planning.'}</p>
           <div className="mt-4 flex gap-2">
             {[['facebook', Facebook, 'Facebook'], ['instagram', Instagram, 'Instagram'], ['youtube', Youtube, 'YouTube']].map(([k, Icon, label]) => s.social?.[k]
