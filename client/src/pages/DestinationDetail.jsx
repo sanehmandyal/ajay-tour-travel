@@ -84,6 +84,28 @@ export default function DestinationDetail() {
               <div className="mt-5 grid gap-5 sm:grid-cols-2">{d.vehicles.map((v, i) => <VehicleCard key={v.slug} v={v} i={i} />)}</div></section>
           )}
 
+          {d.gallery?.length > 0 && (
+            <section aria-labelledby="gallery-h">
+              <h2 id="gallery-h" className="text-2xl font-semibold">Destination Photo Gallery</h2>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {d.gallery.map((img, idx) => (
+                  <div key={idx} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-navy-950 border border-slate-200 shadow-soft">
+                    <Img
+                      src={img.url}
+                      alt={img.alt || `${d.name} photo ${idx + 1}`}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    {img.alt && (
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/80 to-transparent p-3 text-xs font-medium text-white opacity-0 transition group-hover:opacity-100">
+                        {img.alt}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
           {d.attractions?.length > 0 && (
             <section aria-labelledby="att-h"><h2 id="att-h" className="flex items-center gap-2 text-2xl font-semibold"><Landmark size={22} className="text-sunset-500" aria-hidden="true" />Places worth visiting</h2>
               <ul className="mt-5 grid gap-4 sm:grid-cols-2">{d.attractions.map((a) => <li key={a.name} className="rounded-2xl bg-white p-5 shadow-soft"><h3 className="font-semibold">{a.name}</h3><p className="mt-1 text-[15px] text-navy-700">{a.description}</p></li>)}</ul></section>

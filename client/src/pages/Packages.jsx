@@ -38,7 +38,25 @@ export default function Packages() {
           {!loading && !error && !data?.length && <EmptyState title="Packages coming soon">Tell us your plan and we will build one for you.<div className="mt-4"><Cta to="/book">Get a Travel Quote</Cta></div></EmptyState>}
           {(data || []).map((p, i) => (
             <Reveal as="article" key={p.slug} className="spatial-card grid overflow-hidden md:grid-cols-[.8fr_1.2fr]">
-              {p.images?.[0]?.url ? <Img src={p.images[0].url} alt={p.images[0].alt || p.title} ratio="aspect-[4/3]" className="h-full w-full object-cover" /> : <Art seed={i} className="min-h-[200px]" />}
+              <div className="relative aspect-[4/3] md:aspect-auto h-full overflow-hidden bg-navy-950">
+                {p.images?.[0]?.url ? (
+                  <Img src={p.images[0].url} alt={p.images[0].alt || p.title} ratio="aspect-[4/3] md:aspect-auto" className="h-full w-full object-cover" />
+                ) : (
+                  <Art seed={i} className="min-h-[200px]" />
+                )}
+                {p.images?.length > 1 && (
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center gap-2 overflow-x-auto rounded-xl bg-navy-950/75 p-1.5 backdrop-blur-md border border-white/20">
+                    {p.images.slice(0, 5).map((img, idx) => (
+                      <div key={idx} className="relative aspect-[4/3] w-12 shrink-0 overflow-hidden rounded-lg border border-white/30 shadow-sm">
+                        <Img src={img.url} alt={img.alt || ''} className="h-full w-full object-cover" />
+                      </div>
+                    ))}
+                    {p.images.length > 5 && (
+                      <span className="text-[11px] font-bold text-teal-300 px-1.5">+{p.images.length - 5}</span>
+                    )}
+                  </div>
+                )}
+              </div>
               <div className="p-6 sm:p-8">
                 <p className="eyebrow">{p.durationDays ? `${p.durationDays} day${p.durationDays > 1 ? 's' : ''}${p.durationNights ? ` / ${p.durationNights} night${p.durationNights > 1 ? 's' : ''}` : ''}` : 'Flexible duration'}</p>
                 <h2 className="mt-1 text-2xl font-semibold">{p.title}</h2>

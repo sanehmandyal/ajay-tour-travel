@@ -17,9 +17,10 @@ export function toPayload(value, fields) {
     let v = value?.[f.name];
     if (f.type === 'number') {
       if (v === '' || v === undefined || v === null) { if (f.nullable) out[f.name] = null; continue; }
-      out[f.name] = Number(v);
-    } else if (f.type === 'group' || f.type === 'image') {
-      out[f.name] = toPayload(v || {}, f.type === 'image' ? IMAGE_FIELDS : f.fields);
+    } else if (f.type === 'group') {
+      out[f.name] = toPayload(v || {}, f.fields);
+    } else if (f.type === 'image') {
+      out[f.name] = v?.url ? toPayload(v, IMAGE_FIELDS) : { url: '', alt: '' };
     } else if (f.type === 'imagelist') {
       out[f.name] = (v || []).filter((it) => it?.url).map((it) => toPayload(it, IMAGE_FIELDS));
     } else if (f.type === 'list') {

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
   Users,
@@ -26,6 +27,7 @@ import { fmtPrice } from '../lib/format.js';
 export default function VehicleDetail() {
   const { slug } = useParams();
   const s = useSettings();
+  const [activeImg, setActiveImg] = useState(0);
   const { data: v, loading, error } = useApi(`vehicle:${slug}`, () => api.get(`/api/vehicles/${encodeURIComponent(slug)}`));
   const { data: allVehicles } = useApi('vehicles', () => api.get('/api/vehicles'));
 
@@ -140,25 +142,46 @@ export default function VehicleDetail() {
             </div>
 
             {/* Vehicle Image Showcase */}
-            <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-navy-950 shadow-2xl">
-              <div className="aspect-[16/11] w-full overflow-hidden">
-                {v.images?.[0]?.url ? (
-                  <Img
-                    src={v.images[0].url}
-                    alt={v.images[0].alt || v.name}
-                    className="h-full w-full object-cover transition duration-700 hover:scale-105"
-                  />
-                ) : (
-                  <Art seed={v.slug.length} className="h-full w-full" />
-                )}
+            <div className="space-y-3">
+              <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-navy-950 shadow-2xl">
+                <div className="aspect-[16/11] w-full overflow-hidden">
+                  {v.images?.[activeImg]?.url || v.images?.[0]?.url ? (
+                    <Img
+                      src={v.images[activeImg]?.url || v.images[0].url}
+                      alt={v.images[activeImg]?.alt || v.images[0]?.alt || v.name}
+                      className="h-full w-full object-cover transition duration-700 hover:scale-105"
+                    />
+                  ) : (
+                    <Art seed={v.slug.length} className="h-full w-full" />
+                  )}
+                </div>
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between rounded-xl border border-white/20 bg-navy-900/85 px-4 py-2 text-xs font-semibold text-white backdrop-blur-md">
+                  <span className="flex items-center gap-1.5">
+                    <ShieldCheck size={14} className="text-teal-400" aria-hidden="true" />
+                    Sanitized &amp; AC Verified
+                  </span>
+                  <span className="text-sunset-300">Himachal &amp; Punjab Permit Ready</span>
+                </div>
               </div>
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between rounded-xl border border-white/20 bg-navy-900/85 px-4 py-2 text-xs font-semibold text-white backdrop-blur-md">
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheck size={14} className="text-teal-400" aria-hidden="true" />
-                  Sanitized &amp; AC Verified
-                </span>
-                <span className="text-sunset-300">Himachal &amp; Punjab Permit Ready</span>
-              </div>
+
+              {/* Clickable Image Strip if multiple photos uploaded */}
+              {v.images?.length > 1 && (
+                <div className="flex items-center gap-2.5 overflow-x-auto pb-1 pt-0.5">
+                  {v.images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setActiveImg(idx)}
+                      className={`relative aspect-[16/10] w-20 shrink-0 overflow-hidden rounded-xl border-2 transition-all ${
+                        activeImg === idx ? 'border-teal-400 ring-2 ring-teal-400/40 shadow-md scale-105' : 'border-white/20 opacity-70 hover:opacity-100 hover:border-white/50'
+                      }`}
+                      aria-label={`Show vehicle photo ${idx + 1}`}
+                    >
+                      <Img src={img.url} alt={img.alt || ''} className="h-full w-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

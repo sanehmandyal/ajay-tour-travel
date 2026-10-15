@@ -112,7 +112,7 @@ export function PageHero({
       {bgImage && (
         <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
           <img
-            src={bgImage}
+            src={bgImage.startsWith('/api/media/') ? `${API_BASE}${bgImage}` : bgImage}
             alt=""
             className="h-full w-full object-cover object-center filter brightness-[0.28] contrast-[1.12] saturate-[1.2]"
           />
