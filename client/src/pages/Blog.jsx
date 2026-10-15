@@ -22,18 +22,28 @@ export default function Blog() {
         intro="Practical advice for planning smoother journeys."
         crumbs={crumbs}
       />
-      <div className="container-x section">
-        {loading && <CardGridSkeleton />}
-        {error && <ErrorState />}
-        {!loading && !error && !data?.data?.length && <EmptyState title="Articles are on the way" />}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{(data?.data || []).map((p, i) => <Reveal key={p.slug} delay={i * 50}><PostCard p={p} /></Reveal>)}</div>
-        {meta && meta.totalPages > 1 && (
-          <nav aria-label="Pagination" className="mt-10 flex items-center justify-center gap-4">
-            {page > 1 && <Link className="btn-ghost" to={page === 2 ? '/blog' : `/blog?page=${page - 1}`}>Previous</Link>}
-            <span className="text-sm">Page {page} of {meta.totalPages}</span>
-            {page < meta.totalPages && <Link className="btn-ghost" to={`/blog?page=${page + 1}`}>Next</Link>}
-          </nav>
-        )}
+      <div className="relative isolate overflow-hidden bg-ivory-100/60">
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-ivory via-ivory/85 to-ivory-100/90" />
+        </div>
+        <div className="container-x section relative">
+          {loading && <CardGridSkeleton />}
+          {error && <ErrorState />}
+          {!loading && !error && !data?.data?.length && <EmptyState title="Articles are on the way" />}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{(data?.data || []).map((p, i) => <Reveal key={p.slug} delay={i * 50}><PostCard p={p} /></Reveal>)}</div>
+          {meta && meta.totalPages > 1 && (
+            <nav aria-label="Pagination" className="mt-10 flex items-center justify-center gap-4">
+              {page > 1 && <Link className="btn-ghost" to={page === 2 ? '/blog' : `/blog?page=${page - 1}`}>Previous</Link>}
+              <span className="text-sm">Page {page} of {meta.totalPages}</span>
+              {page < meta.totalPages && <Link className="btn-ghost" to={`/blog?page=${page + 1}`}>Next</Link>}
+            </nav>
+          )}
+        </div>
       </div>
     </>
   );

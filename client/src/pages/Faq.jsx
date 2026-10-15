@@ -16,13 +16,23 @@ export default function Faq() {
         jsonLd={[breadcrumbLd(crumbs), faqPageLd(data)].filter(Boolean)}
       />
       <PageHero eyebrow="FAQ" title="Frequently asked questions" intro="Quick answers about booking and travelling with us." crumbs={crumbs} />
-      <div className="container-x section"><div className="mx-auto max-w-3xl">
-        {loading && <Skeleton className="h-64" />}
-        {error && <ErrorState />}
-        {!loading && !error && !data?.length && <EmptyState title="No questions yet" />}
-        <FaqList items={data || []} />
-        <p className="mt-8 text-center text-navy-700">Still have a question? <Cta to="/contact" variant="ghost" className="ml-2">Contact us</Cta></p>
-      </div></div>
+      <div className="relative isolate overflow-hidden bg-slate-50/60">
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            className="h-full w-full object-cover object-center opacity-[0.07] filter contrast-125"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-slate-50" />
+        </div>
+        <div className="container-x section relative"><div className="mx-auto max-w-3xl">
+          {loading && <Skeleton className="h-64" />}
+          {error && <ErrorState />}
+          {!loading && !error && !data?.length && <EmptyState title="No questions yet" />}
+          <FaqList items={data || []} />
+          <p className="mt-8 text-center text-navy-700">Still have a question? <Cta to="/contact" variant="ghost" className="ml-2">Contact us</Cta></p>
+        </div></div>
+      </div>
     </>
   );
 }

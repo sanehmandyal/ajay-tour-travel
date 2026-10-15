@@ -78,26 +78,36 @@ export default function Contact() {
         intro="Send a message, request a quote or reach us directly."
         crumbs={crumbs}
       />
-      <div className="container-x grid gap-8 py-14 lg:grid-cols-[.9fr_1.1fr]">
-        <div className="space-y-5">
-          <div className="rounded-3xl bg-white p-6 shadow-soft">
-            <h2 className="text-2xl font-semibold">Reach us</h2>
-            {b.contactVerified ? (
-              <ul className="mt-4 space-y-3 text-[15px]">
-                {b.phone && <li className="flex items-center gap-3"><Phone size={18} className="text-teal-600" aria-hidden="true" /><a href={s.callHref} className="underline-offset-2 hover:underline">{b.phone}</a></li>}
-                {wa && <li className="flex items-center gap-3"><MessageCircle size={18} className="text-teal-600" aria-hidden="true" /><a href={wa} target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline">Message on WhatsApp</a></li>}
-                {b.email && <li className="flex items-center gap-3"><Mail size={18} className="text-teal-600" aria-hidden="true" /><a href={`mailto:${b.email}`} className="underline-offset-2 hover:underline">{b.email}</a></li>}
-                {b.address && <li className="flex items-start gap-3"><MapPin size={18} className="mt-0.5 shrink-0 text-teal-600" aria-hidden="true" /><span>{b.address}</span></li>}
-                {b.hours && <li className="flex items-center gap-3"><Clock size={18} className="text-teal-600" aria-hidden="true" />{b.hours}</li>}
-              </ul>
-            ) : <p className="mt-3 text-navy-700">Use the form to send us a message or request a quote, and we will get back to you.</p>}
-            <div className="mt-5 flex flex-wrap gap-3"><Cta to="/book">Get a Travel Quote</Cta>{b.googleBusinessProfileUrl && <Cta href={b.googleBusinessProfileUrl} external variant="ghost">View on Google</Cta>}</div>
-          </div>
-          {b.contactVerified && b.mapEmbedUrl && (
-            <div className="overflow-hidden rounded-3xl shadow-soft"><iframe title="Map showing our location" src={b.mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="h-72 w-full border-0" /></div>
-          )}
+      <div className="relative isolate overflow-hidden bg-slate-50/60">
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-slate-50" />
         </div>
-        <ContactForm />
+        <div className="container-x relative grid gap-8 py-14 lg:grid-cols-[.9fr_1.1fr]">
+          <div className="space-y-5">
+            <div className="rounded-3xl bg-white p-6 shadow-soft">
+              <h2 className="text-2xl font-semibold">Reach us</h2>
+              {b.contactVerified ? (
+                <ul className="mt-4 space-y-3 text-[15px]">
+                  {b.phone && <li className="flex items-center gap-3"><Phone size={18} className="text-teal-600" aria-hidden="true" /><a href={s.callHref} className="underline-offset-2 hover:underline">{b.phone}</a></li>}
+                  {wa && <li className="flex items-center gap-3"><MessageCircle size={18} className="text-teal-600" aria-hidden="true" /><a href={wa} target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline">Message on WhatsApp</a></li>}
+                  {b.email && <li className="flex items-center gap-3"><Mail size={18} className="text-teal-600" aria-hidden="true" /><a href={`mailto:${b.email}`} className="underline-offset-2 hover:underline">{b.email}</a></li>}
+                  {b.address && <li className="flex items-start gap-3"><MapPin size={18} className="mt-0.5 shrink-0 text-teal-600" aria-hidden="true" /><span>{b.address}</span></li>}
+                  {b.hours && <li className="flex items-center gap-3"><Clock size={18} className="text-teal-600" aria-hidden="true" />{b.hours}</li>}
+                </ul>
+              ) : <p className="mt-3 text-navy-700">Use the form to send us a message or request a quote, and we will get back to you.</p>}
+              <div className="mt-5 flex flex-wrap gap-3"><Cta to="/book">Get a Travel Quote</Cta>{b.googleBusinessProfileUrl && <Cta href={b.googleBusinessProfileUrl} external variant="ghost">View on Google</Cta>}</div>
+            </div>
+            {b.contactVerified && b.mapEmbedUrl && (
+              <div className="overflow-hidden rounded-3xl shadow-soft"><iframe title="Map showing our location" src={b.mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="h-72 w-full border-0" /></div>
+            )}
+          </div>
+          <ContactForm />
+        </div>
       </div>
     </>
   );

@@ -24,12 +24,22 @@ export default function Destinations() {
         intro="Pickup guidance, travel suggestions and quote requests for each place we serve."
         crumbs={crumbs}
       />
-      <div className="container-x section space-y-14">
-        {loading && <CardGridSkeleton n={6} />}
-        {error && <ErrorState message="We could not load destinations right now." />}
-        {!loading && !error && !data?.length && <EmptyState title="Destinations are being added" />}
-        {places.length > 0 && <section aria-labelledby="pl-h"><SectionHeading title={<span id="pl-h">Places</span>} /><div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{places.map((d, i) => <Reveal key={d.slug} delay={i * 60}><DestinationCard d={d} i={i} /></Reveal>)}</div></section>}
-        {routes.length > 0 && <section aria-labelledby="rt-h"><SectionHeading title={<span id="rt-h">Routes</span>} /><div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{routes.map((d, i) => <Reveal key={d.slug} delay={i * 60}><DestinationCard d={d} i={i + 2} /></Reveal>)}</div></section>}
+      <div className="relative isolate overflow-hidden bg-slate-50/50">
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            className="h-full w-full object-cover object-center opacity-[0.07] filter contrast-125"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-slate-50/90" />
+        </div>
+        <div className="container-x section space-y-14 relative">
+          {loading && <CardGridSkeleton n={6} />}
+          {error && <ErrorState message="We could not load destinations right now." />}
+          {!loading && !error && !data?.length && <EmptyState title="Destinations are being added" />}
+          {places.length > 0 && <section aria-labelledby="pl-h"><SectionHeading title={<span id="pl-h">Places</span>} /><div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{places.map((d, i) => <Reveal key={d.slug} delay={i * 60}><DestinationCard d={d} i={i} /></Reveal>)}</div></section>}
+          {routes.length > 0 && <section aria-labelledby="rt-h"><SectionHeading title={<span id="rt-h">Routes</span>} /><div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{routes.map((d, i) => <Reveal key={d.slug} delay={i * 60}><DestinationCard d={d} i={i + 2} /></Reveal>)}</div></section>}
+        </div>
       </div>
     </>
   );

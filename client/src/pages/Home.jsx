@@ -140,24 +140,46 @@ export default function Home() {
       <Hero />
       <Wave from="#0B1B33" className="-mt-px" />
 
-      <section className="section" aria-labelledby="routes-h"><div className="container-x">
-        <SectionHeading eyebrow="Popular routes" title={<span id="routes-h">Routes our customers ask for</span>} intro="Tap a route to see pickup details and request a quote." />
-        <div className="mt-10">
-          {routes.loading ? <CardGridSkeleton /> : (routes.data || []).length
-            ? <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{routes.data.slice(0, 6).map((r, i) => <Reveal key={r.slug} delay={i * 70}><RouteCard r={r} i={i} /></Reveal>)}</div>
-            : <EmptyState title="Routes coming soon">Use the booking form and tell us where you want to go.</EmptyState>}
+      <section className="relative isolate section overflow-hidden bg-slate-50/60" aria-labelledby="routes-h">
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            className="h-full w-full object-cover object-center opacity-[0.07] filter contrast-125 saturate-150"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-slate-50/90" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(26,166,160,0.06),transparent_60%)]" />
         </div>
-      </div></section>
+        <div className="container-x relative">
+          <SectionHeading eyebrow="Popular routes" title={<span id="routes-h">Routes our customers ask for</span>} intro="Tap a route to see pickup details and request a quote." />
+          <div className="mt-10">
+            {routes.loading ? <CardGridSkeleton /> : (routes.data || []).length
+              ? <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{routes.data.slice(0, 6).map((r, i) => <Reveal key={r.slug} delay={i * 70}><RouteCard r={r} i={i} /></Reveal>)}</div>
+              : <EmptyState title="Routes coming soon">Use the booking form and tell us where you want to go.</EmptyState>}
+          </div>
+        </div>
+      </section>
 
-      <section className="section bg-ivory-100" aria-labelledby="dest-h"><div className="container-x">
-        <SectionHeading eyebrow="Featured destinations" title={<span id="dest-h">Explore where we travel</span>} intro="Local guidance for each of our main service areas." />
-        <div className="mt-10">
-          {dests.loading ? <CardGridSkeleton n={4} /> : places.length
-            ? <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{places.slice(0, 8).map((d, i) => <Reveal key={d.slug} delay={i * 70}><DestinationCard d={d} i={i} /></Reveal>)}</div>
-            : <EmptyState title="Destinations coming soon" />}
-          <div className="mt-8 text-center"><Cta to="/destinations" variant="ghost">View all destinations</Cta></div>
+      <section className="relative isolate section overflow-hidden bg-ivory-100/70" aria-labelledby="dest-h">
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125 saturate-150"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-ivory via-ivory/80 to-ivory-100/90" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(242,138,75,0.07),transparent_60%)]" />
         </div>
-      </div></section>
+        <div className="container-x relative">
+          <SectionHeading eyebrow="Featured destinations" title={<span id="dest-h">Explore where we travel</span>} intro="Local guidance for each of our main service areas." />
+          <div className="mt-10">
+            {dests.loading ? <CardGridSkeleton n={4} /> : places.length
+              ? <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{places.slice(0, 8).map((d, i) => <Reveal key={d.slug} delay={i * 70}><DestinationCard d={d} i={i} /></Reveal>)}</div>
+              : <EmptyState title="Destinations coming soon" />}
+            <div className="mt-8 text-center"><Cta to="/destinations" variant="ghost">View all destinations</Cta></div>
+          </div>
+        </div>
+      </section>
 
       <section className="relative isolate overflow-hidden bg-navy-950 py-20 text-white" aria-labelledby="svc-h">
         <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
@@ -177,29 +199,70 @@ export default function Home() {
       </section>
 
       {(vehicles.data || []).length > 0 && (
-        <section className="section" aria-labelledby="veh-h"><div className="container-x">
-          <SectionHeading eyebrow="Vehicles" title={<span id="veh-h">Choose the right vehicle</span>} intro="Tell us your group size and luggage and we confirm the best fit." />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{vehicles.data.slice(0, 6).map((v, i) => <Reveal key={v.slug} delay={i * 70}><VehicleCard v={v} i={i} /></Reveal>)}</div>
-          <div className="mt-8 text-center"><Cta to="/vehicles" variant="ghost">All vehicles</Cta></div>
-        </div></section>
+        <section className="relative isolate section overflow-hidden bg-slate-50/70" aria-labelledby="veh-h">
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1920&q=80"
+              alt=""
+              className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125 saturate-150"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-slate-100/80" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(26,166,160,0.06),transparent_70%)]" />
+          </div>
+          <div className="container-x relative">
+            <SectionHeading eyebrow="Vehicles" title={<span id="veh-h">Choose the right vehicle</span>} intro="Tell us your group size and luggage and we confirm the best fit." />
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{vehicles.data.slice(0, 6).map((v, i) => <Reveal key={v.slug} delay={i * 70}><VehicleCard v={v} i={i} /></Reveal>)}</div>
+            <div className="mt-8 text-center"><Cta to="/vehicles" variant="ghost">All vehicles</Cta></div>
+          </div>
+        </section>
       )}
 
       {why.length > 0 && (
-        <section className="section bg-ivory-100" aria-labelledby="why-h"><div className="container-x">
-          <SectionHeading center eyebrow="Why choose us" title={<span id="why-h">Why choose {s.business.name}</span>} />
-          <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{why.map((w, i) => (
-            <Reveal as="li" key={w.title} delay={i * 70} className="rounded-3xl bg-white p-6 shadow-soft"><span className="font-display text-3xl text-sunset-500" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><h3 className="mt-2 text-lg font-semibold">{w.title}</h3><p className="mt-2 text-[15px] leading-7 text-navy-700">{w.text}</p></Reveal>))}</ul>
-        </div></section>
+        <section className="relative isolate section overflow-hidden bg-ivory-100/70" aria-labelledby="why-h">
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1920&q=80"
+              alt=""
+              className="h-full w-full object-cover object-center opacity-[0.09] filter contrast-125 saturate-150"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-ivory-100/90 via-ivory/85 to-ivory-100/90" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(26,166,160,0.08),transparent_60%)]" />
+          </div>
+          <div className="container-x relative">
+            <SectionHeading center eyebrow="Why choose us" title={<span id="why-h">Why choose {s.business.name}</span>} />
+            <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{why.map((w, i) => (
+              <Reveal as="li" key={w.title} delay={i * 70} className="rounded-3xl border border-white/80 bg-white/90 p-6 shadow-soft backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <span className="font-display text-3xl font-bold text-sunset-500" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="mt-2 text-lg font-semibold text-navy-900">{w.title}</h3>
+                <p className="mt-2 text-[15px] leading-7 text-navy-700">{w.text}</p>
+              </Reveal>))}
+            </ul>
+          </div>
+        </section>
       )}
 
       {steps.length > 0 && (
-        <section className="section" aria-labelledby="how-h"><div className="container-x">
-          <SectionHeading center eyebrow="How it works" title={<span id="how-h">Book in three simple steps</span>} />
-          <ol className="mt-10 grid gap-6 md:grid-cols-3">{steps.map((st, i) => (
-            <Reveal as="li" key={st.title} delay={i * 90} className="relative rounded-3xl border border-navy-900/10 bg-white p-6">
-              <span className="grid h-11 w-11 place-items-center rounded-full bg-teal-600 font-semibold text-white" aria-hidden="true">{i + 1}</span>
-              <h3 className="mt-4 text-xl font-semibold"><span className="sr-only">Step {i + 1}: </span>{st.title}</h3><p className="mt-2 text-navy-700">{st.text}</p></Reveal>))}</ol>
-        </div></section>
+        <section className="relative isolate section overflow-hidden bg-white" aria-labelledby="how-h">
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=80"
+              alt=""
+              className="h-full w-full object-cover object-center opacity-[0.07] filter contrast-125 saturate-150"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-white" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(242,138,75,0.07),transparent_60%)]" />
+          </div>
+          <div className="container-x relative">
+            <SectionHeading center eyebrow="How it works" title={<span id="how-h">Book in three simple steps</span>} />
+            <ol className="mt-10 grid gap-6 md:grid-cols-3">{steps.map((st, i) => (
+              <Reveal as="li" key={st.title} delay={i * 90} className="relative rounded-3xl border border-navy-900/10 bg-white/95 p-6 shadow-soft backdrop-blur-sm">
+                <span className="grid h-11 w-11 place-items-center rounded-full bg-teal-600 font-semibold text-white shadow-sm" aria-hidden="true">{i + 1}</span>
+                <h3 className="mt-4 text-xl font-semibold text-navy-950"><span className="sr-only">Step {i + 1}: </span>{st.title}</h3>
+                <p className="mt-2 text-navy-700">{st.text}</p>
+              </Reveal>))}
+            </ol>
+          </div>
+        </section>
       )}
 
       {reviews.length > 0 && (
@@ -224,18 +287,40 @@ export default function Home() {
       )}
 
       {(faqs.data || []).length > 0 && (
-        <section className="section" aria-labelledby="faq-h"><div className="container-x grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
-          <SectionHeading eyebrow="FAQ" title={<span id="faq-h">Questions, answered</span>} intro="Cannot find what you need? Message us and we will help." />
-          <div><FaqList items={faqs.data.slice(0, 6)} idPrefix="hfaq" /><p className="mt-4"><Link to="/faq" className="font-semibold text-teal-700 underline underline-offset-2">See all questions</Link></p></div>
-        </div></section>
+        <section className="relative isolate section overflow-hidden bg-slate-50/70" aria-labelledby="faq-h">
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"
+              alt=""
+              className="h-full w-full object-cover object-center opacity-[0.07] filter contrast-125"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-slate-50/90" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(26,166,160,0.06),transparent_60%)]" />
+          </div>
+          <div className="container-x relative grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+            <SectionHeading eyebrow="FAQ" title={<span id="faq-h">Questions, answered</span>} intro="Cannot find what you need? Message us and we will help." />
+            <div><FaqList items={faqs.data.slice(0, 6)} idPrefix="hfaq" /><p className="mt-4"><Link to="/faq" className="font-semibold text-teal-700 underline underline-offset-2">See all questions</Link></p></div>
+          </div>
+        </section>
       )}
 
       {(blog.data?.data || []).length > 0 && (
-        <section className="section bg-ivory-100" aria-labelledby="blog-h"><div className="container-x">
-          <SectionHeading eyebrow="Travel insights" title={<span id="blog-h">From the travel desk</span>} />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{blog.data.data.slice(0, 3).map((p, i) => <Reveal key={p.slug} delay={i * 70}><PostCard p={p} /></Reveal>)}</div>
-          <div className="mt-8 text-center"><Cta to="/blog" variant="ghost">More travel tips</Cta></div>
-        </div></section>
+        <section className="relative isolate section overflow-hidden bg-ivory-100/80" aria-labelledby="blog-h">
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1920&q=80"
+              alt=""
+              className="h-full w-full object-cover object-center opacity-[0.08] filter contrast-125 saturate-150"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-ivory-100/90 via-ivory/80 to-ivory-100/90" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(242,138,75,0.06),transparent_60%)]" />
+          </div>
+          <div className="container-x relative">
+            <SectionHeading eyebrow="Travel insights" title={<span id="blog-h">From the travel desk</span>} />
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{blog.data.data.slice(0, 3).map((p, i) => <Reveal key={p.slug} delay={i * 70}><PostCard p={p} /></Reveal>)}</div>
+            <div className="mt-8 text-center"><Cta to="/blog" variant="ghost">More travel tips</Cta></div>
+          </div>
+        </section>
       )}
 
       <section className="relative isolate overflow-hidden bg-navy-950 py-20 text-center text-white sm:py-28">
