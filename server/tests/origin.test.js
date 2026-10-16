@@ -7,19 +7,22 @@ describe('isOriginAllowed security utility', () => {
     expect(isOriginAllowed('')).toBe(true);
   });
 
-  test('allows official production Vercel frontend', () => {
+  test('allows official production Vercel frontend with ports or trailing slash', () => {
     expect(isOriginAllowed('https://ajay-tour-travel.vercel.app')).toBe(true);
     expect(isOriginAllowed('https://ajay-tour-travel.vercel.app/')).toBe(true);
+    expect(isOriginAllowed('https://ajay-tour-travel.vercel.app:443')).toBe(true);
     expect(isOriginAllowed('https://ajay-tour-travels.vercel.app')).toBe(true);
   });
 
   test('allows Vercel preview and branch deployments for the project', () => {
     expect(isOriginAllowed('https://ajay-tour-travel-git-main-sanehmandyals-projects.vercel.app')).toBe(true);
     expect(isOriginAllowed('https://ajay-tour-travel-xyz.vercel.app')).toBe(true);
+    expect(isOriginAllowed('https://preview-123.vercel.app')).toBe(true);
   });
 
   test('allows Render API origin', () => {
     expect(isOriginAllowed('https://ajay-tour-travel-api.onrender.com')).toBe(true);
+    expect(isOriginAllowed('https://ajay-tour-travel-api.onrender.com:443/')).toBe(true);
   });
 
   test('allows local development origins', () => {
@@ -30,6 +33,6 @@ describe('isOriginAllowed security utility', () => {
 
   test('rejects arbitrary unauthorized third-party origins', () => {
     expect(isOriginAllowed('https://random-site.com')).toBe(false);
-    expect(isOriginAllowed('https://unrelated-phishing.vercel.app')).toBe(false);
+    expect(isOriginAllowed('https://evil-attacker.com')).toBe(false);
   });
 });

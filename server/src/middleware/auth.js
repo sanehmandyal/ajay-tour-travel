@@ -58,7 +58,12 @@ const SAFE = new Set(['GET', 'HEAD', 'OPTIONS']);
 /** CSRF defence for cookie auth: allowlisted Origin + per-session token echoed in X-CSRF-Token. */
 export function csrfProtect(req, _res, next) {
   if (SAFE.has(req.method)) return next();
-  const origin = req.get('origin');
+  let origin = req.get('origin');
+  if (!origin && req.get('referer')) {
+    try {
+      origin = new URL(req.get('referer')).origin;
+    } catch {}
+  }
   if (origin && !isOriginAllowed(origin)) return next(ApiError.forbidden('Origin not allowed'));
   const sent = Buffer.from(req.get('x-csrf-token') || '');
   const expected = Buffer.from(req.csrf || '');

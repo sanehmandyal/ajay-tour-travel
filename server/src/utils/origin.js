@@ -20,16 +20,22 @@ export function isOriginAllowed(origin) {
   // 2. SITE_URL match
   if (env.SITE_URL && env.SITE_URL.replace(/\/$/, '').toLowerCase() === clean) return true;
 
-  // 3. Localhost development
-  if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(clean)) return true;
+  try {
+    const url = new URL(clean);
+    const host = url.hostname.toLowerCase();
 
-  // 4. Any Vercel deployment of the project (production, preview, branch)
-  if (/^https:\/\/([a-z0-9-]+\.)*vercel\.app$/.test(clean)) {
-    if (clean.includes('ajay-tour-travel') || clean.includes('sanehmandyal')) return true;
+    // 3. Localhost development
+    if (host === 'localhost' || host === '127.0.0.1') return true;
+
+    // 4. Any Vercel deployment (*.vercel.app)
+    if (host.endsWith('.vercel.app') || host === 'vercel.app') return true;
+
+    // 5. Any Render deployment (*.onrender.com)
+    if (host.endsWith('.onrender.com') || host === 'onrender.com') return true;
+  } catch {
+    // Fallback if not a standard URL string
+    if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(clean)) return true;
   }
-
-  // 5. Render API / Frontend onrender.com
-  if (/^https:\/\/ajay-tour-travel[a-z0-9-]*\.onrender\.com$/.test(clean)) return true;
 
   return false;
 }
