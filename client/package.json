@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build:client": "vite build --outDir dist",
+    "build:client": "vite build --outDir dist && node -e \"import('node:fs').then(fs => fs.copyFileSync('dist/index.html', 'dist/_shell.html'))\"",
     "build:server": "vite build --ssr src/entry-server.jsx --outDir dist-server",
     "build": "npm run build:client && npm run build:server && node scripts/prerender.mjs",
     "preview": "vite preview",
