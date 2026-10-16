@@ -3,9 +3,11 @@ import { api } from '../lib/api.js';
 import { useApi } from '../lib/data.jsx';
 import { PageHero, Reveal, CardGridSkeleton, ErrorState, EmptyState, Img, Art, Cta } from '../components/ui.jsx';
 import { fmtPrice } from '../lib/format.js';
-import { Check, X } from 'lucide-react';
+import { Check, X, MessageCircle } from 'lucide-react';
+import { useSettings } from '../lib/useSettings.js';
 
 export default function Packages() {
+  const s = useSettings();
   const { data, loading, error } = useApi('packages', () => api.get('/api/packages'));
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Tour Packages', path: '/packages' }];
   return (
@@ -76,7 +78,20 @@ export default function Packages() {
                   {p.inclusions?.length > 0 && <ul aria-label="Inclusions" className="space-y-1">{p.inclusions.map((x) => <li key={x} className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-teal-600" aria-hidden="true" />{x}</li>)}</ul>}
                   {p.exclusions?.length > 0 && <ul aria-label="Exclusions" className="space-y-1">{p.exclusions.map((x) => <li key={x} className="flex gap-2"><X size={16} className="mt-0.5 shrink-0 text-sunset-600" aria-hidden="true" />{x}</li>)}</ul>}
                 </div>
-                <Cta to={`/book?requirements=${encodeURIComponent(`Package: ${p.title}`)}`} className="mt-6">Request Package Quote</Cta>
+                <div className="mt-6 flex flex-wrap items-center gap-3">
+                  <Cta to={`/book?requirements=${encodeURIComponent(`Package: ${p.title}`)}`}>Request Package Quote</Cta>
+                  {s.waHref && (
+                    <a
+                      href={s.waHref(`Hello Ajay Tour and Travels, I would like to inquire about the tour package: "${p.title}".`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#25D366]/40 bg-[#25D366]/15 px-5 py-2.5 text-xs font-bold text-[#1e9e4d] transition hover:bg-[#25D366]/25"
+                    >
+                      <MessageCircle size={16} aria-hidden="true" />
+                      <span>Inquire on WhatsApp</span>
+                    </a>
+                  )}
+                </div>
               </div>
             </Reveal>
           ))}

@@ -7,9 +7,20 @@ export const whatsappHref = (number, text = '') => {
 };
 
 export function bookingMessage(f) {
-  const lines = ['Hello Ajay Tour and Travels, I would like a quote.',
-    f.pickup && `Pickup: ${f.pickup}`, f.destination && `Destination: ${f.destination}`,
-    f.travelDate && `Date: ${f.travelDate}`, f.passengers && `Passengers: ${f.passengers}`,
-    f.vehiclePreference && `Vehicle: ${f.vehiclePreference}`, f.reference && `Reference: ${f.reference}`];
+  const lines = [
+    'Hello Ajay Tour and Travels, I would like a quote.',
+    f.name && `Name: ${f.name}`,
+    f.phone && `Phone: ${f.phone}`,
+    f.pickup && `Pickup: ${f.pickup}`,
+    f.destination && `Destination: ${f.destination}`,
+    f.travelDate && `Date: ${f.travelDate}`,
+    f.pickupTime && `Time: ${f.pickupTime}`,
+    f.passengers && `Passengers: ${f.passengers}`,
+    f.vehiclePreference && `Vehicle: ${f.vehiclePreference}`,
+    f.tripType && `Trip: ${f.tripType === 'round-trip' ? `Round-trip (Return: ${f.returnDate || 'TBD'})` : 'One-way'}`,
+    f.requirements && `Notes: ${f.requirements}`,
+    f.reference && `Reference: ${f.reference}`
+  ];
   return lines.filter(Boolean).join('\n');
 }
+

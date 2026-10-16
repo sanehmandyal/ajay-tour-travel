@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, ArrowRight, Users, Luggage, Clock, Wind, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Users, Luggage, Clock, Wind, ShieldCheck, MessageCircle } from 'lucide-react';
 import TiltCard from './TiltCard.jsx';
 import { Img, Art } from './ui.jsx';
 import { fmtDate } from '../lib/format.js';
+import { useSettings } from '../lib/useSettings.js';
 
 export function DestinationCard({ d, i = 0 }) {
   return (
@@ -30,21 +31,25 @@ export function DestinationCard({ d, i = 0 }) {
 }
 
 export function RouteCard({ r, i = 0 }) {
+  const s = useSettings();
   const to = r.destinationSlug ? `/destinations/${r.destinationSlug}` : `/book?pickup=${encodeURIComponent(r.from)}&destination=${encodeURIComponent(r.to)}`;
   const hrs = r.approxDurationMinutes ? Math.floor(r.approxDurationMinutes / 60) : 0;
   const mins = r.approxDurationMinutes ? r.approxDurationMinutes % 60 : 0;
   const durationStr = hrs || mins ? `~${hrs ? `${hrs}h ` : ''}${mins ? `${mins}m` : ''}`.trim() : null;
+  const wa = s.waHref(`Hello Ajay Tour and Travels, I would like to inquire about taxi service from ${r.from} to ${r.to}.`);
 
   return (
     <TiltCard className="h-full rounded-3xl spatial-card-dark text-white">
-      <Link to={to} className="group relative flex h-full flex-col overflow-hidden rounded-3xl p-5 sm:p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-teal-900/30">
+      <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl p-5 sm:p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-teal-900/30">
         <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-teal-500/20 blur-2xl" aria-hidden="true" />
         <div className="flex items-center justify-between gap-2">
           <p className="eyebrow !text-teal-300">Popular route</p>
           {r.detailsVerified && <span className="rounded-full bg-teal-500/20 px-2 py-0.5 text-[11px] font-semibold text-teal-300 ring-1 ring-teal-400/30">Verified</span>}
         </div>
         <h3 className="mt-2.5 font-display text-xl sm:text-2xl !text-white leading-snug break-words">
-          {r.from} <span className="text-sunset-400" aria-hidden="true">→</span><span className="sr-only"> to </span> {r.to}
+          <Link to={to} className="hover:text-teal-300 transition-colors">
+            {r.from} <span className="text-sunset-400" aria-hidden="true">→</span><span className="sr-only"> to </span> {r.to}
+          </Link>
         </h3>
         <dl className="mt-4 space-y-1.5 text-xs sm:text-sm text-white/80">
           {r.distanceKm ? (
@@ -61,23 +66,40 @@ export function RouteCard({ r, i = 0 }) {
           ) : null}
           <div className="flex justify-between gap-2 pt-0.5">
             <dt className="text-white/60">Fare:</dt>
-            <dd className="font-semibold text-sunset-300">
-              {r.pricing?.amount ? `From ₹${r.pricing.amount.toLocaleString('en-IN')}` : 'Quote on Request'}
-            </dd>
+            <dd className="font-semibold text-teal-300">Quote on Request</dd>
           </div>
         </dl>
-        <span className="mt-auto inline-flex min-h-[44px] items-center gap-2 pt-5 text-sm font-bold text-sunset-300 transition group-hover:text-sunset-200">
-          <span>Book This Route</span>
-          <ArrowUpRight size={17} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </span>
-      </Link>
+        <div className="mt-auto flex items-center gap-2 pt-5">
+          <Link
+            to={to}
+            className="flex-1 inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full bg-white/10 px-3 py-2 text-xs font-bold text-white transition hover:bg-white/20"
+          >
+            <span>Book Trip</span>
+            <ArrowUpRight size={15} aria-hidden="true" />
+          </Link>
+          {wa && (
+            <a
+              href={wa}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full bg-[#25D366] px-3.5 py-2 text-xs font-bold text-navy-950 shadow-md transition hover:bg-[#20ba5a] active:scale-95"
+              aria-label={`Inquire about ${r.from} to ${r.to} on WhatsApp`}
+            >
+              <MessageCircle size={15} aria-hidden="true" />
+              <span>WhatsApp</span>
+            </a>
+          )}
+        </div>
+      </div>
     </TiltCard>
   );
 }
 
 export function VehicleCard({ v, i = 0 }) {
+  const s = useSettings();
   const detailUrl = `/vehicles/${v.slug}`;
   const bookUrl = `/book?vehicle=${encodeURIComponent(v.name)}`;
+  const wa = s.waHref(`Hello Ajay Tour and Travels, I would like to inquire about booking the ${v.name}.`);
 
   return (
     <TiltCard className="h-full rounded-3xl spatial-card">
@@ -150,6 +172,18 @@ export function VehicleCard({ v, i = 0 }) {
             >
               Book Now
             </Link>
+            {wa && (
+              <a
+                href={wa}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="grid h-8 w-8 place-items-center rounded-full bg-[#25D366] text-navy-950 shadow-sm transition hover:bg-[#20ba5a] active:scale-95 shrink-0"
+                title="Inquire on WhatsApp"
+                aria-label={`Inquire about ${v.name} on WhatsApp`}
+              >
+                <MessageCircle size={16} aria-hidden="true" />
+              </a>
+            )}
           </div>
         </div>
       </article>

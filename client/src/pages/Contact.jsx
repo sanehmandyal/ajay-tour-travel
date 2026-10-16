@@ -9,6 +9,7 @@ import { PageHero, Cta } from '../components/ui.jsx';
 const phoneRx = /^(?:\+91|91|0)?[6-9]\d{9}$/;
 
 function ContactForm() {
+  const s = useSettings();
   const [f, setF] = useState({ name: '', phone: '', email: '', message: '', consent: false, website: '' });
   const [errs, setErrs] = useState({});
   const [state, setState] = useState('idle');
@@ -32,13 +33,42 @@ function ContactForm() {
     try {
       await api.post('/api/contact', { name: f.name, phone: f.phone, email: f.email || undefined, message: f.message, consent: true, website: f.website });
       setState('done');
+      const waMsg = `Hello Ajay Tour and Travels,\nName: ${f.name}\nPhone: ${f.phone}${f.email ? `\nEmail: ${f.email}` : ''}\nMessage: ${f.message}`;
+      const waUrl = s.waHref(waMsg);
+      if (waUrl && typeof window !== 'undefined') {
+        try { window.open(waUrl, '_blank', 'noopener,noreferrer'); } catch (_) {}
+      }
     } catch (err) {
       if (err instanceof ApiError && err.details?.length) setErrs(Object.fromEntries(err.details.map((d) => [d.field, d.message])));
       setMsg(err.message); setState('error');
     } finally { busy.current = false; }
   }
 
-  if (state === 'done') return <div role="status" className="rounded-3xl bg-white p-8 text-center shadow-soft"><CheckCircle2 className="mx-auto text-teal-600" size={44} aria-hidden="true" /><h2 className="mt-3 text-2xl font-semibold">Message sent</h2><p className="mt-2 text-navy-700">Thank you. Our team will get back to you soon.</p></div>;
+  if (state === 'done') {
+    const waMsg = `Hello Ajay Tour and Travels,\nName: ${f.name}\nPhone: ${f.phone}${f.email ? `\nEmail: ${f.email}` : ''}\nMessage: ${f.message}`;
+    const wa = s.waHref(waMsg);
+    return (
+      <div role="status" className="rounded-3xl bg-white p-8 text-center shadow-soft">
+        <CheckCircle2 className="mx-auto text-teal-600" size={44} aria-hidden="true" />
+        <h2 className="mt-3 text-2xl font-semibold">Message Sent &amp; Connected to WhatsApp</h2>
+        <p className="mt-2 text-navy-700">Thank you! Your message has been saved in our system and opened on WhatsApp for an instant response.</p>
+        <div className="mt-5 flex flex-wrap justify-center gap-3">
+          {wa && (
+            <a href={wa} target="_blank" rel="noopener noreferrer" className="btn-teal">
+              <MessageCircle size={18} aria-hidden="true" />
+              <span>Chat on WhatsApp</span>
+            </a>
+          )}
+          {s.callHref && (
+            <a href={s.callHref} className="btn-ghost">
+              <Phone size={18} aria-hidden="true" />
+              <span>Call Helpline</span>
+            </a>
+          )}
+        </div>
+      </div>
+    );
+  }
   const E = ({ k }) => (errs[k] ? <p id={`cf-${k}-e`} className="mt-1 text-sm text-red-700">{errs[k]}</p> : null);
   return (
     <form onSubmit={submit} noValidate className="space-y-4 rounded-3xl bg-white p-6 shadow-soft sm:p-8" aria-busy={state === 'sending'}>
@@ -53,7 +83,22 @@ function ContactForm() {
       <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" value={f.website} onChange={set('website')} /></label></div>
       <label className="flex items-start gap-3 text-sm"><input type="checkbox" checked={f.consent} onChange={set('consent')} className="mt-1 h-5 w-5 shrink-0 accent-teal-600" /><span>I agree to be contacted about this message, as described in the <Link to="/privacy-policy" className="underline">Privacy Policy</Link>.</span></label>
       <E k="consent" />
-      <button type="submit" disabled={state === 'sending'} className="btn-primary">{state === 'sending' ? <><Loader2 size={18} className="animate-spin" aria-hidden="true" />Sending…</> : 'Send message'}</button>
+      <div className="flex flex-wrap items-center gap-3">
+        <button type="submit" disabled={state === 'sending'} className="btn-primary">
+          {state === 'sending' ? <><Loader2 size={18} className="animate-spin" aria-hidden="true" />Sending…</> : 'Send Message & Chat on WhatsApp'}
+        </button>
+        {s.waHref && (
+          <a
+            href={s.waHref('Hello Ajay Tour and Travels, I have an inquiry.')}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#25D366]/40 bg-[#25D366]/15 px-5 py-2.5 text-xs font-bold text-[#1e9e4d] transition hover:bg-[#25D366]/25"
+          >
+            <MessageCircle size={16} aria-hidden="true" />
+            <span>Direct WhatsApp</span>
+          </a>
+        )}
+      </div>
     </form>
   );
 }

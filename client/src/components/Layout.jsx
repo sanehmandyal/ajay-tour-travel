@@ -406,13 +406,36 @@ export function Footer() {
 
 export function FloatingActions() {
   const s = useSettings();
-  const wa = s.waHref('Hello Ajay Tour and Travels, I would like a travel quote.');
-  const btn = 'grid h-12 w-12 place-items-center rounded-full shadow-float transition active:scale-95';
+  const wa = s.waHref('Hello Ajay Tour and Travels, I would like to inquire about a taxi ride.');
   return (
-    <div className="fixed bottom-4 right-4 z-30 flex flex-col gap-3 pb-[env(safe-area-inset-bottom)]">
-      {s.callHref && <a href={s.callHref} className={`${btn} bg-navy-900 text-white`} aria-label="Call us"><Phone size={20} aria-hidden="true" /></a>}
-      {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className={`${btn} bg-[#25D366] text-navy-950`} aria-label="Chat on WhatsApp"><MessageCircle size={22} aria-hidden="true" /></a>}
-    </div>
+    <aside aria-label="Quick contact" className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-2.5 pb-[env(safe-area-inset-bottom)]">
+      {s.callHref && (
+        <a
+          href={s.callHref}
+          className="group flex items-center gap-2 rounded-full bg-navy-900/95 py-2 px-3 text-xs font-semibold text-white shadow-float backdrop-blur-md transition-all hover:bg-navy-950 hover:scale-105 active:scale-95"
+          aria-label="Call helpline 24/7"
+        >
+          <Phone size={15} className="text-teal-400" aria-hidden="true" />
+          <span className="hidden sm:inline">Call Helpline</span>
+        </a>
+      )}
+      {wa && (
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center gap-2 rounded-full bg-[#25D366] py-2.5 px-3.5 text-xs sm:text-sm font-bold text-navy-950 shadow-float transition-all hover:bg-[#20ba5a] hover:scale-105 active:scale-95 [box-shadow:0_8px_25px_-5px_rgba(37,211,102,0.6)]"
+          aria-label="Chat directly on WhatsApp"
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" />
+          </span>
+          <MessageCircle size={18} className="text-navy-950 fill-navy-950/20" aria-hidden="true" />
+          <span>Chat on WhatsApp</span>
+        </a>
+      )}
+    </aside>
   );
 }
 

@@ -114,12 +114,12 @@ const Wave = ({ from = '#0B1B33', className = '' }) => (
 );
 
 const DEFAULT_ROUTES = [
-  { from: 'Amb Andaura', to: 'Chandigarh', slug: 'amb-andaura-to-chandigarh', destinationSlug: 'amb-andaura-to-chandigarh', detailsVerified: true, distanceKm: 135, approxDurationMinutes: 195, pricing: { amount: 2600 } },
-  { from: 'Una', to: 'Chandigarh', slug: 'una-to-chandigarh', destinationSlug: 'una-to-chandigarh', detailsVerified: true, distanceKm: 120, approxDurationMinutes: 165, pricing: { amount: 2400 } },
-  { from: 'Una', to: 'Ludhiana', slug: 'una-to-ludhiana', destinationSlug: 'una-to-ludhiana', detailsVerified: true, distanceKm: 115, approxDurationMinutes: 150, pricing: { amount: 2200 } },
-  { from: 'Amb Andaura', to: 'Una', slug: 'amb-andaura-to-una', destinationSlug: 'una', detailsVerified: true, distanceKm: 32, approxDurationMinutes: 45, pricing: { amount: 700 } },
-  { from: 'Amb Andaura', to: 'Chintpurni', slug: 'amb-andaura-to-chintpurni', destinationSlug: 'chintpurni', detailsVerified: true, distanceKm: 22, approxDurationMinutes: 40, pricing: { amount: 600 } },
-  { from: 'Amb Andaura', to: 'Dharamshala', slug: 'amb-andaura-to-dharamshala', destinationSlug: 'dharamshala', detailsVerified: true, distanceKm: 110, approxDurationMinutes: 180, pricing: { amount: 3200 } },
+  { from: 'Amb Andaura', to: 'Chandigarh', slug: 'amb-andaura-to-chandigarh', destinationSlug: 'amb-andaura-to-chandigarh', detailsVerified: true, distanceKm: 135, approxDurationMinutes: 195 },
+  { from: 'Una', to: 'Chandigarh', slug: 'una-to-chandigarh', destinationSlug: 'una-to-chandigarh', detailsVerified: true, distanceKm: 120, approxDurationMinutes: 165 },
+  { from: 'Una', to: 'Ludhiana', slug: 'una-to-ludhiana', destinationSlug: 'una-to-ludhiana', detailsVerified: true, distanceKm: 115, approxDurationMinutes: 150 },
+  { from: 'Amb Andaura', to: 'Una', slug: 'amb-andaura-to-una', destinationSlug: 'una', detailsVerified: true, distanceKm: 32, approxDurationMinutes: 45 },
+  { from: 'Amb Andaura', to: 'Chintpurni', slug: 'amb-andaura-to-chintpurni', destinationSlug: 'chintpurni', detailsVerified: true, distanceKm: 22, approxDurationMinutes: 40 },
+  { from: 'Amb Andaura', to: 'Dharamshala', slug: 'amb-andaura-to-dharamshala', destinationSlug: 'dharamshala', detailsVerified: true, distanceKm: 110, approxDurationMinutes: 180 },
 ];
 
 export default function Home() {

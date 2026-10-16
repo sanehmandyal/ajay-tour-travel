@@ -82,7 +82,17 @@ export default function BookingForm({ defaults = {} }) {
       const d = parsed.data;
       const payload = { ...d, email: d.email || undefined, pickupTime: d.pickupTime || undefined, returnDate: d.tripType === 'round-trip' ? d.returnDate : undefined, vehiclePreference: d.vehiclePreference || undefined, requirements: d.requirements || undefined, website: f.website, sourcePage: window.location.pathname };
       const res = await api.post('/api/inquiries', payload);
-      setResult({ ...res, summary: d }); setStatus('success');
+      setResult({ ...res, summary: d });
+      setStatus('success');
+
+      // Seamlessly direct inquiry to admin WhatsApp with generated reference:
+      const waMsg = bookingMessage({ ...d, reference: res.reference });
+      const waUrl = s.waHref(waMsg);
+      if (waUrl && typeof window !== 'undefined') {
+        try {
+          window.open(waUrl, '_blank', 'noopener,noreferrer');
+        } catch (_) {}
+      }
     } catch (err) {
       if (err instanceof ApiError && err.details?.length) {
         const errs = {}; for (const x of err.details) errs[x.field] ||= x.message; setErrors(errs);
@@ -98,14 +108,28 @@ export default function BookingForm({ defaults = {} }) {
     return (
       <div role="status" className="rounded-3xl bg-white p-6 text-center shadow-soft sm:p-10">
         <CheckCircle2 className="mx-auto text-teal-600" size={48} aria-hidden="true" />
-        <h2 className="mt-3 text-2xl font-semibold">Request received</h2>
-        <p className="mt-2 text-navy-700">Your reference number is</p>
-        <p className="my-2 inline-block rounded-xl bg-ivory-100 px-4 py-2 font-mono text-lg font-semibold tracking-wider">{result.reference}</p>
-        <p className="mx-auto max-w-md text-navy-700">This is an inquiry, not a confirmed booking. Our team will contact you on {result.summary.phone} to confirm details and share a quote.</p>
+        <h2 className="mt-3 text-2xl font-semibold">Inquiry Logged &amp; WhatsApp Connected</h2>
+        <p className="mt-2 text-navy-700">Your inquiry reference number is</p>
+        <p className="my-2 inline-block rounded-xl bg-ivory-100 px-4 py-2 font-mono text-lg font-semibold tracking-wider text-teal-800">{result.reference}</p>
+        <p className="mx-auto max-w-md text-navy-700">
+          Your details have been saved to our management system. A WhatsApp chat with our team has also been launched with your trip details for an instant quote.
+        </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn-teal"><MessageCircle size={18} aria-hidden="true" />Message us on WhatsApp</a>}
-          {s.callHref && <a href={s.callHref} className="btn-ghost"><Phone size={18} aria-hidden="true" />Call us</a>}
-          <button type="button" className="btn-ghost" onClick={() => { setF(init); setStatus('idle'); setResult(null); }}>Make another request</button>
+          {wa && (
+            <a href={wa} target="_blank" rel="noopener noreferrer" className="btn-teal shadow-md hover:scale-105 transition-transform">
+              <MessageCircle size={18} aria-hidden="true" />
+              <span>Continue on WhatsApp</span>
+            </a>
+          )}
+          {s.callHref && (
+            <a href={s.callHref} className="btn-ghost">
+              <Phone size={18} aria-hidden="true" />
+              <span>Call Helpline</span>
+            </a>
+          )}
+          <button type="button" className="btn-ghost" onClick={() => { setF(init); setStatus('idle'); setResult(null); }}>
+            Make another request
+          </button>
         </div>
       </div>
     );
@@ -156,11 +180,24 @@ export default function BookingForm({ defaults = {} }) {
         </label>
         {errors.consent && <p className="mt-1 text-sm text-red-700">{errors.consent}</p>}
       </div>
-      <button type="submit" disabled={busy} className="btn-primary mt-6 w-full sm:w-auto">
-        {busy ? <><Loader2 className="animate-spin" size={18} aria-hidden="true" />Sending…</> : 'Get a Travel Quote'}
-      </button>
-      <p className="mt-3 text-xs text-navy-700/70">Submitting this form sends an inquiry only. Nothing is charged and no booking is confirmed until our team speaks with you.</p>
-      <p className="sr-only" role="status" aria-live="polite">{busy ? 'Sending your request' : ''}</p>
+      <div className="mt-6 flex flex-wrap items-center gap-3">
+        <button type="submit" disabled={busy} className="btn-primary w-full sm:w-auto">
+          {busy ? <><Loader2 className="animate-spin" size={18} aria-hidden="true" />Submitting…</> : 'Submit Inquiry & Chat on WhatsApp'}
+        </button>
+        {s.waHref && (
+          <a
+            href={s.waHref(`Hello Ajay Tour and Travels, I would like to inquire about taxi service${f.pickup ? ` from ${f.pickup}` : ''}${f.destination ? ` to ${f.destination}` : ''}.`)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#25D366]/40 bg-[#25D366]/15 px-5 py-2.5 text-xs font-bold text-[#1e9e4d] transition hover:bg-[#25D366]/25 w-full sm:w-auto"
+          >
+            <MessageCircle size={16} aria-hidden="true" />
+            <span>Direct WhatsApp Inquiry</span>
+          </a>
+        )}
+      </div>
+      <p className="mt-3 text-xs text-navy-700/70">Submitting this form records your request in our system and connects you directly with our team on WhatsApp for fast confirmation.</p>
     </form>
   );
 }
+
