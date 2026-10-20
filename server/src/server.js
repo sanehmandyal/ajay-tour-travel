@@ -4,11 +4,13 @@ import { createApp } from './app.js';
 import { logger } from './utils/logger.js';
 import { ensureAdminUser } from './scripts/bootstrapAdmin.js';
 import { seedIfEmpty } from './scripts/seed.js';
+import { syncPhoneNumbers } from './scripts/syncPhone.js';
 
 async function main() {
   await connectDB();
   await ensureAdminUser();
   await seedIfEmpty();
+  await syncPhoneNumbers();
 
   const server = createApp().listen(env.PORT, () => logger.info(`API listening on :${env.PORT} (${env.NODE_ENV})`));
 

@@ -18,7 +18,10 @@ export function crudController(Model, { search = [], filters = [], sort = { crea
 
   const prepare = async (data, existing) => {
     const out = { ...data };
-    if (slugFrom && !out.slug && !existing && out[slugFrom]) out.slug = slugify(out[slugFrom]);
+    if (!out.slug) {
+      const src = (slugFrom && out[slugFrom]) || out.title || out.name || (out.from && out.to ? `${out.from}-to-${out.to}` : '');
+      if (src) out.slug = slugify(src);
+    }
     if (beforeSave) await beforeSave(out, existing);
     return out;
   };

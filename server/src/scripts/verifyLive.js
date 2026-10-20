@@ -107,7 +107,7 @@ async function main() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       name: 'Verification Traveller',
-      phone: '9816012345',
+      phone: '7011056581',
       email: 'traveller@example.com',
       pickup: 'Amb Andaura Railway Station',
       destination: 'Mata Chintpurni Temple',

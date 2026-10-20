@@ -10,6 +10,17 @@ export function setIn(o, path, val) {
   return clone;
 }
 
+export function slugify(input = '') {
+  return String(input)
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 100);
+}
+
 /** Turns form state into an API payload: drops server-only keys, converts numbers, removes empty slugs. */
 export function toPayload(value, fields) {
   const out = {};
@@ -29,7 +40,11 @@ export function toPayload(value, fields) {
       out[f.name] = v ? v : null;
     } else if (f.type === 'select' && f.numeric) {
       out[f.name] = Number(v);
-    } else if (f.name === 'slug' && !v) {
+    } else if (f.name === 'slug') {
+      const candidate = v || value?.title || value?.name || (value?.from && value?.to ? `${value.from}-to-${value.to}` : '');
+      if (candidate) {
+        out.slug = slugify(candidate);
+      }
       continue;
     } else if (v !== undefined) {
       out[f.name] = v;
@@ -384,29 +399,54 @@ export function FormFields({ fields, value, onChange, errors = {}, base = '' }) 
         const id = `ff-${path.replace(/\./g, '-')}`;
         const val = value?.[f.name];
         const err = errors[path];
-        const set = (nv) => onChange({ ...value, [f.name]: nv });
+        const set = (nv) => {
+          const updated = { ...value, [f.name]: nv };
+          if ((f.name === 'title' || f.name === 'name') && (!value?.slug || value?.slug === slugify(val || ''))) {
+            updated.slug = slugify(nv);
+          }
+          if ((f.name === 'from' || f.name === 'to') && (!value?.slug || value?.slug === slugify(`${value?.from || ''}-to-${value?.to || ''}`))) {
+            const nextFrom = f.name === 'from' ? nv : value?.from || '';
+            const nextTo = f.name === 'to' ? nv : value?.to || '';
+            if (nextFrom && nextTo) updated.slug = slugify(`${nextFrom}-to-${nextTo}`);
+          }
+          onChange(updated);
+        };
         const wide = ['textarea', 'html', 'lines', 'group', 'list', 'image', 'imagelist'].includes(f.type) || f.wide;
         let input;
-        switch (f.type) {
-          case 'textarea': input = <textarea id={id} rows={f.rows || 4} className="field" value={val ?? ''} onChange={(e) => set(e.target.value)} />; break;
-          case 'html': input = <textarea id={id} rows={f.rows || 14} className="field font-mono text-sm" value={val ?? ''} onChange={(e) => set(e.target.value)} spellCheck="false" />; break;
-          case 'checkbox': input = <label className="flex min-h-[44px] items-center gap-3"><input id={id} type="checkbox" className="h-5 w-5 accent-teal-600" checked={!!val} onChange={(e) => set(e.target.checked)} /><span className="text-sm">{f.help || 'Enabled'}</span></label>; break;
-          case 'select': input = <SelectField id={id} f={f} value={val} onChange={set} />; break;
-          case 'lines': input = <LinesField id={id} value={val} onChange={set} rows={f.rows} />; break;
-          case 'image': input = <ImageField id={id} value={val} onChange={set} />; break;
-          case 'imagelist': input = <ImageListField id={id} value={val} onChange={set} />; break;
-          case 'group': input = <div className="rounded-2xl border border-navy-900/10 p-4"><FormFields fields={f.fields} value={val || {}} onChange={set} errors={errors} base={`${path}.`} /></div>; break;
-          case 'list': input = (
-            <div className="space-y-3">
-              {(val || []).map((it, i) => (
-                <div key={i} className="rounded-2xl border border-navy-900/10 bg-ivory/50 p-4">
-                  <FormFields fields={f.fields} value={it} onChange={(nv) => set(val.map((x, k) => (k === i ? nv : x)))} errors={errors} base={`${path}.${i}.`} />
-                  <button type="button" onClick={() => set(val.filter((_, k) => k !== i))} className="mt-3 inline-flex min-h-[40px] items-center gap-1 text-sm text-red-700 hover:underline"><Trash2 size={15} aria-hidden="true" />Remove</button>
-                </div>
-              ))}
-              <button type="button" onClick={() => set([...(val || []), f.empty ? f.empty() : {}])} className="btn-ghost !min-h-[40px]"><Plus size={16} aria-hidden="true" />{f.addLabel || 'Add item'}</button>
-            </div>); break;
-          default: input = <input id={id} type={f.type === 'number' ? 'number' : f.type || 'text'} step={f.step} min={f.min} className={`field ${err ? 'field-error' : ''}`} value={val ?? ''} onChange={(e) => set(e.target.value)} placeholder={f.placeholder} maxLength={f.maxLength} />;
+        if (f.name === 'slug') {
+          const autoPlaceholder = slugify(value?.title || value?.name || (value?.from && value?.to ? `${value?.from}-to-${value?.to}` : '') || 'auto-generated');
+          input = (
+            <input
+              id={id}
+              type="text"
+              className={`field font-mono text-sm ${err ? 'field-error' : ''}`}
+              value={val ?? ''}
+              placeholder={autoPlaceholder}
+              onChange={(e) => set(slugify(e.target.value))}
+            />
+          );
+        } else {
+          switch (f.type) {
+            case 'textarea': input = <textarea id={id} rows={f.rows || 4} className="field" value={val ?? ''} onChange={(e) => set(e.target.value)} />; break;
+            case 'html': input = <textarea id={id} rows={f.rows || 14} className="field font-mono text-sm" value={val ?? ''} onChange={(e) => set(e.target.value)} spellCheck="false" />; break;
+            case 'checkbox': input = <label className="flex min-h-[44px] items-center gap-3"><input id={id} type="checkbox" className="h-5 w-5 accent-teal-600" checked={!!val} onChange={(e) => set(e.target.checked)} /><span className="text-sm">{f.help || 'Enabled'}</span></label>; break;
+            case 'select': input = <SelectField id={id} f={f} value={val} onChange={set} />; break;
+            case 'lines': input = <LinesField id={id} value={val} onChange={set} rows={f.rows} />; break;
+            case 'image': input = <ImageField id={id} value={val} onChange={set} />; break;
+            case 'imagelist': input = <ImageListField id={id} value={val} onChange={set} />; break;
+            case 'group': input = <div className="rounded-2xl border border-navy-900/10 p-4"><FormFields fields={f.fields} value={val || {}} onChange={set} errors={errors} base={`${path}.`} /></div>; break;
+            case 'list': input = (
+              <div className="space-y-3">
+                {(val || []).map((it, i) => (
+                  <div key={i} className="rounded-2xl border border-navy-900/10 bg-ivory/50 p-4">
+                    <FormFields fields={f.fields} value={it} onChange={(nv) => set(val.map((x, k) => (k === i ? nv : x)))} errors={errors} base={`${path}.${i}.`} />
+                    <button type="button" onClick={() => set(val.filter((_, k) => k !== i))} className="mt-3 inline-flex min-h-[40px] items-center gap-1 text-sm text-red-700 hover:underline"><Trash2 size={15} aria-hidden="true" />Remove</button>
+                  </div>
+                ))}
+                <button type="button" onClick={() => set([...(val || []), f.empty ? f.empty() : {}])} className="btn-ghost !min-h-[40px]"><Plus size={16} aria-hidden="true" />{f.addLabel || 'Add item'}</button>
+              </div>); break;
+            default: input = <input id={id} type={f.type === 'number' ? 'number' : f.type || 'text'} step={f.step} min={f.min} className={`field ${err ? 'field-error' : ''}`} value={val ?? ''} onChange={(e) => set(e.target.value)} placeholder={f.placeholder} maxLength={f.maxLength} />;
+          }
         }
         return (
           <div key={f.name} className={wide ? 'sm:col-span-2' : ''}>

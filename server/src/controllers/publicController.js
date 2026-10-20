@@ -95,20 +95,22 @@ export const listFaqs = asyncHandler(async (req, res) => {
 export const getPublicSettings = asyncHandler(async (_req, res) => {
   const s = (await getSettings()).toObject();
   const verified = Boolean(s.business?.contactVerified);
+  const activePhone = s.business?.phone || '+91 70110 56581';
+  const activeWa = s.business?.whatsapp || (activePhone ? activePhone.replace(/\D/g, '') : '917011056581');
   ok(res, {
     business: {
-      name: s.business.name || 'Ajay Tour and Travels',
-      tagline: s.business.tagline || '',
-      logoUrl: s.business.logoUrl || '',
-      serviceAreas: s.business.serviceAreas || [],
+      name: s.business?.name || 'Ajay Tour and Travels',
+      tagline: s.business?.tagline || '',
+      logoUrl: s.business?.logoUrl || '',
+      serviceAreas: s.business?.serviceAreas || [],
       contactVerified: verified,
-      phone: verified ? (s.business.phone || '') : '',
-      whatsapp: verified ? (s.business.whatsapp || '') : '',
-      email: verified ? (s.business.email || '') : '',
-      address: verified ? (s.business.address || '') : '',
-      hours: verified ? (s.business.hours || '') : '',
-      googleBusinessProfileUrl: s.business.googleBusinessProfileUrl || '',
-      mapEmbedUrl: verified ? (s.business.mapEmbedUrl || '') : '',
+      phone: verified ? activePhone : '',
+      whatsapp: verified ? activeWa : '',
+      email: verified ? (s.business?.email || '') : '',
+      address: verified ? (s.business?.address || '') : '',
+      hours: verified ? (s.business?.hours || '') : '',
+      googleBusinessProfileUrl: s.business?.googleBusinessProfileUrl || '',
+      mapEmbedUrl: verified ? (s.business?.mapEmbedUrl || '') : '',
     },
     social: s.social || {},
     announcement: s.announcement || {},

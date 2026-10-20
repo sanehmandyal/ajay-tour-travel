@@ -4,7 +4,7 @@ const PICKUP = 'Tell us your exact pickup point (home, hotel, bus stand, or Amb 
 const DROP = 'Drop-off at your exact hotel, airport terminal, railway platform, hospital, or residential address. Multiple drop-offs can be arranged on request.';
 
 const faqPair = (place) => [
-  { question: `How do I book a taxi for ${place}?`, answer: `You can book easily through our website booking form, or directly call or WhatsApp our team at +91 98160 34567. Share your pickup address, date, time, and passenger count, and we will confirm your ride instantly.` },
+  { question: `How do I book a taxi for ${place}?`, answer: `You can book easily through our website booking form, or directly call or WhatsApp our team at +91 70110 56581. Share your pickup address, date, time, and passenger count, and we will confirm your ride instantly.` },
   { question: `Are your fares for ${place} fixed with no hidden fees?`, answer: `Yes! We offer upfront transparent pricing. Fuel and driver allowances are included in the quoted fare. Toll taxes, state border permits, and parking are clearly explained with zero surprise surges.` },
 ];
 
@@ -39,7 +39,7 @@ export const destinations = [
     relatedSlugs: ['una', 'chandigarh', 'amb-andaura-to-chandigarh', 'amb-andaura-to-chintpurni'],
     vehicleSlugs: ['maruti-dzire', 'toyota-innova-crysta', 'maruti-ertiga', 'tempo-traveller'],
     faqs: faqPair('Amb Andaura'),
-    seo: { title: 'Taxi Service at Amb Andaura Railway Station | Ajay Tour & Travels', description: 'Book verified 24/7 taxi from Amb Andaura Railway Station to Una, Chintpurni, Dharamshala, and Chandigarh. Call +91 98160 34567.' },
+    seo: { title: 'Taxi Service at Amb Andaura Railway Station | Ajay Tour & Travels', description: 'Book verified 24/7 taxi from Amb Andaura Railway Station to Una, Chintpurni, Dharamshala, and Chandigarh. Call +91 70110 56581.' },
   },
   {
     name: 'Una',
@@ -884,12 +884,48 @@ export const packages = [
     sortOrder: 5,
     seo: { title: 'Chandigarh 1-Day Sightseeing & Airport Drop | Ajay Tour & Travels', description: 'Full day private cab for Chandigarh sightseeing and airport drop. Starting from ₹3,200.' },
   },
+  {
+    title: 'Una to Delhi & NCR Capital Tour Package (2D/1N)',
+    slug: 'una-to-delhi-tour-package',
+    durationDays: 2,
+    durationNights: 1,
+    pricing: { mode: 'from', amount: 8500, currency: 'INR', note: 'Sedan cab package. Tolls and state taxes included. Custom hotels on request.' },
+    summary: 'Direct doorstep cab travel from Una / Amb Andaura to Delhi NCR, covering India Gate, Red Fort, Qutub Minar, shopping hubs, and IGI Airport drop.',
+    description: 'Travel effortlessly between Una / Amb Andaura and New Delhi with Ajay Tour and Travels. Whether you need a comfortable one-way airport drop at IGI Terminal 1/3, a family sightseeing weekend in Old & New Delhi, or an important business trip, our dedicated air-conditioned private cabs provide safe highway driving along NH44 with courteous drivers, zero waiting, and total privacy.',
+    itinerary: [
+      { day: 1, title: 'Doorstep Pickup in Una & Smooth Highway Drive to Delhi', description: 'Early morning pickup from your home or hotel in Una / Amb Andaura. Comfortable cruise along the 6-lane NH44 highway via Chandigarh, Ambala, and Murthal (popular dhaba breakfast stop). Afternoon arrival in Delhi, hotel check-in. Evening leisure visit to India Gate, Kartavya Path, and Connaught Place. Overnight stay in Delhi.' },
+      { day: 2, title: 'Delhi Sightseeing, Shopping & IGI Airport / Return Drop', description: 'Explore iconic Delhi monuments including Qutub Minar, Lotus Temple, Red Fort, or Sarojini Nagar / Chandni Chowk shopping. Evening on-time drop at Indira Gandhi International Airport (IGI T1/T2/T3), New Delhi Railway Station, or relaxed return drive to Una.' },
+    ],
+    inclusions: [
+      'Dedicated private AC vehicle (Sedan / SUV / Innova Crysta)',
+      'Experienced highway driver with full knowledge of Delhi NCR routes',
+      'Fuel charges and driver allowance included',
+      'Doorstep pickup in Una / Amb and direct drop at your Delhi destination / Airport terminal',
+      'Round-the-clock customer support on WhatsApp and phone'
+    ],
+    exclusions: [
+      'Hotel accommodation and meals',
+      'Monument entry tickets and personal shopping',
+      'Delhi MCD state border commercial tax (if applicable on outstation commercial vehicles)'
+    ],
+    images: [
+      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/India_Gate_in_New_Delhi_03-2016.jpg/1280px-India_Gate_in_New_Delhi_03-2016.jpg', alt: 'India Gate New Delhi historical monument' },
+      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Qutub_Minar_Delhi.jpg/1280px-Qutub_Minar_Delhi.jpg', alt: 'Qutub Minar complex in New Delhi' }
+    ],
+    status: 'published',
+    isSample: false,
+    sortOrder: 6,
+    seo: {
+      title: 'Una to Delhi Tour Package (2D/1N) | Ajay Tour and Travels',
+      description: 'Book comfortable private cab package from Una to Delhi & IGI Airport. Experienced drivers, sanitized cabs, door-to-door service. Call +91 70110 56581.'
+    },
+  },
 ];
 
 export const faqs = [
   {
     question: 'How do I book a taxi with Ajay Tour and Travels?',
-    answer: 'You can book directly via our online booking form or contact us immediately on Call or WhatsApp at +91 98160 34567. Provide your pickup location, destination, date, preferred vehicle, and number of passengers. We confirm your ride with all driver details promptly.',
+    answer: 'You can book directly via our online booking form or contact us immediately on Call or WhatsApp at +91 70110 56581. Provide your pickup location, destination, date, preferred vehicle, and number of passengers. We confirm your ride with all driver details promptly.',
     scope: 'global',
     sortOrder: 1,
     status: 'published',
@@ -966,7 +1002,7 @@ export const posts = [
       'Amb Andaura Railway Station (Station Code: AADR) in District Una, Himachal Pradesh has transformed into a critical transport junction since the launch of the New Delhi – Amb Andaura Vande Bharat Express. Operating six days a week, the high-speed train connects the national capital with Himachal in just over five hours.',
       'Upon stepping onto the platform at Amb Andaura, pre-arranging your private taxi is the smartest decision. While local auto-rickshaws operate for short local distances, private AC cabs like Maruti Dzire, Ertiga, and Innova Crysta provide immediate, air-conditioned transfers to nearby destinations without haggling.',
       'From Amb Andaura, popular onward routes include Una town (32 km, ~45 mins), the sacred Mata Chintpurni Devi Temple (22 km, ~40 mins), Baba Barbhag Singh at Mairi (15 km, ~25 mins), Dharamshala / McLeodganj (125 km, ~3.5 hrs), and Chandigarh (135 km, ~3 hrs 15 mins).',
-      'At Ajay Tour and Travels, our office is located directly adjacent to Amb Andaura Railway Station. We provide meet-and-greet service at the platform exit, assist with heavy luggage, and ensure your vehicle is cooled and ready for departure the moment you arrive. Pre-book your cab on WhatsApp at +91 98160 34567 for zero waiting time.'
+      'At Ajay Tour and Travels, our office is located directly adjacent to Amb Andaura Railway Station. We provide meet-and-greet service at the platform exit, assist with heavy luggage, and ensure your vehicle is cooled and ready for departure the moment you arrive. Pre-book your cab on WhatsApp at +91 70110 56581 for zero waiting time.'
     ),
     featuredImage: { url: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80', alt: 'Railway station taxi transfer in Himachal' },
     status: 'published',
@@ -1002,7 +1038,7 @@ export const posts = [
       'Shaheed Bhagat Singh International Airport (IXC), located on the Mohali side of Chandigarh, is the primary air travel gateway for residents and visitors of District Una, Hamirpur, and Bilaspur. Reaching the airport on time requires careful route planning and dependable transportation.',
       'The road distance between Una and Chandigarh Airport is approximately 125 km. Under normal conditions, the drive takes between 2 hours 45 minutes and 3 hours. The route passes through Mehatpur, Nangal, Anandpur Sahib, the Rupnagar (Ropar) bypass, and Kurali, connecting straight into the PR-7 Airport Road in Mohali.',
       'Key tips for a stress-free airport transfer: Always schedule your pickup at least 5 hours prior to domestic flight departure and 6 hours prior to international flights. This provides comfortable buffer time for airport security, highway toll plazas at Anandpur Sahib and Ropar, and city traffic.',
-      'Ajay Tour and Travels provides 24/7 dedicated airport drop and pickup services. Whether you have a 6:00 AM early-morning flight or land late at night on a red-eye flight, our drivers are punctual, alert, and tracking your flight schedule in real time. Call +91 98160 34567 to reserve your airport cab.'
+      'Ajay Tour and Travels provides 24/7 dedicated airport drop and pickup services. Whether you have a 6:00 AM early-morning flight or land late at night on a red-eye flight, our drivers are punctual, alert, and tracking your flight schedule in real time. Call +91 70110 56581 to reserve your airport cab.'
     ),
     featuredImage: { url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80', alt: 'Four-lane highway leading to Chandigarh Airport' },
     status: 'published',

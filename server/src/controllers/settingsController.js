@@ -17,6 +17,11 @@ export const getAdminSettings = asyncHandler(async (_req, res) => ok(res, await 
 
 export const updateSettings = asyncHandler(async (req, res) => {
   await getSettings();
+  if (req.body.business) {
+    if (req.body.business.phone && !req.body.business.whatsapp) {
+      req.body.business.whatsapp = req.body.business.phone.replace(/\D/g, '');
+    }
+  }
   const doc = await WebsiteSettings.findOneAndUpdate({ key: 'main' }, { $set: flatten(req.body) }, { new: true, runValidators: true });
   triggerRebuild();
   ok(res, doc);

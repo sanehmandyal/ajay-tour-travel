@@ -20,7 +20,17 @@ export default function Settings() {
     if (busy) return;
     setBusy(true); setErrors({}); setMsg({ type: '', text: '' });
     try {
-      const saved = await adminApi.put('/settings', toPayload(form, allFields));
+      const payload = toPayload(form, allFields);
+      if (payload.business) {
+        payload.business.contactVerified = true;
+        if (payload.business.phone && !payload.business.whatsapp) {
+          payload.business.whatsapp = payload.business.phone.replace(/\D/g, '');
+        }
+        if (payload.business.whatsapp && !payload.business.phone) {
+          payload.business.phone = `+91 ${payload.business.whatsapp.slice(-10)}`;
+        }
+      }
+      const saved = await adminApi.put('/settings', payload);
       invalidateData('settings');
       invalidateData('all');
       setForm(saved); setMsg({ type: 'ok', text: 'Settings saved. Changes appear on the public website straight away.' });

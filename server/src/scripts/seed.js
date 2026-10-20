@@ -53,8 +53,8 @@ export async function seedDatabase() {
     name: 'Ajay Tour and Travels',
     tagline: 'Reliable Taxi & Tour Services Across Amb Andaura, Una, Ludhiana & Chandigarh',
     logoUrl: '',
-    phone: '+91 98160 34567',
-    whatsapp: '919816034567',
+    phone: '+91 70110 56581',
+    whatsapp: '917011056581',
     email: 'info@ajaytourtravels.com',
     address: 'Near Amb Andaura Railway Station, VPO Amb, District Una, Himachal Pradesh - 177203',
     serviceAreas: ['Amb Andaura', 'Una', 'Ludhiana', 'Chandigarh', 'Jalandhar', 'Dharamshala'],
@@ -72,7 +72,7 @@ export async function seedDatabase() {
 
   s.announcement = {
     enabled: true,
-    text: '🚕 24/7 Cab Service from Amb Andaura & Una Station to Chandigarh & Ludhiana | Call +91 98160 34567',
+    text: '🚕 24/7 Cab Service from Amb Andaura & Una Station to Chandigarh & Ludhiana | Call +91 70110 56581',
     linkUrl: '/book',
   };
 

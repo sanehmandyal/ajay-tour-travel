@@ -47,7 +47,7 @@ export const RESOURCES = {
     columns: [['from', 'From'], ['to', 'To'], ['enabled', 'Enabled', (r) => (r.enabled ? 'Yes' : 'No')], ['detailsVerified', 'Verified', (r) => (r.detailsVerified ? 'Yes' : 'No')]],
     blank: () => ({ enabled: true, detailsVerified: false, pricing: { mode: 'quote' }, vehicleSlugs: [], seo: {} }),
     fields: [
-      { name: 'from', label: 'From' }, { name: 'to', label: 'To' }, { name: 'slug', label: 'Slug' }, { name: 'destinationSlug', label: 'Destination page slug', hint: 'The /destinations/… page this route links to' },
+      { name: 'from', label: 'From' }, { name: 'to', label: 'To' }, { name: 'slug', label: 'Slug', hint: 'Auto-generated from cities if left empty.' }, { name: 'destinationSlug', label: 'Destination page slug', hint: 'The /destinations/… page this route links to' },
       { name: 'enabled', label: 'Enabled', type: 'checkbox', help: 'Show on the website' },
       { name: 'detailsVerified', label: 'Details verified', type: 'checkbox', help: 'Distance and duration are confirmed. They are hidden until this is ticked.' },
       { name: 'distanceKm', label: 'Distance (km)', type: 'number', nullable: true, step: '0.1', min: 0 }, { name: 'approxDurationMinutes', label: 'Approx. duration (minutes)', type: 'number', nullable: true, min: 0 },
@@ -62,7 +62,7 @@ export const RESOURCES = {
     columns: [['name', 'Name'], ['category', 'Category'], ['seats', 'Seats'], ['availability', 'Availability'], ['status', 'Status']],
     blank: () => ({ status: 'published', availability: 'available', images: [], features: [], included: [], seo: {} }),
     fields: [
-      { name: 'name', label: 'Vehicle Model Name' }, { name: 'slug', label: 'Slug' }, { name: 'category', label: 'Category' }, status,
+      { name: 'name', label: 'Vehicle Model Name' }, { name: 'slug', label: 'Slug', hint: 'Auto-generated from vehicle name if left empty.' }, { name: 'category', label: 'Category' }, status,
       { name: 'images', label: '🚗 Vehicle Photos (Upload Car Photos from Device)', type: 'imagelist', wide: true },
       { name: 'seats', label: 'Seating capacity', type: 'number', min: 1 }, { name: 'luggageCapacity', label: 'Luggage capacity' },
       { name: 'fuelType', label: 'Fuel Type', placeholder: 'e.g. Diesel / Petrol / Hybrid' },
@@ -84,7 +84,7 @@ export const RESOURCES = {
     columns: [['title', 'Title'], ['durationDays', 'Days'], ['status', 'Status']],
     blank: () => ({ status: 'published', pricing: { mode: 'quote' }, images: [], itinerary: [], inclusions: [], exclusions: [], seo: {} }),
     fields: [
-      { name: 'title', label: 'Package Title' }, { name: 'slug', label: 'Slug' }, status, { name: 'sortOrder', label: 'Sort order', type: 'number' },
+      { name: 'title', label: 'Package Title' }, { name: 'slug', label: 'Slug', hint: 'Auto-generated from title if left empty.' }, status, { name: 'sortOrder', label: 'Sort order', type: 'number' },
       { name: 'images', label: '📦 Tour Package Photos (Upload Photos from Device)', type: 'imagelist', wide: true },
       { name: 'durationDays', label: 'Days', type: 'number', min: 1 }, { name: 'durationNights', label: 'Nights', type: 'number', min: 0 },
       { name: 'summary', label: 'Summary', type: 'textarea', rows: 2 }, { name: 'description', label: 'Description', type: 'textarea', rows: 5 },
@@ -100,7 +100,7 @@ export const RESOURCES = {
     blank: () => ({ status: 'published', featuredImage: {}, tags: [], seo: {}, author: 'Ajay Tour and Travels' }),
     preview: (r) => `/blog/${r.slug}`,
     fields: [
-      { name: 'title', label: 'Article Title' }, { name: 'slug', label: 'Slug' }, { name: 'author', label: 'Author' }, { name: 'category', label: 'Category' }, status,
+      { name: 'title', label: 'Article Title' }, { name: 'slug', label: 'Slug', hint: 'Auto-generated from title if left empty.' }, { name: 'author', label: 'Author' }, { name: 'category', label: 'Category' }, status,
       { name: 'featuredImage', label: '📝 Featured Cover Image (Upload from Device)', type: 'image', wide: true },
       { name: 'excerpt', label: 'Excerpt', type: 'textarea', rows: 2 },
       { name: 'tags', label: 'Tags (one per line)', type: 'lines', rows: 3 },
@@ -138,7 +138,7 @@ export const SETTINGS_TABS = [
     { name: 'email', label: 'Business email', type: 'email' }, { name: 'hours', label: 'Business hours' },
     { name: 'address', label: 'Business address', type: 'textarea', rows: 2 }, { name: 'serviceAreas', label: 'Service areas (one per line)', type: 'lines' },
     { name: 'googleBusinessProfileUrl', label: 'Google Business Profile URL', type: 'url' }, { name: 'mapEmbedUrl', label: 'Google Maps embed URL', hint: 'Add only after the real location is verified' },
-    { name: 'contactVerified', label: 'Contact details verified', type: 'checkbox', help: 'Tick only when phone, email and address above are real. Until then they stay hidden from visitors and search engines.' },
+    { name: 'contactVerified', label: 'Contact details verified', type: 'checkbox', default: true, help: 'Enabled: Phone, WhatsApp, and address are visible to all visitors and search engines.' },
   ])]],
   ['Homepage', [sec('home', 'Homepage content', [
     { name: 'heroHeadline', label: 'Hero headline', wide: true }, { name: 'heroSubheadline', label: 'Hero sub-headline', type: 'textarea', rows: 2 },
