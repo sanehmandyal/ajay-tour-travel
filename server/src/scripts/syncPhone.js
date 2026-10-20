@@ -1,4 +1,4 @@
-import { WebsiteSettings, FAQ, Destination, TourPackage } from '../models/index.js';
+import { WebsiteSettings, FAQ, Destination, TourPackage, Route } from '../models/index.js';
 import { logger } from '../utils/logger.js';
 
 export async function syncPhoneNumbers() {
@@ -80,6 +80,68 @@ export async function syncPhoneNumbers() {
         },
       });
       logger.info('Created Una to Delhi Tour Package in database.');
+    }
+
+    // Ensure Una to Delhi Route exists in DB
+    const existingRoute = await Route.findOne({ slug: 'una-to-delhi' });
+    if (!existingRoute) {
+      await Route.create({
+        from: 'Una',
+        to: 'Delhi',
+        slug: 'una-to-delhi',
+        destinationSlug: 'una-to-delhi',
+        enabled: true,
+        detailsVerified: true,
+        distanceKm: 360,
+        approxDurationMinutes: 390,
+        pricing: { mode: 'from', amount: 6200, currency: 'INR', note: 'Door-to-door drop in Delhi NCR. Tolls extra.' },
+        vehicleSlugs: ['toyota-innova-crysta', 'maruti-ertiga', 'maruti-dzire'],
+        description: 'Direct outstation taxi service from Una to New Delhi & NCR (Connaught Place, Karol Bagh, South Delhi, Railway Stations, Gurgaon, Noida) via NH44. Experienced highway drivers, sanitized AC cabs, 24/7 availability.',
+        seo: { title: 'Una to Delhi Taxi Service | Direct Outstation Cab | Ajay Travels', description: 'Book verified 24/7 one-way or round-trip cab from Una to New Delhi & Delhi NCR. Clean AC cabs, experienced highway drivers. Call +91 70110 56581.' },
+      });
+      logger.info('Created Una to Delhi Route in database.');
+    }
+
+    // Ensure Una to Delhi Destination exists in DB
+    const existingDest = await Destination.findOne({ slug: 'una-to-delhi' });
+    if (!existingDest) {
+      await Destination.create({
+        name: 'Una to Delhi',
+        slug: 'una-to-delhi',
+        kind: 'route',
+        status: 'published',
+        isSample: false,
+        needsVerification: false,
+        h1: 'Una to Delhi Taxi Service & Outstation Cabs',
+        summary: '24/7 direct cab service from Una to New Delhi, Connaught Place, Railway Stations & NCR. ~360 km via NH44.',
+        introduction: 'Planning a trip from Una to New Delhi or Delhi NCR? Skip the hassle of waiting for train confirmations or crowded bus journeys.\nAjay Tour and Travels provides comfortable, sanitized doorstep taxi transfers from Una and surrounding Himachal regions directly to anywhere in Delhi NCR. Whether you are travelling for corporate meetings, family visits, hospital appointments, or shopping at Chandni Chowk and Connaught Place, our skilled highway drivers ensure a smooth, relaxed journey along National Highway 44.',
+        sections: [
+          { heading: 'Fast & Safe NH44 Highway Journey', body: 'The route connects Una through Mehatpur, Nangal, Rupnagar, Chandigarh bypass, Ambala, Kurukshetra, Karnal, Panipat, and Sonipat directly into Delhi via the modern 6-lane NH44. We provide comfortable stops at top dhabas like Murthal for food and refreshments.' },
+          { heading: 'Complete Delhi NCR Coverage', body: 'We drop you right at your doorstep anywhere in Delhi NCR, including Central Delhi, South Delhi, West Delhi, New Delhi Railway Station (NDLS), Old Delhi Station (DLI), Hazrat Nizamuddin, as well as Noida, Gurugram, and Faridabad.' },
+        ],
+        heroImage: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/India_Gate_in_New_Delhi_03-2016.jpg/1280px-India_Gate_in_New_Delhi_03-2016.jpg', alt: 'Una to Delhi highway taxi service' },
+        pickupInfo: 'Doorstep pickup from anywhere in Una district, Amb, Mehatpur, Haroli, or Bangana.',
+        dropoffInfo: 'Direct drop at your requested address, hotel, railway station, or airport anywhere in Delhi NCR.',
+        attractions: [
+          { name: 'India Gate & Kartavya Path', description: 'Iconic national monument and scenic central promenade of New Delhi.' },
+          { name: 'Connaught Place', description: 'Central commercial and shopping district with premier restaurants and metro hub.' },
+          { name: 'New Delhi Railway Station (NDLS)', description: 'Primary intercity railway terminal with direct vehicle porch access.' },
+        ],
+        travelTips: [
+          'Early morning departures (4:00 AM – 6:00 AM) help you beat Delhi peak-hour ring road traffic.',
+          'Enjoy authentic stuffed parathas at Murthal dhabas midway during the drive.',
+          'Sedans (Dzire) are ideal for 1-4 passengers; Ertiga and Innova Crysta provide expansive legroom and luggage space for families.'
+        ],
+        relatedSlugs: ['delhi-airport', 'una', 'amb-andaura', 'una-to-chandigarh'],
+        vehicleSlugs: ['toyota-innova-crysta', 'maruti-ertiga', 'maruti-dzire'],
+        faqs: [
+          { question: 'What is the taxi fare from Una to Delhi?', answer: 'Our taxi fares for Una to Delhi start from ₹6,200 for a comfortable private sedan (Maruti Dzire). Premium 6-7 seater vehicles like Maruti Ertiga and Toyota Innova Crysta are also available at competitive rates.' },
+          { question: 'How long does a cab take from Una to Delhi?', answer: 'The driving distance is approximately 360 km via NH44, which typically takes around 6 to 7 hours depending on traffic and rest stops.' },
+          { question: 'Do you offer doorstep pickup and drop anywhere in Delhi?', answer: 'Yes! We provide 100% door-to-door pickup from your home or hotel in Una and direct drop at your exact destination in Delhi, Gurgaon, Noida, or Faridabad.' }
+        ],
+        seo: { title: 'Una to Delhi Taxi Service | Cabs from Una to New Delhi | Ajay Travels', description: 'Book private one-way or roundtrip cab from Una to New Delhi & NCR. Clean sanitized cabs, experienced drivers, upfront pricing. Call +91 70110 56581.' },
+      });
+      logger.info('Created Una to Delhi Destination in database.');
     }
   } catch (err) {
     logger.warn({ err }, 'Error during syncPhoneNumbers (non-fatal)');

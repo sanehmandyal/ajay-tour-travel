@@ -114,6 +114,7 @@ const Wave = ({ from = '#0B1B33', className = '' }) => (
 );
 
 const DEFAULT_ROUTES = [
+  { from: 'Una', to: 'Delhi', slug: 'una-to-delhi', destinationSlug: 'una-to-delhi', detailsVerified: true, distanceKm: 360, approxDurationMinutes: 390 },
   { from: 'Amb Andaura', to: 'Chandigarh', slug: 'amb-andaura-to-chandigarh', destinationSlug: 'amb-andaura-to-chandigarh', detailsVerified: true, distanceKm: 135, approxDurationMinutes: 195 },
   { from: 'Una', to: 'Chandigarh', slug: 'una-to-chandigarh', destinationSlug: 'una-to-chandigarh', detailsVerified: true, distanceKm: 120, approxDurationMinutes: 165 },
   { from: 'Una', to: 'Ludhiana', slug: 'una-to-ludhiana', destinationSlug: 'una-to-ludhiana', detailsVerified: true, distanceKm: 115, approxDurationMinutes: 150 },
