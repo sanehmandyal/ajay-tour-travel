@@ -13,7 +13,7 @@ export default function Destinations() {
     <>
       <Seo
         path="/destinations"
-        title="Top Travel Destinations & Cab Routes in Himachal | Ajay Tour and Travels"
+        title="Top Travel Destinations & Cab Routes in Himachal | Himyatra Tour and Travels"
         description="Explore 13+ verified travel destinations and cab routes: Amb Andaura Station, Chintpurni, Chandigarh, Dharamshala, Amritsar & Delhi. Instant upfront taxi quotes."
         jsonLd={[breadcrumbLd(crumbs)]}
       />

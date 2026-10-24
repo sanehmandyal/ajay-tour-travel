@@ -1,4 +1,4 @@
-// Live End-to-End Verification for Ajay Tour and Travels
+// Live End-to-End Verification for Himyatra Tour and Travels
 
 async function main() {
   const base = 'http://localhost:5000';

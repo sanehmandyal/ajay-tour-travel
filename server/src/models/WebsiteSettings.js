@@ -5,7 +5,7 @@ const settingsSchema = new mongoose.Schema(
   {
     key: { type: String, default: 'main', unique: true, immutable: true },
     business: {
-      name: { type: String, default: 'Ajay Tour and Travels' },
+      name: { type: String, default: 'Himyatra Tour and Travels' },
       tagline: { type: String, default: '' },
       logoUrl: { type: String, default: '' },
       phone: { type: String, default: '+91 70110 56581' },

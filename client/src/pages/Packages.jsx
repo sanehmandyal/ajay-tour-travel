@@ -14,7 +14,7 @@ export default function Packages() {
     <>
       <Seo
         path="/packages"
-        title="Himachal Tour Packages & Custom Taxi Tours | Ajay Tour and Travels"
+        title="Himachal Tour Packages & Custom Taxi Tours | Himyatra Tour and Travels"
         description="Book customized tour packages for Chintpurni, Dharamshala, Dalhousie, Manali & Shimla with private cab & driver. Transparent upfront quotes for families and groups."
         jsonLd={[breadcrumbLd(crumbs), ...(data || []).map((p) => packageLd(p)).filter(Boolean)]}
       />
@@ -82,7 +82,7 @@ export default function Packages() {
                   <Cta to={`/book?requirements=${encodeURIComponent(`Package: ${p.title}`)}`}>Request Package Quote</Cta>
                   {s.waHref && (
                     <a
-                      href={s.waHref(`Hello Ajay Tour and Travels, I would like to inquire about the tour package: "${p.title}".`)}
+                      href={s.waHref(`Hello Himyatra Tour and Travels, I would like to inquire about the tour package: "${p.title}".`)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#25D366]/40 bg-[#25D366]/15 px-5 py-2.5 text-xs font-bold text-[#1e9e4d] transition hover:bg-[#25D366]/25"

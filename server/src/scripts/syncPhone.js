@@ -1,4 +1,4 @@
-import { WebsiteSettings, FAQ, Destination, TourPackage, Route } from '../models/index.js';
+import { WebsiteSettings, FAQ, Destination, TourPackage, Route, BlogPost } from '../models/index.js';
 import { logger } from '../utils/logger.js';
 
 export async function syncPhoneNumbers() {
@@ -6,6 +6,10 @@ export async function syncPhoneNumbers() {
     const s = await WebsiteSettings.findOne({ key: 'main' });
     if (s) {
       let changed = false;
+      if (!s.business?.name || /ajay/i.test(s.business.name)) {
+        s.business.name = 'Himyatra Tour and Travels';
+        changed = true;
+      }
       if (!s.business?.phone || s.business.phone.includes('98160')) {
         s.business.phone = '+91 70110 56581';
         changed = true;
@@ -18,26 +22,116 @@ export async function syncPhoneNumbers() {
         s.business.contactVerified = true;
         changed = true;
       }
+      if (s.announcement?.text && /ajay/i.test(s.announcement.text)) {
+        s.announcement.text = s.announcement.text.replace(/Ajay\s*(Tour(\s*(&|and)?\s*Travels?)?|Travels?)/gi, 'Himyatra Tour and Travels');
+        changed = true;
+      }
       if (s.announcement?.text && s.announcement.text.includes('98160')) {
         s.announcement.text = s.announcement.text.replace(/98160\s*34567/g, '70110 56581');
         changed = true;
       }
+      if (s.footer?.about && /ajay/i.test(s.footer.about)) {
+        s.footer.about = s.footer.about.replace(/Ajay\s*(Tour(\s*(&|and)?\s*Travels?)?|Travels?)/gi, 'Himyatra Tour and Travels');
+        changed = true;
+      }
+      if (s.footer?.copyright && /ajay/i.test(s.footer.copyright)) {
+        s.footer.copyright = s.footer.copyright.replace(/Ajay\s*(Tour(\s*(&|and)?\s*Travels?)?|Travels?)/gi, 'Himyatra Tour and Travels');
+        changed = true;
+      }
+      if (s.business?.email === 'info@ajaytourtravels.com') {
+        s.business.email = 'info@himyatratourtravels.com';
+        changed = true;
+      }
       if (changed) {
         await s.save();
-        logger.info('WebsiteSettings phone number synced to 7011056581 and contactVerified enabled.');
+        logger.info('WebsiteSettings synced (brand Himyatra, phone 7011056581, verified enabled).');
       }
     }
 
-    // Replace any remaining old phone numbers in FAQ answers
+    // Replace old phone numbers & legacy brand in FAQs
     await FAQ.updateMany(
       { answer: /98160/ },
       [{ $set: { answer: { $replaceAll: { input: "$answer", find: "+91 98160 34567", replacement: "+91 70110 56581" } } } }]
     ).catch(() => {});
+    await FAQ.updateMany(
+      { answer: /Ajay/i },
+      [
+        { $set: { answer: { $replaceAll: { input: "$answer", find: "Ajay Tour and Travels", replacement: "Himyatra Tour and Travels" } } } },
+        { $set: { answer: { $replaceAll: { input: "$answer", find: "Ajay Tour & Travels", replacement: "Himyatra Tour & Travels" } } } },
+        { $set: { answer: { $replaceAll: { input: "$answer", find: "Ajay Travels", replacement: "Himyatra Travels" } } } },
+      ]
+    ).catch(() => {});
 
-    // Replace in Destination SEO descriptions if any
+    // Replace in Destination SEO & text
     await Destination.updateMany(
       { "seo.description": /98160/ },
       [{ $set: { "seo.description": { $replaceAll: { input: "$seo.description", find: "+91 98160 34567", replacement: "+91 70110 56581" } } } }]
+    ).catch(() => {});
+    await Destination.updateMany(
+      { "seo.title": /Ajay/i },
+      [
+        { $set: { "seo.title": { $replaceAll: { input: "$seo.title", find: "Ajay Tour and Travels", replacement: "Himyatra Tour and Travels" } } } },
+        { $set: { "seo.title": { $replaceAll: { input: "$seo.title", find: "Ajay Tour & Travels", replacement: "Himyatra Tour & Travels" } } } },
+        { $set: { "seo.title": { $replaceAll: { input: "$seo.title", find: "Ajay Travels", replacement: "Himyatra Travels" } } } },
+      ]
+    ).catch(() => {});
+    await Destination.updateMany(
+      { introduction: /Ajay/i },
+      [
+        { $set: { introduction: { $replaceAll: { input: "$introduction", find: "Ajay Tour and Travels", replacement: "Himyatra Tour and Travels" } } } },
+        { $set: { introduction: { $replaceAll: { input: "$introduction", find: "Ajay Tour & Travels", replacement: "Himyatra Tour & Travels" } } } },
+        { $set: { introduction: { $replaceAll: { input: "$introduction", find: "Ajay Travels", replacement: "Himyatra Travels" } } } },
+      ]
+    ).catch(() => {});
+
+    // Replace in Route SEO & description
+    await Route.updateMany(
+      { "seo.title": /Ajay/i },
+      [
+        { $set: { "seo.title": { $replaceAll: { input: "$seo.title", find: "Ajay Tour and Travels", replacement: "Himyatra Tour and Travels" } } } },
+        { $set: { "seo.title": { $replaceAll: { input: "$seo.title", find: "Ajay Tour & Travels", replacement: "Himyatra Tour & Travels" } } } },
+        { $set: { "seo.title": { $replaceAll: { input: "$seo.title", find: "Ajay Travels", replacement: "Himyatra Travels" } } } },
+      ]
+    ).catch(() => {});
+    await Route.updateMany(
+      { description: /Ajay/i },
+      [
+        { $set: { description: { $replaceAll: { input: "$description", find: "Ajay Tour and Travels", replacement: "Himyatra Tour and Travels" } } } },
+        { $set: { description: { $replaceAll: { input: "$description", find: "Ajay Tour & Travels", replacement: "Himyatra Tour & Travels" } } } },
+        { $set: { description: { $replaceAll: { input: "$description", find: "Ajay Travels", replacement: "Himyatra Travels" } } } },
+      ]
+    ).catch(() => {});
+
+    // Replace in TourPackage SEO & description
+    await TourPackage.updateMany(
+      { "seo.title": /Ajay/i },
+      [
+        { $set: { "seo.title": { $replaceAll: { input: "$seo.title", find: "Ajay Tour and Travels", replacement: "Himyatra Tour and Travels" } } } },
+        { $set: { "seo.title": { $replaceAll: { input: "$seo.title", find: "Ajay Tour & Travels", replacement: "Himyatra Tour & Travels" } } } },
+        { $set: { "seo.title": { $replaceAll: { input: "$seo.title", find: "Ajay Travels", replacement: "Himyatra Travels" } } } },
+      ]
+    ).catch(() => {});
+    await TourPackage.updateMany(
+      { description: /Ajay/i },
+      [
+        { $set: { description: { $replaceAll: { input: "$description", find: "Ajay Tour and Travels", replacement: "Himyatra Tour and Travels" } } } },
+        { $set: { description: { $replaceAll: { input: "$description", find: "Ajay Tour & Travels", replacement: "Himyatra Tour & Travels" } } } },
+        { $set: { description: { $replaceAll: { input: "$description", find: "Ajay Travels", replacement: "Himyatra Travels" } } } },
+      ]
+    ).catch(() => {});
+
+    // Replace in BlogPost author & SEO
+    await BlogPost.updateMany(
+      { author: /Ajay/i },
+      [{ $set: { author: "Himyatra Tour and Travels" } }]
+    ).catch(() => {});
+    await BlogPost.updateMany(
+      { "seo.title": /Ajay/i },
+      [
+        { $set: { "seo.title": { $replaceAll: { input: "$seo.title", find: "Ajay Tour and Travels", replacement: "Himyatra Tour and Travels" } } } },
+        { $set: { "seo.title": { $replaceAll: { input: "$seo.title", find: "Ajay Tour & Travels", replacement: "Himyatra Tour & Travels" } } } },
+        { $set: { "seo.title": { $replaceAll: { input: "$seo.title", find: "Ajay Travels", replacement: "Himyatra Travels" } } } },
+      ]
     ).catch(() => {});
 
     // Ensure Una to Delhi Tour Package exists in DB
@@ -50,7 +144,7 @@ export async function syncPhoneNumbers() {
         durationNights: 1,
         pricing: { mode: 'from', amount: 8500, currency: 'INR', note: 'Sedan cab package. Tolls and state taxes included. Custom hotels on request.' },
         summary: 'Direct doorstep cab travel from Una / Amb Andaura to Delhi NCR, covering India Gate, Red Fort, Qutub Minar, shopping hubs, and IGI Airport drop.',
-        description: 'Travel effortlessly between Una / Amb Andaura and New Delhi with Ajay Tour and Travels. Whether you need a comfortable one-way airport drop at IGI Terminal 1/3, a family sightseeing weekend in Old & New Delhi, or an important business trip, our dedicated air-conditioned private cabs provide safe highway driving along NH44 with courteous drivers, zero waiting, and total privacy.',
+        description: 'Travel effortlessly between Una / Amb Andaura and New Delhi with Himyatra Tour and Travels. Whether you need a comfortable one-way airport drop at IGI Terminal 1/3, a family sightseeing weekend in Old & New Delhi, or an important business trip, our dedicated air-conditioned private cabs provide safe highway driving along NH44 with courteous drivers, zero waiting, and total privacy.',
         itinerary: [
           { day: 1, title: 'Doorstep Pickup in Una & Smooth Highway Drive to Delhi', description: 'Early morning pickup from your home or hotel in Una / Amb Andaura. Comfortable cruise along the 6-lane NH44 highway via Chandigarh, Ambala, and Murthal (popular dhaba breakfast stop). Afternoon arrival in Delhi, hotel check-in. Evening leisure visit to India Gate, Kartavya Path, and Connaught Place. Overnight stay in Delhi.' },
           { day: 2, title: 'Delhi Sightseeing, Shopping & IGI Airport / Return Drop', description: 'Explore iconic Delhi monuments including Qutub Minar, Lotus Temple, Red Fort, or Sarojini Nagar / Chandni Chowk shopping. Evening on-time drop at Indira Gandhi International Airport (IGI T1/T2/T3), New Delhi Railway Station, or relaxed return drive to Una.' },
@@ -75,7 +169,7 @@ export async function syncPhoneNumbers() {
         isSample: false,
         sortOrder: 6,
         seo: {
-          title: 'Una to Delhi Tour Package (2D/1N) | Ajay Tour and Travels',
+          title: 'Una to Delhi Tour Package (2D/1N) | Himyatra Tour and Travels',
           description: 'Book comfortable private cab package from Una to Delhi & IGI Airport. Experienced drivers, sanitized cabs, door-to-door service. Call +91 70110 56581.'
         },
       });
@@ -97,7 +191,7 @@ export async function syncPhoneNumbers() {
         pricing: { mode: 'from', amount: 6200, currency: 'INR', note: 'Door-to-door drop in Delhi NCR. Tolls extra.' },
         vehicleSlugs: ['toyota-innova-crysta', 'maruti-ertiga', 'maruti-dzire'],
         description: 'Direct outstation taxi service from Una to New Delhi & NCR (Connaught Place, Karol Bagh, South Delhi, Railway Stations, Gurgaon, Noida) via NH44. Experienced highway drivers, sanitized AC cabs, 24/7 availability.',
-        seo: { title: 'Una to Delhi Taxi Service | Direct Outstation Cab | Ajay Travels', description: 'Book verified 24/7 one-way or round-trip cab from Una to New Delhi & Delhi NCR. Clean AC cabs, experienced highway drivers. Call +91 70110 56581.' },
+        seo: { title: 'Una to Delhi Taxi Service | Direct Outstation Cab | Himyatra Travels', description: 'Book verified 24/7 one-way or round-trip cab from Una to New Delhi & Delhi NCR. Clean AC cabs, experienced highway drivers. Call +91 70110 56581.' },
       });
       logger.info('Created Una to Delhi Route in database.');
     }
@@ -114,7 +208,7 @@ export async function syncPhoneNumbers() {
         needsVerification: false,
         h1: 'Una to Delhi Taxi Service & Outstation Cabs',
         summary: '24/7 direct cab service from Una to New Delhi, Connaught Place, Railway Stations & NCR. ~360 km via NH44.',
-        introduction: 'Planning a trip from Una to New Delhi or Delhi NCR? Skip the hassle of waiting for train confirmations or crowded bus journeys.\nAjay Tour and Travels provides comfortable, sanitized doorstep taxi transfers from Una and surrounding Himachal regions directly to anywhere in Delhi NCR. Whether you are travelling for corporate meetings, family visits, hospital appointments, or shopping at Chandni Chowk and Connaught Place, our skilled highway drivers ensure a smooth, relaxed journey along National Highway 44.',
+        introduction: 'Planning a trip from Una to New Delhi or Delhi NCR? Skip the hassle of waiting for train confirmations or crowded bus journeys.\nHimyatra Tour and Travels provides comfortable, sanitized doorstep taxi transfers from Una and surrounding Himachal regions directly to anywhere in Delhi NCR. Whether you are travelling for corporate meetings, family visits, hospital appointments, or shopping at Chandni Chowk and Connaught Place, our skilled highway drivers ensure a smooth, relaxed journey along National Highway 44.',
         sections: [
           { heading: 'Fast & Safe NH44 Highway Journey', body: 'The route connects Una through Mehatpur, Nangal, Rupnagar, Chandigarh bypass, Ambala, Kurukshetra, Karnal, Panipat, and Sonipat directly into Delhi via the modern 6-lane NH44. We provide comfortable stops at top dhabas like Murthal for food and refreshments.' },
           { heading: 'Complete Delhi NCR Coverage', body: 'We drop you right at your doorstep anywhere in Delhi NCR, including Central Delhi, South Delhi, West Delhi, New Delhi Railway Station (NDLS), Old Delhi Station (DLI), Hazrat Nizamuddin, as well as Noida, Gurugram, and Faridabad.' },
@@ -139,7 +233,7 @@ export async function syncPhoneNumbers() {
           { question: 'How long does a cab take from Una to Delhi?', answer: 'The driving distance is approximately 360 km via NH44, which typically takes around 6 to 7 hours depending on traffic and rest stops.' },
           { question: 'Do you offer doorstep pickup and drop anywhere in Delhi?', answer: 'Yes! We provide 100% door-to-door pickup from your home or hotel in Una and direct drop at your exact destination in Delhi, Gurgaon, Noida, or Faridabad.' }
         ],
-        seo: { title: 'Una to Delhi Taxi Service | Cabs from Una to New Delhi | Ajay Travels', description: 'Book private one-way or roundtrip cab from Una to New Delhi & NCR. Clean sanitized cabs, experienced drivers, upfront pricing. Call +91 70110 56581.' },
+        seo: { title: 'Una to Delhi Taxi Service | Cabs from Una to New Delhi | Himyatra Travels', description: 'Book private one-way or roundtrip cab from Una to New Delhi & NCR. Clean sanitized cabs, experienced drivers, upfront pricing. Call +91 70110 56581.' },
       });
       logger.info('Created Una to Delhi Destination in database.');
     }

@@ -5,7 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { DataProvider } from '../lib/data.jsx';
 import { Navbar } from '../components/Layout.jsx';
 
-const seed = { settings: { business: { name: 'Ajay Tour and Travels', serviceAreas: [], contactVerified: false }, social: {}, announcement: {}, home: {}, footer: {}, reviews: [], analytics: {} } };
+const seed = { settings: { business: { name: 'Himyatra Tour and Travels', serviceAreas: [], contactVerified: false }, social: {}, announcement: {}, home: {}, footer: {}, reviews: [], analytics: {} } };
 const wrap = () => render(<HelmetProvider><DataProvider initial={seed}><MemoryRouter><Navbar /></MemoryRouter></DataProvider></HelmetProvider>);
 
 describe('responsive navigation', () => {

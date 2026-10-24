@@ -14,7 +14,7 @@ export default function Blog() {
   return (
     <>
       {/* Paginated views beyond page 1 are kept out of the index to avoid thin/duplicate listing pages. */}
-      <Seo path="/blog" title="Travel Tips and Insights | Ajay Tour and Travels" description="Practical travel tips for road trips, airport and railway transfers and family travel around Punjab, Himachal and Chandigarh." noindex={page > 1} jsonLd={[breadcrumbLd(crumbs)]} />
+      <Seo path="/blog" title="Travel Tips and Insights | Himyatra Tour and Travels" description="Practical travel tips for road trips, airport and railway transfers and family travel around Punjab, Himachal and Chandigarh." noindex={page > 1} jsonLd={[breadcrumbLd(crumbs)]} />
       <PageHero
         bgImage="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/The_Ridge%2C_Shimla.jpg/1280px-The_Ridge%2C_Shimla.jpg"
         eyebrow="Travel insights"

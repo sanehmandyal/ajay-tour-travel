@@ -4,7 +4,7 @@ import { whatsappHref, telHref } from './contact.js';
 
 const DEFAULT = {
   business: {
-    name: 'Ajay Tour and Travels',
+    name: 'Himyatra Tour and Travels',
     phone: '+91 70110 56581',
     whatsapp: '917011056581',
     serviceAreas: ['Amb Andaura', 'Una', 'Chintpurni', 'Ludhiana', 'Chandigarh'],

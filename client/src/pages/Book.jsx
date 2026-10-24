@@ -6,7 +6,7 @@ export default function Book() {
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Book a Trip', path: '/book' }];
   return (
     <>
-      <Seo path="/book" title="Book a Trip | Ajay Tour and Travels" description="Send a trip request with your pickup, destination, date and passengers. Our team will contact you to confirm details and share a quote." jsonLd={[breadcrumbLd(crumbs)]} />
+      <Seo path="/book" title="Book a Trip | Himyatra Tour and Travels" description="Send a trip request with your pickup, destination, date and passengers. Our team will contact you to confirm details and share a quote." jsonLd={[breadcrumbLd(crumbs)]} />
       <PageHero
         bgImage="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Rohtang_pass.jpg/1280px-Rohtang_pass.jpg"
         eyebrow="Book a trip"

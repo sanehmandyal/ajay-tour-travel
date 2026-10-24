@@ -1,4 +1,4 @@
-// Professional verified master data for Ajay Tour and Travels (Amb Andaura & Una, Himachal Pradesh).
+// Professional verified master data for Himyatra Tour and Travels (Amb Andaura & Una, Himachal Pradesh).
 
 const PICKUP = 'Tell us your exact pickup point (home, hotel, bus stand, or Amb Andaura / Una Railway Station) when booking. Driver details and vehicle number are shared with you well before departure.';
 const DROP = 'Drop-off at your exact hotel, airport terminal, railway platform, hospital, or residential address. Multiple drop-offs can be arranged on request.';
@@ -18,7 +18,7 @@ export const destinations = [
     needsVerification: false,
     h1: 'Taxi and Tour Services from Amb Andaura',
     summary: 'Direct taxi pickups from Amb Andaura Railway Station (Vande Bharat terminal) to Una, Kangra, Dharamshala, Ludhiana, and Chandigarh.',
-    introduction: 'Amb Andaura is a premier railway gateway to Himachal Pradesh, serving as the northern terminus for the prestigious New Delhi – Amb Andaura Vande Bharat Express. Ajay Tour and Travels is headquartered right at Amb Andaura to provide timely, clean, and reliable cab transfers as soon as you step off the train.\nWhether you are arriving for pilgrimage at Chintpurni and Jwala Ji, heading home to Una district, or commuting outstation to Chandigarh and Ludhiana, our sanitized cabs and polite drivers ensure a relaxing journey.',
+    introduction: 'Amb Andaura is a premier railway gateway to Himachal Pradesh, serving as the northern terminus for the prestigious New Delhi – Amb Andaura Vande Bharat Express. Himyatra Tour and Travels is headquartered right at Amb Andaura to provide timely, clean, and reliable cab transfers as soon as you step off the train.\nWhether you are arriving for pilgrimage at Chintpurni and Jwala Ji, heading home to Una district, or commuting outstation to Chandigarh and Ludhiana, our sanitized cabs and polite drivers ensure a relaxing journey.',
     sections: [
       { heading: 'Vande Bharat Station Pickup Service', body: 'Our drivers monitor train arrival times in real time. We meet you directly at the station exit with your chosen vehicle, assist with luggage, and ensure immediate departure without waiting.' },
       { heading: 'Pilgrimage & Hill Station Connect', body: 'Amb Andaura is the ideal launchpad for the Himachal Shaktipeeth circuit (Mata Chintpurni, Jwala Ji, Kangra Devi, Chamunda Devi) and scenic hill destinations like Dharamshala and McLeodganj.' },
@@ -39,7 +39,7 @@ export const destinations = [
     relatedSlugs: ['una', 'chandigarh', 'amb-andaura-to-chandigarh', 'amb-andaura-to-chintpurni'],
     vehicleSlugs: ['maruti-dzire', 'toyota-innova-crysta', 'maruti-ertiga', 'tempo-traveller'],
     faqs: faqPair('Amb Andaura'),
-    seo: { title: 'Taxi Service at Amb Andaura Railway Station | Ajay Tour & Travels', description: 'Book verified 24/7 taxi from Amb Andaura Railway Station to Una, Chintpurni, Dharamshala, and Chandigarh. Call +91 70110 56581.' },
+    seo: { title: 'Taxi Service at Amb Andaura Railway Station | Himyatra Tour & Travels', description: 'Book verified 24/7 taxi from Amb Andaura Railway Station to Una, Chintpurni, Dharamshala, and Chandigarh. Call +91 70110 56581.' },
   },
   {
     name: 'Una',
@@ -50,7 +50,7 @@ export const destinations = [
     needsVerification: false,
     h1: 'Taxi and Tour Services in Una, Himachal Pradesh',
     summary: 'Local taxi service, outstation cabs, and holiday packages across Una district, Chandigarh, and Punjab.',
-    introduction: 'Una is the vibrant gateway city connecting Himachal Pradesh with the plains of Punjab and Chandigarh. Ajay Tour and Travels offers dependable local and outstation taxi solutions for residents, pilgrims, business travellers, and families.\nFrom daily commutes to Chandigarh hospitals and Ludhiana commercial hubs to leisure holidays in Dharamshala, Manali, and Shimla, we have the right vehicle tailored for your trip.',
+    introduction: 'Una is the vibrant gateway city connecting Himachal Pradesh with the plains of Punjab and Chandigarh. Himyatra Tour and Travels offers dependable local and outstation taxi solutions for residents, pilgrims, business travellers, and families.\nFrom daily commutes to Chandigarh hospitals and Ludhiana commercial hubs to leisure holidays in Dharamshala, Manali, and Shimla, we have the right vehicle tailored for your trip.',
     sections: [
       { heading: 'Una Railway Station & City Transfers', body: 'We cover all areas of Una including the Railway Station, Bus Stand, Mehatpur, Tahliwal, Haroli, and Bangana with guaranteed on-time doorstep pickup.' },
       { heading: 'Medical & Airport Runs to Chandigarh', body: 'Frequent same-day round trips to PGIMER Chandigarh, Fortis Mohali, and Shaheed Bhagat Singh International Airport (IXC) with comfortable AC cabs and wait options.' },
@@ -70,7 +70,7 @@ export const destinations = [
     relatedSlugs: ['amb-andaura', 'una-to-chandigarh', 'una-to-ludhiana', 'una-to-delhi-airport'],
     vehicleSlugs: ['maruti-dzire', 'toyota-innova-crysta', 'maruti-ertiga', 'tempo-traveller'],
     faqs: faqPair('Una'),
-    seo: { title: 'Taxi Service in Una Himachal Pradesh | Ajay Tour and Travels', description: 'Reliable taxi service in Una for Chandigarh Airport, Ludhiana, Dharamshala & local travel. Clean cabs & transparent rates.' },
+    seo: { title: 'Taxi Service in Una Himachal Pradesh | Himyatra Tour and Travels', description: 'Reliable taxi service in Una for Chandigarh Airport, Ludhiana, Dharamshala & local travel. Clean cabs & transparent rates.' },
   },
   {
     name: 'Chandigarh',
@@ -81,7 +81,7 @@ export const destinations = [
     needsVerification: false,
     h1: 'Taxi Service between Una/Amb and Chandigarh',
     summary: 'Daily one-way drops, return cabs, and airport transfers between Una, Amb Andaura, and Chandigarh / Mohali.',
-    introduction: 'Chandigarh is the premier commercial, administrative, medical, and aviation hub for Himachal travellers. Whether you have an early-morning flight from Shaheed Bhagat Singh International Airport (IXC), a doctor appointment at PGI, or a shopping trip to Sector 17 and Elante Mall, Ajay Tour and Travels delivers seamless highway cab rides.\nAvoid crowded buses and multiple train changes with our direct door-to-door cab service.',
+    introduction: 'Chandigarh is the premier commercial, administrative, medical, and aviation hub for Himachal travellers. Whether you have an early-morning flight from Shaheed Bhagat Singh International Airport (IXC), a doctor appointment at PGI, or a shopping trip to Sector 17 and Elante Mall, Himyatra Tour and Travels delivers seamless highway cab rides.\nAvoid crowded buses and multiple train changes with our direct door-to-door cab service.',
     sections: [
       { heading: 'Airport Transfers (IXC Chandigarh)', body: 'Never worry about missing a flight. We schedule your departure with generous traffic buffers, track flights, and deliver you directly to the departure gate.' },
       { heading: 'Sightseeing & Hospital Visits', body: 'Book an all-day cab package covering Rock Garden, Sukhna Lake, Rose Garden, Sector 17 Market, or PGI medical visits at cost-effective fixed rates.' },
@@ -112,7 +112,7 @@ export const destinations = [
     needsVerification: false,
     h1: 'Una to Ludhiana Taxi Service',
     summary: 'Comfortable highway cabs for business, weddings, shopping, and railway connections between Una and Ludhiana.',
-    introduction: 'Ludhiana is Punjab\'s premier industrial powerhouse and textile capital, located approximately 115 km from Una via Nawanshahr and Rahon. Ajay Tour and Travels operates frequent one-way and round-trip taxi rides for business professionals, wedding guests, shoppers, and students.\nRelax in air-conditioned comfort while our experienced drivers navigate the highway safely.',
+    introduction: 'Ludhiana is Punjab\'s premier industrial powerhouse and textile capital, located approximately 115 km from Una via Nawanshahr and Rahon. Himyatra Tour and Travels operates frequent one-way and round-trip taxi rides for business professionals, wedding guests, shoppers, and students.\nRelax in air-conditioned comfort while our experienced drivers navigate the highway safely.',
     sections: [
       { heading: 'Business & Shopping Day Trips', body: 'Visit Chaura Bazaar, Ghumar Mandi, or industrial clusters with our full-day waiting packages. Your cab stays with you until you are ready to return.' },
       { heading: 'Railway Station & University Connect', body: 'Timely transfers to Ludhiana Junction Railway Station and Punjab Agricultural University (PAU) campus.' },
@@ -142,7 +142,7 @@ export const destinations = [
     needsVerification: false,
     h1: 'Taxi from Amb Andaura & Una to Dharamshala',
     summary: 'Scenic hill taxi rides to McLeodganj, Dalai Lama Temple, HPCA Stadium, and Kangra Fort.',
-    introduction: 'Nestled beneath the majestic snow-capped Dhauladhar mountains, Dharamshala and McLeodganj attract travellers from across the globe. Travelling from Amb Andaura or Una takes just around 3.5 hours through lush pine forests and winding hill roads.\nAjay Tour and Travels provides hill-certified drivers and sturdy vehicles like Innova Crysta and Scorpio for maximum passenger comfort on mountain curves.',
+    introduction: 'Nestled beneath the majestic snow-capped Dhauladhar mountains, Dharamshala and McLeodganj attract travellers from across the globe. Travelling from Amb Andaura or Una takes just around 3.5 hours through lush pine forests and winding hill roads.\nHimyatra Tour and Travels provides hill-certified drivers and sturdy vehicles like Innova Crysta and Scorpio for maximum passenger comfort on mountain curves.',
     sections: [
       { heading: 'Complete McLeodganj & Bhagsu Sightseeing', body: 'Visit the Namgyal Monastery, Tsuglagkhang Complex (residence of His Holiness the Dalai Lama), Bhagsu Waterfall, and the quaint cafes of Upper Dharamshala.' },
       { heading: 'HPCA Cricket Stadium & Tea Gardens', body: 'Explore one of the most picturesque international cricket grounds in the world and walk through peaceful Dharamshala tea estates.' },
@@ -174,7 +174,7 @@ export const destinations = [
     needsVerification: false,
     h1: 'Mata Chintpurni Devi Taxi & Pilgrimage Service',
     summary: 'Devi Darshan yatra cabs covering Mata Chintpurni, Jwala Ji, Kangra Brajeshwari Devi, Chamunda Devi, and Baglamukhi.',
-    introduction: 'Mata Chintpurni Devi is one of the most revered Shaktipeeths in India, located in District Una just 22 km from Amb Andaura Railway Station. It is believed that visiting with faith dissolves all worldly worries (chinta).\nAjay Tour and Travels specializes in doorstep pilgrimage tours, providing clean, air-conditioned cars that stay with your family throughout the sacred darshan.',
+    introduction: 'Mata Chintpurni Devi is one of the most revered Shaktipeeths in India, located in District Una just 22 km from Amb Andaura Railway Station. It is believed that visiting with faith dissolves all worldly worries (chinta).\nHimyatra Tour and Travels specializes in doorstep pilgrimage tours, providing clean, air-conditioned cars that stay with your family throughout the sacred darshan.',
     sections: [
       { heading: 'Same-Day Darshan from Amb Andaura', body: 'Arrive at Amb Andaura by morning Vande Bharat Express or evening trains. Our cab transfers you straight to the temple gate and waits patiently for your darshan before returning.' },
       { heading: 'Complete 5-Devi Shaktipeeth Yatra', body: 'Combine Chintpurni with Jwala Ji, Kangra Devi, Chamunda Devi, and Baglamukhi in a customized 2 or 3-day spiritual itinerary.' },
@@ -205,7 +205,7 @@ export const destinations = [
     needsVerification: false,
     h1: 'Taxi from Una & Amb Andaura to Manali',
     summary: 'Direct holiday cabs to Manali, Solang Valley, Rohtang Pass, Atal Tunnel, and Kasol.',
-    introduction: 'Manali is Himachal Pradesh\'s most celebrated mountain wonderland. Surrounded by towering pine forests, snow-clad Himalayan peaks, and the roaring Beas river, it offers the ultimate family vacation and adventure getaway.\nTravelling from Una or Amb Andaura takes you through the scenic Kiratpur-Nerchowk four-lane highway, Sundernagar lake, Pandoh dam, and Kullu valley. Ajay Tour and Travels provides comfortable Innova Crysta, Scorpio, and Ertiga cabs with experienced hill chauffeurs.',
+    introduction: 'Manali is Himachal Pradesh\'s most celebrated mountain wonderland. Surrounded by towering pine forests, snow-clad Himalayan peaks, and the roaring Beas river, it offers the ultimate family vacation and adventure getaway.\nTravelling from Una or Amb Andaura takes you through the scenic Kiratpur-Nerchowk four-lane highway, Sundernagar lake, Pandoh dam, and Kullu valley. Himyatra Tour and Travels provides comfortable Innova Crysta, Scorpio, and Ertiga cabs with experienced hill chauffeurs.',
     sections: [
       { heading: 'Atal Tunnel & Sissu / Lahaul Valley Day Excursions', body: 'Experience the engineering marvel of the Atal Tunnel and step out into the stunning barren landscapes and frozen waterfalls of Sissu in Lahaul Valley.' },
       { heading: 'Adventure in Solang & Rohtang Pass', body: 'Enjoy paragliding, zorbing, snow scooters, and skiing at Solang Valley, with certified permit assistance for Rohtang Pass trips.' },
@@ -226,7 +226,7 @@ export const destinations = [
     relatedSlugs: ['una', 'amb-andaura', 'shimla', 'dharamshala'],
     vehicleSlugs: ['toyota-innova-crysta', 'maruti-ertiga', 'mahindra-scorpio'],
     faqs: faqPair('Manali'),
-    seo: { title: 'Una to Manali Taxi Service | Innova & Sedan Cabs | Ajay Travels', description: 'Book reliable private taxi from Una or Amb Andaura to Manali, Solang Valley, and Atal Tunnel. Experienced mountain drivers.' },
+    seo: { title: 'Una to Manali Taxi Service | Innova & Sedan Cabs | Himyatra Travels', description: 'Book reliable private taxi from Una or Amb Andaura to Manali, Solang Valley, and Atal Tunnel. Experienced mountain drivers.' },
   },
   {
     name: 'Shimla & Kufri',
@@ -237,7 +237,7 @@ export const destinations = [
     needsVerification: false,
     h1: 'Taxi from Una & Amb Andaura to Shimla',
     summary: 'Travel in comfort to Shimla, Mall Road, Kufri snow point, Chail, and Narkanda.',
-    introduction: 'The historic summer capital of British India, Shimla retains timeless charm with its Victorian colonial architecture, bustling Mall Road, the iconic Ridge, and Christ Church.\nLocated approximately 170 km from Una, our private taxi ride takes you comfortably through pine-covered Shivalik hills via Bilaspur or Solan. Whether you are planning a weekend break, a honeymoon holiday, or a family trip to Kufri snow parks, Ajay Tour and Travels is your trusted travel partner.',
+    introduction: 'The historic summer capital of British India, Shimla retains timeless charm with its Victorian colonial architecture, bustling Mall Road, the iconic Ridge, and Christ Church.\nLocated approximately 170 km from Una, our private taxi ride takes you comfortably through pine-covered Shivalik hills via Bilaspur or Solan. Whether you are planning a weekend break, a honeymoon holiday, or a family trip to Kufri snow parks, Himyatra Tour and Travels is your trusted travel partner.',
     sections: [
       { heading: 'Mall Road, Ridge & Jakhoo Hill Sightseeing', body: 'Take in panoramic views of the Himalayas from the Ridge, visit the 108-foot giant Hanuman statue at Jakhoo Temple, and stroll down vehicle-free Mall Road.' },
       { heading: 'Kufri & Chail Day Trips', body: 'Enjoy horse riding, apple orchard trails, and winter skiing at Kufri, followed by the world\'s highest cricket pitch at Chail.' },
@@ -257,7 +257,7 @@ export const destinations = [
     relatedSlugs: ['una', 'amb-andaura', 'chandigarh', 'manali'],
     vehicleSlugs: ['toyota-innova-crysta', 'maruti-dzire', 'maruti-ertiga'],
     faqs: faqPair('Shimla'),
-    seo: { title: 'Una to Shimla Taxi Fare & Route | Ajay Tour & Travels', description: 'Comfortable private cabs from Una and Amb Andaura to Shimla and Kufri. Fixed transparent pricing, 24/7 service.' },
+    seo: { title: 'Una to Shimla Taxi Fare & Route | Himyatra Tour & Travels', description: 'Comfortable private cabs from Una and Amb Andaura to Shimla and Kufri. Fixed transparent pricing, 24/7 service.' },
   },
   {
     name: 'Amritsar & Golden Temple',
@@ -268,7 +268,7 @@ export const destinations = [
     needsVerification: false,
     h1: 'Una to Amritsar Taxi Service | Golden Temple & Wagah Border',
     summary: 'Spiritual and cultural taxi tours to Sri Harmandir Sahib, Wagah Border, and Jallianwala Bagh.',
-    introduction: 'Amritsar is the spiritual heart of Punjab, home to the sacred Sri Harmandir Sahib (Golden Temple). Devotees and tourists travel from across the region to experience the divine peace of the holy Sarovar, listen to live Gurbani Kirtan, and witness the electrified patriotic fervor of the Wagah Border Beating Retreat ceremony.\nAjay Tour and Travels provides seamless private taxi transfers from Una and Amb Andaura via Hoshiarpur and Jalandhar in about 3.5 hours.',
+    introduction: 'Amritsar is the spiritual heart of Punjab, home to the sacred Sri Harmandir Sahib (Golden Temple). Devotees and tourists travel from across the region to experience the divine peace of the holy Sarovar, listen to live Gurbani Kirtan, and witness the electrified patriotic fervor of the Wagah Border Beating Retreat ceremony.\nHimyatra Tour and Travels provides seamless private taxi transfers from Una and Amb Andaura via Hoshiarpur and Jalandhar in about 3.5 hours.',
     sections: [
       { heading: 'Golden Temple & Langar Experience', body: 'Visit Sri Harmandir Sahib at dawn or during the magical evening Palki Sahib ceremony. Partake in Guru Ka Langar, the world\'s largest community kitchen serving tens of thousands of pilgrims daily.' },
       { heading: 'Wagah Border Beating Retreat Ceremony', body: 'Experience the goosebump-inducing military retreat ceremony at the Indo-Pak international border. Our cab parks conveniently and waits until the parade finishes.' },
@@ -300,7 +300,7 @@ export const destinations = [
     needsVerification: false,
     h1: 'Direct Taxi from Una & Amb Andaura to Delhi Airport (IGI)',
     summary: 'Hassle-free direct terminal drops (T1, T2, T3) and Delhi NCR outstation cabs.',
-    introduction: 'Travelling for international flights or major business summits in the national capital? Skip the stress of changing trains with heavy luggage and negotiating city transit.\nAjay Tour and Travels offers dedicated express taxi trips from Una, Amb Andaura, and surrounding Himachal towns straight to Indira Gandhi International Airport (DEL) Terminal 1, 2, and 3 via the modern Ambala-Panipat expressway.',
+    introduction: 'Travelling for international flights or major business summits in the national capital? Skip the stress of changing trains with heavy luggage and negotiating city transit.\nHimyatra Tour and Travels offers dedicated express taxi trips from Una, Amb Andaura, and surrounding Himachal towns straight to Indira Gandhi International Airport (DEL) Terminal 1, 2, and 3 via the modern Ambala-Panipat expressway.',
     sections: [
       { heading: 'Direct Terminal Drop (T1, T2, T3)', body: 'Our drivers know every terminal access lane and drop you right at the designated departures gate for your airline, assisting with trolleys and luggage.' },
       { heading: 'Punctual Schedule Buffers', body: 'We schedule departure times with generous buffer windows to account for toll plazas, expressway conditions, and terminal check-in queues.' },
@@ -319,7 +319,7 @@ export const destinations = [
     relatedSlugs: ['una', 'amb-andaura', 'chandigarh'],
     vehicleSlugs: ['toyota-innova-crysta', 'maruti-ertiga', 'maruti-dzire'],
     faqs: faqPair('Delhi Airport'),
-    seo: { title: 'Una to Delhi Airport Taxi | Direct Terminal 3 Drop | Ajay Travels', description: 'Book direct cab from Una or Amb Andaura to Delhi Airport (IGI T3). Reliable 24/7 highway service.' },
+    seo: { title: 'Una to Delhi Airport Taxi | Direct Terminal 3 Drop | Himyatra Travels', description: 'Book direct cab from Una or Amb Andaura to Delhi Airport (IGI T3). Reliable 24/7 highway service.' },
   },
   {
     name: 'Una to Chandigarh',
@@ -330,7 +330,7 @@ export const destinations = [
     needsVerification: false,
     h1: 'Una to Chandigarh Taxi Service',
     summary: 'Frequent doorstep cabs from Una to Chandigarh city, PGI, and Mohali Airport. ~120 km via Nangal & Ropar.',
-    introduction: 'Need to travel from Una to Chandigarh for medical consultations at PGI, flights from Mohali Airport, or corporate and shopping visits? Ajay Tour and Travels offers swift, reliable one-way and return cab rides on demand.',
+    introduction: 'Need to travel from Una to Chandigarh for medical consultations at PGI, flights from Mohali Airport, or corporate and shopping visits? Himyatra Tour and Travels offers swift, reliable one-way and return cab rides on demand.',
     sections: [
       { heading: 'Route Information', body: 'The route goes through Mehatpur border, Nangal, Sri Anandpur Sahib, Rupnagar (Ropar) bypass, and Kurali, connecting directly to Chandigarh Sector 17, 43, 35, or Mohali Airport.' },
     ],
@@ -353,7 +353,7 @@ export const destinations = [
     needsVerification: false,
     h1: 'Una to Delhi Taxi Service & Outstation Cabs',
     summary: '24/7 direct cab service from Una to New Delhi, Connaught Place, Railway Stations & NCR. ~360 km via NH44.',
-    introduction: 'Planning a trip from Una to New Delhi or Delhi NCR? Skip the hassle of waiting for train confirmations or crowded bus journeys.\nAjay Tour and Travels provides comfortable, sanitized doorstep taxi transfers from Una and surrounding Himachal regions directly to anywhere in Delhi NCR. Whether you are travelling for corporate meetings, family visits, hospital appointments, or shopping at Chandni Chowk and Connaught Place, our skilled highway drivers ensure a smooth, relaxed journey along National Highway 44.',
+    introduction: 'Planning a trip from Una to New Delhi or Delhi NCR? Skip the hassle of waiting for train confirmations or crowded bus journeys.\nHimyatra Tour and Travels provides comfortable, sanitized doorstep taxi transfers from Una and surrounding Himachal regions directly to anywhere in Delhi NCR. Whether you are travelling for corporate meetings, family visits, hospital appointments, or shopping at Chandni Chowk and Connaught Place, our skilled highway drivers ensure a smooth, relaxed journey along National Highway 44.',
     sections: [
       { heading: 'Fast & Safe NH44 Highway Journey', body: 'The route connects Una through Mehatpur, Nangal, Rupnagar, Chandigarh bypass, Ambala, Kurukshetra, Karnal, Panipat, and Sonipat directly into Delhi via the modern 6-lane NH44. We provide comfortable stops at top dhabas like Murthal for food and refreshments.' },
       { heading: 'Complete Delhi NCR Coverage', body: 'We drop you right at your doorstep anywhere in Delhi NCR, including Central Delhi, South Delhi, West Delhi, New Delhi Railway Station (NDLS), Old Delhi Station (DLI), Hazrat Nizamuddin, as well as Noida, Gurugram, and Faridabad.' },
@@ -378,7 +378,7 @@ export const destinations = [
       { question: 'How long does a cab take from Una to Delhi?', answer: 'The driving distance is approximately 360 km via NH44, which typically takes around 6 to 7 hours depending on traffic and rest stops.' },
       { question: 'Do you offer doorstep pickup and drop anywhere in Delhi?', answer: 'Yes! We provide 100% door-to-door pickup from your home or hotel in Una and direct drop at your exact destination in Delhi, Gurgaon, Noida, or Faridabad.' }
     ],
-    seo: { title: 'Una to Delhi Taxi Service | Cabs from Una to New Delhi | Ajay Travels', description: 'Book private one-way or roundtrip cab from Una to New Delhi & NCR. Clean sanitized cabs, experienced drivers, upfront pricing. Call +91 70110 56581.' },
+    seo: { title: 'Una to Delhi Taxi Service | Cabs from Una to New Delhi | Himyatra Travels', description: 'Book private one-way or roundtrip cab from Una to New Delhi & NCR. Clean sanitized cabs, experienced drivers, upfront pricing. Call +91 70110 56581.' },
   },
   {
     name: 'Una to Ludhiana',
@@ -441,7 +441,7 @@ export const routes = [
     pricing: { mode: 'from', amount: 2600, currency: 'INR', note: 'Sedan one-way. Tolls extra.' },
     vehicleSlugs: ['maruti-dzire', 'toyota-innova-crysta', 'maruti-ertiga', 'tempo-traveller'],
     description: 'Direct taxi from Amb Andaura Railway Station (Vande Bharat terminus) to Chandigarh, Mohali, and IXC Airport via Una, Nangal, and Anandpur Sahib.',
-    seo: { title: 'Amb Andaura to Chandigarh Taxi Fare & Route | Ajay Travels', description: 'Distance ~135 km, time ~3h 15m. Fares from ₹2,600. Book verified cab with Ajay Tour & Travels.' },
+    seo: { title: 'Amb Andaura to Chandigarh Taxi Fare & Route | Himyatra Travels', description: 'Distance ~135 km, time ~3h 15m. Fares from ₹2,600. Book verified cab with Himyatra Tour & Travels.' },
   },
   {
     from: 'Una',
@@ -455,7 +455,7 @@ export const routes = [
     pricing: { mode: 'from', amount: 2400, currency: 'INR', note: 'Sedan one-way. Tolls extra.' },
     vehicleSlugs: ['maruti-dzire', 'toyota-innova-crysta', 'maruti-ertiga', 'tempo-traveller'],
     description: 'Fast, comfortable highway cab from Una town/station to Chandigarh city, PGI, and Mohali International Airport.',
-    seo: { title: 'Una to Chandigarh Taxi Fare & Distance | Ajay Tour & Travels', description: 'Distance ~120 km, time ~2h 45m. Fares from ₹2,400. Book 24/7 cab online or on WhatsApp.' },
+    seo: { title: 'Una to Chandigarh Taxi Fare & Distance | Himyatra Tour & Travels', description: 'Distance ~120 km, time ~2h 45m. Fares from ₹2,400. Book 24/7 cab online or on WhatsApp.' },
   },
   {
     from: 'Una',
@@ -469,7 +469,7 @@ export const routes = [
     pricing: { mode: 'from', amount: 2200, currency: 'INR', note: 'Sedan one-way. Tolls extra.' },
     vehicleSlugs: ['maruti-dzire', 'maruti-ertiga', 'toyota-innova-crysta'],
     description: 'Direct cab connection between Una and Ludhiana via Garhshankar and Nawanshahr for business, shopping, and family travel.',
-    seo: { title: 'Una to Ludhiana Taxi Fare & Booking | Ajay Tour & Travels', description: 'Distance ~115 km, duration ~2.5 hours. Fares starting ₹2,200. Clean cars and expert drivers.' },
+    seo: { title: 'Una to Ludhiana Taxi Fare & Booking | Himyatra Tour & Travels', description: 'Distance ~115 km, duration ~2.5 hours. Fares starting ₹2,200. Clean cars and expert drivers.' },
   },
   {
     from: 'Amb Andaura',
@@ -539,7 +539,7 @@ export const routes = [
     pricing: { mode: 'from', amount: 6200, currency: 'INR', note: 'Door-to-door drop in Delhi NCR. Tolls extra.' },
     vehicleSlugs: ['toyota-innova-crysta', 'maruti-ertiga', 'maruti-dzire'],
     description: 'Direct outstation taxi service from Una to New Delhi & NCR (Connaught Place, Karol Bagh, South Delhi, Railway Stations, Gurgaon, Noida) via NH44. Experienced highway drivers, sanitized AC cabs, 24/7 availability.',
-    seo: { title: 'Una to Delhi Taxi Service | Direct Outstation Cab | Ajay Travels', description: 'Book verified 24/7 one-way or round-trip cab from Una to New Delhi & Delhi NCR. Clean AC cabs, experienced highway drivers. Call +91 70110 56581.' },
+    seo: { title: 'Una to Delhi Taxi Service | Direct Outstation Cab | Himyatra Travels', description: 'Book verified 24/7 one-way or round-trip cab from Una to New Delhi & Delhi NCR. Clean AC cabs, experienced highway drivers. Call +91 70110 56581.' },
   },
   {
     from: 'Una',
@@ -623,7 +623,7 @@ export const routes = [
     pricing: { mode: 'from', amount: 4500, currency: 'INR', note: 'Hill route cab. Tolls extra.' },
     vehicleSlugs: ['toyota-innova-crysta', 'maruti-dzire', 'maruti-ertiga'],
     description: 'Direct taxi from Una to the Queen of Hills, Shimla, via Hamirpur/Bilaspur route.',
-    seo: { title: 'Una to Shimla Taxi Fare & Route | Ajay Tour & Travels', description: 'Travel from Una to Shimla comfortably. Distance ~170 km, ~5 hours. Fares from ₹4,500.' },
+    seo: { title: 'Una to Shimla Taxi Fare & Route | Himyatra Tour & Travels', description: 'Travel from Una to Shimla comfortably. Distance ~170 km, ~5 hours. Fares from ₹4,500.' },
   },
   {
     from: 'Una',
@@ -637,7 +637,7 @@ export const routes = [
     pricing: { mode: 'from', amount: 3400, currency: 'INR', note: 'Sedan one-way. Tolls extra.' },
     vehicleSlugs: ['maruti-dzire', 'maruti-ertiga', 'toyota-innova-crysta'],
     description: 'Direct highway cab from Una to Amritsar Golden Temple and Wagah Border via Hoshiarpur and Jalandhar bypass.',
-    seo: { title: 'Una to Amritsar Taxi Fare & Cab Booking | Ajay Travels', description: 'Una to Amritsar taxi. Distance ~160 km, duration ~3.5 hours. Fares from ₹3,400.' },
+    seo: { title: 'Una to Amritsar Taxi Fare & Cab Booking | Himyatra Travels', description: 'Una to Amritsar taxi. Distance ~160 km, duration ~3.5 hours. Fares from ₹3,400.' },
   },
 ];
 
@@ -676,7 +676,7 @@ export const vehicles = [
     status: 'published',
     isSample: false,
     sortOrder: 1,
-    seo: { title: 'Maruti Dzire Taxi Booking in Una & Amb Andaura | Ajay Travels', description: 'Book sanitized Maruti Dzire sedan cab from Amb Andaura and Una. Starting from ₹11/km. Best fares for Chandigarh & local.' },
+    seo: { title: 'Maruti Dzire Taxi Booking in Una & Amb Andaura | Himyatra Travels', description: 'Book sanitized Maruti Dzire sedan cab from Amb Andaura and Una. Starting from ₹11/km. Best fares for Chandigarh & local.' },
   },
   {
     name: 'Toyota Innova Crysta',
@@ -715,7 +715,7 @@ export const vehicles = [
     status: 'published',
     isSample: false,
     sortOrder: 2,
-    seo: { title: 'Toyota Innova Crysta Taxi in Una & Amb Andaura | Ajay Tour & Travels', description: 'Hire luxury Toyota Innova Crysta for Himachal tour, Manali, Shimla & Chandigarh Airport. Top comfort, best rates.' },
+    seo: { title: 'Toyota Innova Crysta Taxi in Una & Amb Andaura | Himyatra Tour & Travels', description: 'Hire luxury Toyota Innova Crysta for Himachal tour, Manali, Shimla & Chandigarh Airport. Top comfort, best rates.' },
   },
   {
     name: 'Maruti Suzuki Ertiga',
@@ -750,7 +750,7 @@ export const vehicles = [
     status: 'published',
     isSample: false,
     sortOrder: 3,
-    seo: { title: 'Maruti Ertiga Taxi Booking in Una & Amb Andaura | Ajay Travels', description: 'Affordable 6-seater Maruti Ertiga cab for family temple darshan & outstation trips. Fares from ₹14/km.' },
+    seo: { title: 'Maruti Ertiga Taxi Booking in Una & Amb Andaura | Himyatra Travels', description: 'Affordable 6-seater Maruti Ertiga cab for family temple darshan & outstation trips. Fares from ₹14/km.' },
   },
   {
     name: 'Mahindra Scorpio-N',
@@ -784,7 +784,7 @@ export const vehicles = [
     status: 'published',
     isSample: false,
     sortOrder: 4,
-    seo: { title: 'Mahindra Scorpio-N Taxi in Una & Amb Andaura | Ajay Travels', description: 'Hire powerful Mahindra Scorpio SUV for Himachal mountain trips, Manali & Dharamshala. Safe hill driving.' },
+    seo: { title: 'Mahindra Scorpio-N Taxi in Una & Amb Andaura | Himyatra Travels', description: 'Hire powerful Mahindra Scorpio SUV for Himachal mountain trips, Manali & Dharamshala. Safe hill driving.' },
   },
   {
     name: 'Force Tempo Traveller (12-17 Seater)',
@@ -822,7 +822,7 @@ export const vehicles = [
     status: 'published',
     isSample: false,
     sortOrder: 5,
-    seo: { title: 'Tempo Traveller Hire in Una & Amb Andaura | Ajay Travels', description: 'Book luxury 12 to 17 seater Force Tempo Traveller for family pilgrimage, wedding groups & Himachal tours. Best rates.' },
+    seo: { title: 'Tempo Traveller Hire in Una & Amb Andaura | Himyatra Travels', description: 'Book luxury 12 to 17 seater Force Tempo Traveller for family pilgrimage, wedding groups & Himachal tours. Best rates.' },
   },
 ];
 
@@ -846,7 +846,7 @@ export const packages = [
     status: 'published',
     isSample: false,
     sortOrder: 1,
-    seo: { title: 'Himachal Devi Darshan Shaktipeeth Yatra Package (3D/2N) | Ajay Travels', description: 'Book complete 5-Devi Shaktipeeth darshan yatra (Chintpurni, Jwala Ji, Kangra, Chamunda, Baglamukhi) starting from ₹9,500.' },
+    seo: { title: 'Himachal Devi Darshan Shaktipeeth Yatra Package (3D/2N) | Himyatra Travels', description: 'Book complete 5-Devi Shaktipeeth darshan yatra (Chintpurni, Jwala Ji, Kangra, Chamunda, Baglamukhi) starting from ₹9,500.' },
   },
   {
     title: 'Shimla & Manali Complete Hill Holiday (5D/4N)',
@@ -872,7 +872,7 @@ export const packages = [
     status: 'published',
     isSample: false,
     sortOrder: 2,
-    seo: { title: 'Shimla & Manali 5D/4N Holiday Tour Package | Ajay Tour & Travels', description: 'Book 5-day Shimla & Manali private taxi tour package starting from ₹18,500. Solang Valley, Atal Tunnel, and Kufri.' },
+    seo: { title: 'Shimla & Manali 5D/4N Holiday Tour Package | Himyatra Tour & Travels', description: 'Book 5-day Shimla & Manali private taxi tour package starting from ₹18,500. Solang Valley, Atal Tunnel, and Kufri.' },
   },
   {
     title: 'Dharamshala & McLeodganj Weekend Retreat (3D/2N)',
@@ -893,7 +893,7 @@ export const packages = [
     status: 'published',
     isSample: false,
     sortOrder: 3,
-    seo: { title: 'Dharamshala & McLeodganj 3D/2N Tour Package | Ajay Travels', description: 'Book 3-day private cab tour to Dharamshala, McLeodganj & HPCA Stadium. Starting from ₹10,200.' },
+    seo: { title: 'Dharamshala & McLeodganj 3D/2N Tour Package | Himyatra Travels', description: 'Book 3-day private cab tour to Dharamshala, McLeodganj & HPCA Stadium. Starting from ₹10,200.' },
   },
   {
     title: 'Amritsar Golden Temple & Wagah Border Tour (2D/1N)',
@@ -913,7 +913,7 @@ export const packages = [
     status: 'published',
     isSample: false,
     sortOrder: 4,
-    seo: { title: 'Amritsar Golden Temple & Wagah Border 2D/1N Tour | Ajay Travels', description: 'Book private cab tour to Amritsar Golden Temple and Wagah Border from Una. Starting from ₹7,200.' },
+    seo: { title: 'Amritsar Golden Temple & Wagah Border 2D/1N Tour | Himyatra Travels', description: 'Book private cab tour to Amritsar Golden Temple and Wagah Border from Una. Starting from ₹7,200.' },
   },
   {
     title: 'Chandigarh City Sightseeing & Airport Drop (1 Day)',
@@ -932,7 +932,7 @@ export const packages = [
     status: 'published',
     isSample: false,
     sortOrder: 5,
-    seo: { title: 'Chandigarh 1-Day Sightseeing & Airport Drop | Ajay Tour & Travels', description: 'Full day private cab for Chandigarh sightseeing and airport drop. Starting from ₹3,200.' },
+    seo: { title: 'Chandigarh 1-Day Sightseeing & Airport Drop | Himyatra Tour & Travels', description: 'Full day private cab for Chandigarh sightseeing and airport drop. Starting from ₹3,200.' },
   },
   {
     title: 'Una to Delhi & NCR Capital Tour Package (2D/1N)',
@@ -941,7 +941,7 @@ export const packages = [
     durationNights: 1,
     pricing: { mode: 'from', amount: 8500, currency: 'INR', note: 'Sedan cab package. Tolls and state taxes included. Custom hotels on request.' },
     summary: 'Direct doorstep cab travel from Una / Amb Andaura to Delhi NCR, covering India Gate, Red Fort, Qutub Minar, shopping hubs, and IGI Airport drop.',
-    description: 'Travel effortlessly between Una / Amb Andaura and New Delhi with Ajay Tour and Travels. Whether you need a comfortable one-way airport drop at IGI Terminal 1/3, a family sightseeing weekend in Old & New Delhi, or an important business trip, our dedicated air-conditioned private cabs provide safe highway driving along NH44 with courteous drivers, zero waiting, and total privacy.',
+    description: 'Travel effortlessly between Una / Amb Andaura and New Delhi with Himyatra Tour and Travels. Whether you need a comfortable one-way airport drop at IGI Terminal 1/3, a family sightseeing weekend in Old & New Delhi, or an important business trip, our dedicated air-conditioned private cabs provide safe highway driving along NH44 with courteous drivers, zero waiting, and total privacy.',
     itinerary: [
       { day: 1, title: 'Doorstep Pickup in Una & Smooth Highway Drive to Delhi', description: 'Early morning pickup from your home or hotel in Una / Amb Andaura. Comfortable cruise along the 6-lane NH44 highway via Chandigarh, Ambala, and Murthal (popular dhaba breakfast stop). Afternoon arrival in Delhi, hotel check-in. Evening leisure visit to India Gate, Kartavya Path, and Connaught Place. Overnight stay in Delhi.' },
       { day: 2, title: 'Delhi Sightseeing, Shopping & IGI Airport / Return Drop', description: 'Explore iconic Delhi monuments including Qutub Minar, Lotus Temple, Red Fort, or Sarojini Nagar / Chandni Chowk shopping. Evening on-time drop at Indira Gandhi International Airport (IGI T1/T2/T3), New Delhi Railway Station, or relaxed return drive to Una.' },
@@ -966,7 +966,7 @@ export const packages = [
     isSample: false,
     sortOrder: 6,
     seo: {
-      title: 'Una to Delhi Tour Package (2D/1N) | Ajay Tour and Travels',
+      title: 'Una to Delhi Tour Package (2D/1N) | Himyatra Tour and Travels',
       description: 'Book comfortable private cab package from Una to Delhi & IGI Airport. Experienced drivers, sanitized cabs, door-to-door service. Call +91 70110 56581.'
     },
   },
@@ -974,7 +974,7 @@ export const packages = [
 
 export const faqs = [
   {
-    question: 'How do I book a taxi with Ajay Tour and Travels?',
+    question: 'How do I book a taxi with Himyatra Tour and Travels?',
     answer: 'You can book directly via our online booking form or contact us immediately on Call or WhatsApp at +91 70110 56581. Provide your pickup location, destination, date, preferred vehicle, and number of passengers. We confirm your ride with all driver details promptly.',
     scope: 'global',
     sortOrder: 1,
@@ -1052,13 +1052,13 @@ export const posts = [
       'Amb Andaura Railway Station (Station Code: AADR) in District Una, Himachal Pradesh has transformed into a critical transport junction since the launch of the New Delhi – Amb Andaura Vande Bharat Express. Operating six days a week, the high-speed train connects the national capital with Himachal in just over five hours.',
       'Upon stepping onto the platform at Amb Andaura, pre-arranging your private taxi is the smartest decision. While local auto-rickshaws operate for short local distances, private AC cabs like Maruti Dzire, Ertiga, and Innova Crysta provide immediate, air-conditioned transfers to nearby destinations without haggling.',
       'From Amb Andaura, popular onward routes include Una town (32 km, ~45 mins), the sacred Mata Chintpurni Devi Temple (22 km, ~40 mins), Baba Barbhag Singh at Mairi (15 km, ~25 mins), Dharamshala / McLeodganj (125 km, ~3.5 hrs), and Chandigarh (135 km, ~3 hrs 15 mins).',
-      'At Ajay Tour and Travels, our office is located directly adjacent to Amb Andaura Railway Station. We provide meet-and-greet service at the platform exit, assist with heavy luggage, and ensure your vehicle is cooled and ready for departure the moment you arrive. Pre-book your cab on WhatsApp at +91 70110 56581 for zero waiting time.'
+      'At Himyatra Tour and Travels, our office is located directly adjacent to Amb Andaura Railway Station. We provide meet-and-greet service at the platform exit, assist with heavy luggage, and ensure your vehicle is cooled and ready for departure the moment you arrive. Pre-book your cab on WhatsApp at +91 70110 56581 for zero waiting time.'
     ),
     featuredImage: { url: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80', alt: 'Railway station taxi transfer in Himachal' },
     status: 'published',
     publishedAt: new Date(),
     isSample: false,
-    seo: { title: 'Amb Andaura Railway Station Cab Guide | Ajay Tour & Travels', description: 'Complete travel guide for arriving at Amb Andaura by Vande Bharat: station cabs, fares, and routes to Chintpurni, Una, and Dharamshala.' },
+    seo: { title: 'Amb Andaura Railway Station Cab Guide | Himyatra Tour & Travels', description: 'Complete travel guide for arriving at Amb Andaura by Vande Bharat: station cabs, fares, and routes to Chintpurni, Una, and Dharamshala.' },
   },
   {
     title: 'Himachal Shaktipeeth Yatra: Best Road Route & Darshan Tips for Chintpurni, Jwala Ji & Kangra',
@@ -1070,7 +1070,7 @@ export const posts = [
       'The sacred Shivalik and Kangra valleys of Himachal Pradesh house some of India\'s most revered Devi temples. Millions of pilgrims undertake the sacred Panch Shaktipeeth Yatra every year to seek blessings from Mata Chintpurni, Mata Jwala Ji, Mata Brajeshwari Devi (Kangra), Mata Chamunda Devi, and Mata Baglamukhi.',
       'The ideal starting point for this spiritual journey is Amb Andaura Railway Station or Una. From Amb Andaura, Mata Chintpurni is just 22 km away. After taking darshan of the Chhinnamastika form, you can head directly along the smooth state highway to Jwala Ji (approx. 35 km from Chintpurni). Witnessing the eternal divine flames burning from solid rock is an unforgettable spiritual experience.',
       'From Jwala Ji, continue northward to Kangra town (approx. 34 km) to visit Brajeshwari Devi, followed by Chamunda Devi nestled against the backdrop of snow-capped peaks. Conclude your tour with prayers at the powerful Maa Baglamukhi temple near Bankhandi before your return drive.',
-      'When travelling with family elders, booking a dedicated Toyota Innova Crysta or Maruti Ertiga ensures maximum comfort. Mountain roads require steady driving and periodic rest breaks. Ajay Tour and Travels offers customized 2-day and 3-day pilgrimage packages with courteous local drivers who know temple queue timings and optimal parking points.'
+      'When travelling with family elders, booking a dedicated Toyota Innova Crysta or Maruti Ertiga ensures maximum comfort. Mountain roads require steady driving and periodic rest breaks. Himyatra Tour and Travels offers customized 2-day and 3-day pilgrimage packages with courteous local drivers who know temple queue timings and optimal parking points.'
     ),
     featuredImage: { url: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80', alt: 'Mountain road leading to Himachal Pradesh temples' },
     status: 'published',
@@ -1088,7 +1088,7 @@ export const posts = [
       'Shaheed Bhagat Singh International Airport (IXC), located on the Mohali side of Chandigarh, is the primary air travel gateway for residents and visitors of District Una, Hamirpur, and Bilaspur. Reaching the airport on time requires careful route planning and dependable transportation.',
       'The road distance between Una and Chandigarh Airport is approximately 125 km. Under normal conditions, the drive takes between 2 hours 45 minutes and 3 hours. The route passes through Mehatpur, Nangal, Anandpur Sahib, the Rupnagar (Ropar) bypass, and Kurali, connecting straight into the PR-7 Airport Road in Mohali.',
       'Key tips for a stress-free airport transfer: Always schedule your pickup at least 5 hours prior to domestic flight departure and 6 hours prior to international flights. This provides comfortable buffer time for airport security, highway toll plazas at Anandpur Sahib and Ropar, and city traffic.',
-      'Ajay Tour and Travels provides 24/7 dedicated airport drop and pickup services. Whether you have a 6:00 AM early-morning flight or land late at night on a red-eye flight, our drivers are punctual, alert, and tracking your flight schedule in real time. Call +91 70110 56581 to reserve your airport cab.'
+      'Himyatra Tour and Travels provides 24/7 dedicated airport drop and pickup services. Whether you have a 6:00 AM early-morning flight or land late at night on a red-eye flight, our drivers are punctual, alert, and tracking your flight schedule in real time. Call +91 70110 56581 to reserve your airport cab.'
     ),
     featuredImage: { url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80', alt: 'Four-lane highway leading to Chandigarh Airport' },
     status: 'published',

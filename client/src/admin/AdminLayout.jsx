@@ -41,11 +41,11 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-dvh bg-slate-100 text-navy-900 lg:grid lg:grid-cols-[16rem_1fr]">
-      <Helmet><title>Admin | Ajay Tour and Travels</title><meta name="robots" content="noindex, nofollow, noarchive" /></Helmet>
+      <Helmet><title>Admin | Himyatra Tour and Travels</title><meta name="robots" content="noindex, nofollow, noarchive" /></Helmet>
       <aside className="hidden bg-navy-900 p-4 lg:block" aria-label="Admin navigation">
         <div className="mb-5 flex items-center gap-3 px-3">
-          <img src="/logo-round.png" alt="Ajay Tour & Travels" className="h-9 w-9 rounded-full object-cover ring-2 ring-teal-400/40" />
-          <p className="font-display text-lg font-bold text-white">Ajay Tour <span className="text-sunset-400">Admin</span></p>
+          <img src="/logo-round.png" alt="Himyatra Tour & Travels" className="h-9 w-9 rounded-full object-cover ring-2 ring-teal-400/40" />
+          <p className="font-display text-lg font-bold text-white">Himyatra Tour <span className="text-sunset-400">Admin</span></p>
         </div>
         {links}{foot}
       </aside>
@@ -90,8 +90,8 @@ export default function AdminLayout() {
             <div id="admin-drawer" ref={drawer} className="absolute inset-y-0 left-0 w-72 max-w-[85vw] overflow-y-auto bg-navy-900 p-4">
               <div className="mb-4 flex items-center justify-between px-1">
                 <div className="flex items-center gap-2.5">
-                  <img src="/logo-round.png" alt="Ajay Tour & Travels" className="h-8 w-8 rounded-full object-cover ring-1 ring-teal-400/40" />
-                  <p className="font-display text-lg font-bold text-white">Ajay Tour <span className="text-sunset-400">Admin</span></p>
+                  <img src="/logo-round.png" alt="Himyatra Tour & Travels" className="h-8 w-8 rounded-full object-cover ring-1 ring-teal-400/40" />
+                  <p className="font-display text-lg font-bold text-white">Himyatra Tour <span className="text-sunset-400">Admin</span></p>
                 </div>
                 <button type="button" className="grid h-11 w-11 place-items-center rounded-xl text-white hover:bg-white/10" aria-label="Close navigation" onClick={() => { setOpen(false); btn.current?.focus(); }}><X aria-hidden="true" /></button>
               </div>

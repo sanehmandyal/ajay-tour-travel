@@ -2,7 +2,7 @@
   "name": "ajay-tour-travels",
   "version": "1.0.0",
   "private": true,
-  "description": "Ajay Tour and Travels - Full Stack MERN Application",
+  "description": "Himyatra Tour and Travels - Full Stack MERN Application",
   "scripts": {
     "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm run dev:server\" \"npm run dev:client\"",
     "dev:server": "npm --prefix server run dev",

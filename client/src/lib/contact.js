@@ -8,7 +8,7 @@ export const whatsappHref = (number, text = '') => {
 
 export function bookingMessage(f) {
   const lines = [
-    'Hello Ajay Tour and Travels, I would like a quote.',
+    'Hello Himyatra Tour and Travels, I would like a quote.',
     f.name && `Name: ${f.name}`,
     f.phone && `Phone: ${f.phone}`,
     f.pickup && `Pickup: ${f.pickup}`,

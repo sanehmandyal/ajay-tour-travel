@@ -176,7 +176,7 @@ export default function BookingForm({ defaults = {} }) {
       <div className="mt-4">
         <label className="flex items-start gap-3 text-sm text-navy-800">
           <input id="bf-consent" type="checkbox" checked={f.consent} onChange={set('consent')} aria-invalid={errors.consent ? 'true' : undefined} className="mt-1 h-5 w-5 shrink-0 accent-teal-600" />
-          <span>I agree that Ajay Tour and Travels may use these details to contact me about this trip, as described in the <Link to="/privacy-policy" className="underline">Privacy Policy</Link>.</span>
+          <span>I agree that Himyatra Tour and Travels may use these details to contact me about this trip, as described in the <Link to="/privacy-policy" className="underline">Privacy Policy</Link>.</span>
         </label>
         {errors.consent && <p className="mt-1 text-sm text-red-700">{errors.consent}</p>}
       </div>
@@ -186,7 +186,7 @@ export default function BookingForm({ defaults = {} }) {
         </button>
         {s.waHref && (
           <a
-            href={s.waHref(`Hello Ajay Tour and Travels, I would like to inquire about taxi service${f.pickup ? ` from ${f.pickup}` : ''}${f.destination ? ` to ${f.destination}` : ''}.`)}
+            href={s.waHref(`Hello Himyatra Tour and Travels, I would like to inquire about taxi service${f.pickup ? ` from ${f.pickup}` : ''}${f.destination ? ` to ${f.destination}` : ''}.`)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#25D366]/40 bg-[#25D366]/15 px-5 py-2.5 text-xs font-bold text-[#1e9e4d] transition hover:bg-[#25D366]/25 w-full sm:w-auto"

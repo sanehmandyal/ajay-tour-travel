@@ -48,7 +48,7 @@ export default function VehicleDetail() {
     { name: v.name, path },
   ];
 
-  const waMsg = `Hello Ajay Tour and Travels, I would like to book or inquire about ${v.name}.`;
+  const waMsg = `Hello Himyatra Tour and Travels, I would like to book or inquire about ${v.name}.`;
   const wa = s.waHref(waMsg);
   const otherVehicles = (allVehicles || []).filter((item) => item.slug !== v.slug).slice(0, 3);
 
@@ -56,7 +56,7 @@ export default function VehicleDetail() {
     <>
       <Seo
         path={path}
-        title={v.seo?.title || `${v.name} Taxi Booking | Ajay Tour and Travels`}
+        title={v.seo?.title || `${v.name} Taxi Booking | Himyatra Tour and Travels`}
         description={v.seo?.description || v.description}
         image={v.images?.[0]?.url}
         jsonLd={[breadcrumbLd(crumbs), vehicleLd(v)]}

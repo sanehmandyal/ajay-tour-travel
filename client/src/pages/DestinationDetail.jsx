@@ -25,13 +25,13 @@ export default function DestinationDetail() {
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Destinations', path: '/destinations' }, { name: d.name, path }];
   const r = d.route;
   const verified = r?.detailsVerified;
-  const msg = `Hello Ajay Tour and Travels, I would like a quote for ${d.name}.`;
+  const msg = `Hello Himyatra Tour and Travels, I would like a quote for ${d.name}.`;
   const wa = s.waHref(msg);
   const defaults = r ? { pickup: r.from, destination: r.to } : d.kind === 'place' ? { destination: d.name } : {};
 
   return (
     <>
-      <Seo path={path} override={false} title={d.seo?.title || `${d.h1 || d.name} Taxi Service | Ajay Tour and Travels`} description={d.seo?.description || d.summary}
+      <Seo path={path} override={false} title={d.seo?.title || `${d.h1 || d.name} Taxi Service | Himyatra Tour and Travels`} description={d.seo?.description || d.summary}
         canonical={d.seo?.canonicalUrl || undefined} image={d.seo?.ogImage || d.heroImage?.url} noindex={d.seo?.noindex} jsonLd={[breadcrumbLd(crumbs), serviceLd(d), faqPageLd(d.faqs)].filter(Boolean)} />
       <header className="relative isolate overflow-hidden bg-navy-900 pb-14 pt-28 text-white sm:pb-20 sm:pt-36">
         {d.heroImage?.url

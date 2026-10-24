@@ -28,7 +28,7 @@ export function Seo({ title, description, path, canonical: canonicalProp, image,
       {d && <meta name="description" content={d} />}
       <link rel="canonical" href={canonical} />
       <meta name="robots" content={hide ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
-      <meta property="og:site_name" content="Ajay Tour and Travels" />
+      <meta property="og:site_name" content="Himyatra Tour and Travels" />
       <meta property="og:type" content={type} />
       <meta property="og:title" content={t} />
       {d && <meta property="og:description" content={d} />}
@@ -50,7 +50,7 @@ export function localBusinessLd(settings) {
     '@context': 'https://schema.org',
     '@type': ['TravelAgency', 'TaxiService'],
     '@id': `${SITE_URL}/#business`,
-    name: b.name || 'Ajay Tour and Travels',
+    name: b.name || 'Himyatra Tour and Travels',
     url: SITE_URL,
     priceRange: 'Quote on Request',
     currenciesAccepted: 'INR',
@@ -172,8 +172,8 @@ export const articleLd = (post, settings) => ({
   description: post.excerpt || undefined,
   datePublished: post.publishedAt,
   dateModified: post.updatedAt || post.publishedAt,
-  author: { '@type': 'Organization', name: post.author || settings?.business?.name || 'Ajay Tour and Travels' },
-  publisher: { '@type': 'Organization', name: settings?.business?.name || 'Ajay Tour and Travels' },
+  author: { '@type': 'Organization', name: post.author || settings?.business?.name || 'Himyatra Tour and Travels' },
+  publisher: { '@type': 'Organization', name: settings?.business?.name || 'Himyatra Tour and Travels' },
   mainEntityOfPage: abs(`/blog/${post.slug}`),
   image: post.featuredImage?.url ? abs(mediaUrl(post.featuredImage.url)) : undefined,
 });

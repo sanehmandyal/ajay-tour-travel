@@ -99,7 +99,7 @@ export const getPublicSettings = asyncHandler(async (_req, res) => {
   const activeWa = s.business?.whatsapp || (activePhone ? activePhone.replace(/\D/g, '') : '917011056581');
   ok(res, {
     business: {
-      name: s.business?.name || 'Ajay Tour and Travels',
+      name: s.business?.name || 'Himyatra Tour and Travels',
       tagline: s.business?.tagline || '',
       logoUrl: s.business?.logoUrl || '',
       serviceAreas: s.business?.serviceAreas || [],

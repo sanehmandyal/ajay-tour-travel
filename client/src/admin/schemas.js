@@ -97,7 +97,7 @@ export const RESOURCES = {
     title: 'Blog posts', singular: 'post', endpoint: '/blog', search: true,
     filters: [{ key: 'status', label: 'Status', options: [['', 'All'], ['published', 'Published'], ['draft', 'Draft']] }],
     columns: [['title', 'Title'], ['category', 'Category'], ['status', 'Status'], ['publishedAt', 'Published', (r) => (r.publishedAt ? new Date(r.publishedAt).toLocaleDateString('en-IN') : '')]],
-    blank: () => ({ status: 'published', featuredImage: {}, tags: [], seo: {}, author: 'Ajay Tour and Travels' }),
+    blank: () => ({ status: 'published', featuredImage: {}, tags: [], seo: {}, author: 'Himyatra Tour and Travels' }),
     preview: (r) => `/blog/${r.slug}`,
     fields: [
       { name: 'title', label: 'Article Title' }, { name: 'slug', label: 'Slug', hint: 'Auto-generated from title if left empty.' }, { name: 'author', label: 'Author' }, { name: 'category', label: 'Category' }, status,

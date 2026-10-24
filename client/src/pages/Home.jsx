@@ -24,7 +24,7 @@ function Hero() {
   const { data: vehicles } = useApi('vehicles', () => api.get('/api/vehicles'));
   const set = (k) => (e) => setQ((p) => ({ ...p, [k]: e.target.value }));
   const go = (e) => { e.preventDefault(); nav(`/book?${new URLSearchParams(Object.fromEntries(Object.entries(q).filter(([, v]) => v))).toString()}`); };
-  const wa = s.waHref('Hello Ajay Tour and Travels, I would like a travel quote.');
+  const wa = s.waHref('Hello Himyatra Tour and Travels, I would like a travel quote.');
   const today = new Date().toISOString().slice(0, 10);
   const areas = s.business.serviceAreas || [];
 
@@ -140,7 +140,7 @@ export default function Home() {
     <>
       <Seo
         path="/"
-        title="Ajay Tour & Travels | #1 Taxi & Cab Service in Amb Andaura, Una & Himachal"
+        title="Himyatra Tour & Travels | #1 Taxi & Cab Service in Amb Andaura, Una & Himachal"
         description="Book top-rated 24/7 cab service in Amb Andaura, Una, Chintpurni, Ludhiana & Chandigarh. Clean Dzire, Innova Crysta & Tempo Traveller with professional drivers. Instant upfront quotes!"
         jsonLd={[
           localBusinessLd(s),
@@ -359,7 +359,7 @@ export default function Home() {
           <p className="lead mx-auto mt-3 max-w-xl !text-white/80">Send your details and our team will get back to you with a quote.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Cta to="/book">Book Your Ride</Cta>
-            {s.waHref('Hello Ajay Tour and Travels, I would like a travel quote.') ? <Cta href={s.waHref('Hello Ajay Tour and Travels, I would like a travel quote.')} external variant="ghost-light"><MessageCircle size={18} aria-hidden="true" />WhatsApp</Cta> : <Cta to="/contact" variant="ghost-light">Contact us</Cta>}
+            {s.waHref('Hello Himyatra Tour and Travels, I would like a travel quote.') ? <Cta href={s.waHref('Hello Himyatra Tour and Travels, I would like a travel quote.')} external variant="ghost-light"><MessageCircle size={18} aria-hidden="true" />WhatsApp</Cta> : <Cta to="/contact" variant="ghost-light">Contact us</Cta>}
             {s.callHref && <Cta href={s.callHref} variant="ghost-light"><Phone size={18} aria-hidden="true" />Call now</Cta>}
           </div>
         </div>

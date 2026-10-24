@@ -208,7 +208,7 @@ export function Navbar() {
         <Link to="/" className="flex shrink-0 items-center gap-2.5 font-display text-base font-bold text-white transition hover:opacity-95 sm:text-lg" aria-label={`${s.business.name} home`}>
           <img
             src="/logo-round.png"
-            alt="Ajay Tour and Travels Logo"
+            alt="Himyatra Tour and Travels Logo"
             width="34"
             height="34"
             className="h-8 w-8 sm:h-9 sm:w-9 shrink-0 rounded-full object-cover shadow-sm ring-1 ring-teal-400/40"
@@ -327,7 +327,7 @@ export function Navbar() {
                 </a>
               )}
               {s.waHref && (
-                <a href={s.waHref('Hello Ajay Tour and Travels, I would like to book a taxi.')} target="_blank" rel="noopener noreferrer" className="flex min-h-[44px] items-center justify-center gap-2 rounded-2xl bg-[#25D366]/20 text-sm font-semibold text-[#25D366]">
+                <a href={s.waHref('Hello Himyatra Tour and Travels, I would like to book a taxi.')} target="_blank" rel="noopener noreferrer" className="flex min-h-[44px] items-center justify-center gap-2 rounded-2xl bg-[#25D366]/20 text-sm font-semibold text-[#25D366]">
                   <MessageCircle size={16} aria-hidden="true" />
                   WhatsApp
                 </a>
@@ -355,7 +355,7 @@ export function Footer() {
           <div className="flex items-center gap-3">
             <img
               src="/logo-round.png"
-              alt="Ajay Tour and Travels"
+              alt="Himyatra Tour and Travels"
               width="40"
               height="40"
               className="h-10 w-10 shrink-0 rounded-full object-cover shadow-md ring-1 ring-teal-400/40"
@@ -406,7 +406,7 @@ export function Footer() {
 
 export function FloatingActions() {
   const s = useSettings();
-  const wa = s.waHref('Hello Ajay Tour and Travels, I would like to inquire about a taxi ride.');
+  const wa = s.waHref('Hello Himyatra Tour and Travels, I would like to inquire about a taxi ride.');
   return (
     <aside aria-label="Quick contact" className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-2.5 pb-[env(safe-area-inset-bottom)]">
       {s.callHref && (

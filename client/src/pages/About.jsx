@@ -15,8 +15,8 @@ export default function About() {
     <>
       <Seo
         path="/about"
-        title="About Ajay Tour & Travels | Trusted Himachal Taxi Service"
-        description="Learn about Ajay Tour and Travels: 15+ years experience providing reliable taxi services, verified courteous drivers, sanitized cabs, and transparent quotes across Amb Andaura, Una, Punjab & Himachal."
+        title="About Himyatra Tour & Travels | Trusted Himachal Taxi Service"
+        description="Learn about Himyatra Tour and Travels: 15+ years experience providing reliable taxi services, verified courteous drivers, sanitized cabs, and transparent quotes across Amb Andaura, Una, Punjab & Himachal."
         jsonLd={[breadcrumbLd(crumbs)]}
       />
       <PageHero

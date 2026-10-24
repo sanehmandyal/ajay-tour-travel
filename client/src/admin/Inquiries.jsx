@@ -20,7 +20,7 @@ function Detail({ id, onClose, onChanged }) {
   if (!d) return <Shell onClose={onClose}><p role="status">{msg || 'Loading…'}</p></Shell>;
   const anon = !!d.anonymizedAt;
   const row = (l, v) => <div><dt className="text-xs uppercase tracking-wide text-slate-500">{l}</dt><dd className="mt-0.5">{v || <span className="text-slate-400">-</span>}</dd></div>;
-  const waMsg = `Hello ${d.name}, this is Ajay Tour and Travels about your trip request ${d.reference} (${d.pickup} to ${d.destination}).`;
+  const waMsg = `Hello ${d.name}, this is Himyatra Tour and Travels about your trip request ${d.reference} (${d.pickup} to ${d.destination}).`;
 
   return (
     <Shell onClose={onClose} title={`Inquiry ${d.reference}`}>

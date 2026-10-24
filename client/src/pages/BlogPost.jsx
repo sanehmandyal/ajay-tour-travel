@@ -17,7 +17,7 @@ export default function BlogPost() {
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Travel Tips', path: '/blog' }, { name: p.title, path }];
   return (
     <>
-      <Seo path={path} override={false} type="article" title={p.seo?.title || `${p.title} | Ajay Tour and Travels`} description={p.seo?.description || p.excerpt}
+      <Seo path={path} override={false} type="article" title={p.seo?.title || `${p.title} | Himyatra Tour and Travels`} description={p.seo?.description || p.excerpt}
         canonical={p.seo?.canonicalUrl || undefined} image={p.seo?.ogImage || p.featuredImage?.url} noindex={p.seo?.noindex} jsonLd={[breadcrumbLd(crumbs), articleLd(p, s)]} />
       <PageHero
         bgImage={p.featuredImage?.url}

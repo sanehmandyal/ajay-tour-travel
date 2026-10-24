@@ -50,12 +50,12 @@ export async function seedDatabase() {
   // 7. Website Settings
   const s = await getSettings();
   s.business = {
-    name: 'Ajay Tour and Travels',
+    name: 'Himyatra Tour and Travels',
     tagline: 'Reliable Taxi & Tour Services Across Amb Andaura, Una, Ludhiana & Chandigarh',
     logoUrl: '',
     phone: '+91 70110 56581',
     whatsapp: '917011056581',
-    email: 'info@ajaytourtravels.com',
+    email: 'info@himyatratourtravels.com',
     address: 'Near Amb Andaura Railway Station, VPO Amb, District Una, Himachal Pradesh - 177203',
     serviceAreas: ['Amb Andaura', 'Una', 'Ludhiana', 'Chandigarh', 'Jalandhar', 'Dharamshala'],
     hours: '24/7 Available (Advance Booking Recommended)',
@@ -65,9 +65,9 @@ export async function seedDatabase() {
   };
 
   s.social = {
-    facebook: 'https://facebook.com/ajaytourandtravels',
-    instagram: 'https://instagram.com/ajaytourandtravels',
-    youtube: 'https://youtube.com/@ajaytourtravels',
+    facebook: 'https://facebook.com/himyatratourandtravels',
+    instagram: 'https://instagram.com/himyatratourandtravels',
+    youtube: 'https://youtube.com/@himyatratourtravels',
   };
 
   s.announcement = {
@@ -93,14 +93,14 @@ export async function seedDatabase() {
   };
 
   s.footer = {
-    about: 'Ajay Tour and Travels is District Una’s premier taxi and travel agency based near Amb Andaura Railway Station. We provide dependable airport transfers, outstation cabs, Himachal pilgrimage yatra, and customized tour packages across Himachal Pradesh, Punjab, and Chandigarh.',
-    copyright: '© 2026 Ajay Tour and Travels. All rights reserved. Serving Amb Andaura, Una, Ludhiana & Chandigarh.',
+    about: 'Himyatra Tour and Travels is District Una’s premier taxi and travel agency based near Amb Andaura Railway Station. We provide dependable airport transfers, outstation cabs, Himachal pilgrimage yatra, and customized tour packages across Himachal Pradesh, Punjab, and Chandigarh.',
+    copyright: '© 2026 Himyatra Tour and Travels. All rights reserved. Serving Amb Andaura, Una, Ludhiana & Chandigarh.',
   };
 
   s.reviews = [
     {
       author: 'Rajesh Sharma',
-      text: 'Booked Ajay Tour & Travels for pickup from Amb Andaura Railway Station right after arriving by Vande Bharat. The Innova Crysta was spotless, and driver Rahul was courteous and punctual. Best taxi service in Una!',
+      text: 'Booked Himyatra Tour & Travels for pickup from Amb Andaura Railway Station right after arriving by Vande Bharat. The Innova Crysta was spotless, and driver Rahul was courteous and punctual. Best taxi service in Una!',
       rating: 5,
       source: 'Google Review',
       approved: true,
@@ -149,6 +149,6 @@ if (isDirectCli || process.argv[1]?.endsWith('seed.js')) {
   await connectDB();
   const report = await seedDatabase();
   console.log('Seed & update complete:', JSON.stringify(report, null, 2));
-  console.log('All content has been verified and synced with Ajay Tour and Travels profile.');
+  console.log('All content has been verified and synced with Himyatra Tour and Travels profile.');
   await disconnectDB();
 }

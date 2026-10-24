@@ -36,7 +36,7 @@ export function RouteCard({ r, i = 0 }) {
   const hrs = r.approxDurationMinutes ? Math.floor(r.approxDurationMinutes / 60) : 0;
   const mins = r.approxDurationMinutes ? r.approxDurationMinutes % 60 : 0;
   const durationStr = hrs || mins ? `~${hrs ? `${hrs}h ` : ''}${mins ? `${mins}m` : ''}`.trim() : null;
-  const wa = s.waHref(`Hello Ajay Tour and Travels, I would like to inquire about taxi service from ${r.from} to ${r.to}.`);
+  const wa = s.waHref(`Hello Himyatra Tour and Travels, I would like to inquire about taxi service from ${r.from} to ${r.to}.`);
 
   return (
     <TiltCard className="h-full rounded-3xl spatial-card-dark text-white">
@@ -99,7 +99,7 @@ export function VehicleCard({ v, i = 0 }) {
   const s = useSettings();
   const detailUrl = `/vehicles/${v.slug}`;
   const bookUrl = `/book?vehicle=${encodeURIComponent(v.name)}`;
-  const wa = s.waHref(`Hello Ajay Tour and Travels, I would like to inquire about booking the ${v.name}.`);
+  const wa = s.waHref(`Hello Himyatra Tour and Travels, I would like to inquire about booking the ${v.name}.`);
 
   return (
     <TiltCard className="h-full rounded-3xl spatial-card">

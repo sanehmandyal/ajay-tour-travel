@@ -32,7 +32,7 @@ function Gate() {
 export default function AdminApp() {
   return (
     <AuthProvider>
-      <Helmet><title>Admin | Ajay Tour and Travels</title><meta name="robots" content="noindex, nofollow, noarchive" /></Helmet>
+      <Helmet><title>Admin | Himyatra Tour and Travels</title><meta name="robots" content="noindex, nofollow, noarchive" /></Helmet>
       <Gate />
     </AuthProvider>
   );

@@ -68,7 +68,7 @@ export default function Login() {
               <div className="relative mx-auto mb-4 inline-block">
                 <img
                   src="/logo-round.png"
-                  alt="Ajay Tour and Travels"
+                  alt="Himyatra Tour and Travels"
                   className="h-16 w-16 rounded-full object-cover ring-2 ring-teal-400/50 shadow-lg shadow-teal-500/20"
                 />
                 <span className="absolute -bottom-1 -right-1 grid h-6 w-6 place-items-center rounded-full border border-teal-300 bg-teal-600 text-white shadow">
@@ -79,7 +79,7 @@ export default function Login() {
                 Admin Control Portal
               </h1>
               <p className="mt-1 text-xs font-medium tracking-wider text-teal-300/80 uppercase">
-                Ajay Tour & Travels · Management Console
+                Himyatra Tour & Travels · Management Console
               </p>
               <div className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-[11px] font-medium text-amber-200">
                 <ShieldCheck size={13} aria-hidden="true" />
@@ -110,7 +110,7 @@ export default function Login() {
                     required
                     autoComplete="username"
                     className="w-full rounded-2xl border border-white/20 bg-white/10 py-3 pl-10 pr-4 text-sm text-white placeholder-white/40 shadow-inner backdrop-blur-md transition-all duration-200 focus:border-teal-400 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-teal-400/30"
-                    placeholder="admin or admin@ajaytourtravels.com"
+                    placeholder="admin or admin@himyatratourtravels.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />

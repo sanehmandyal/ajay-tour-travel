@@ -33,7 +33,7 @@ function ContactForm() {
     try {
       await api.post('/api/contact', { name: f.name, phone: f.phone, email: f.email || undefined, message: f.message, consent: true, website: f.website });
       setState('done');
-      const waMsg = `Hello Ajay Tour and Travels,\nName: ${f.name}\nPhone: ${f.phone}${f.email ? `\nEmail: ${f.email}` : ''}\nMessage: ${f.message}`;
+      const waMsg = `Hello Himyatra Tour and Travels,\nName: ${f.name}\nPhone: ${f.phone}${f.email ? `\nEmail: ${f.email}` : ''}\nMessage: ${f.message}`;
       const waUrl = s.waHref(waMsg);
       if (waUrl && typeof window !== 'undefined') {
         try { window.open(waUrl, '_blank', 'noopener,noreferrer'); } catch (_) {}
@@ -45,7 +45,7 @@ function ContactForm() {
   }
 
   if (state === 'done') {
-    const waMsg = `Hello Ajay Tour and Travels,\nName: ${f.name}\nPhone: ${f.phone}${f.email ? `\nEmail: ${f.email}` : ''}\nMessage: ${f.message}`;
+    const waMsg = `Hello Himyatra Tour and Travels,\nName: ${f.name}\nPhone: ${f.phone}${f.email ? `\nEmail: ${f.email}` : ''}\nMessage: ${f.message}`;
     const wa = s.waHref(waMsg);
     return (
       <div role="status" className="rounded-3xl bg-white p-8 text-center shadow-soft">
@@ -89,7 +89,7 @@ function ContactForm() {
         </button>
         {s.waHref && (
           <a
-            href={s.waHref('Hello Ajay Tour and Travels, I have an inquiry.')}
+            href={s.waHref('Hello Himyatra Tour and Travels, I have an inquiry.')}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#25D366]/40 bg-[#25D366]/15 px-5 py-2.5 text-xs font-bold text-[#1e9e4d] transition hover:bg-[#25D366]/25"
@@ -107,13 +107,13 @@ export default function Contact() {
   const s = useSettings();
   const b = s.business;
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Contact Us', path: '/contact' }];
-  const wa = s.waHref('Hello Ajay Tour and Travels, I have a question.');
+  const wa = s.waHref('Hello Himyatra Tour and Travels, I have a question.');
   return (
     <>
       <Seo
         path="/contact"
-        title="Contact Us & 24/7 Cab Booking Helpline | Ajay Tour and Travels"
-        description="Get in touch with Ajay Tour and Travels. 24/7 taxi booking helpline, WhatsApp inquiry, and instant upfront quotes for Amb Andaura station, Una & Himachal tours."
+        title="Contact Us & 24/7 Cab Booking Helpline | Himyatra Tour and Travels"
+        description="Get in touch with Himyatra Tour and Travels. 24/7 taxi booking helpline, WhatsApp inquiry, and instant upfront quotes for Amb Andaura station, Una & Himachal tours."
         jsonLd={[breadcrumbLd(crumbs)]}
       />
       <PageHero

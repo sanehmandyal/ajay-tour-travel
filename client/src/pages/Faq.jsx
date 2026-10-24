@@ -11,7 +11,7 @@ export default function Faq() {
     <>
       <Seo
         path="/faq"
-        title="Cab Booking & Tour FAQ | Ajay Tour and Travels"
+        title="Cab Booking & Tour FAQ | Himyatra Tour and Travels"
         description="Answers to common questions about booking, upfront quotes, fleet options, Shaktipeeth pilgrimage circuits, and railway station transfers in Amb Andaura & Una."
         jsonLd={[breadcrumbLd(crumbs), faqPageLd(data)].filter(Boolean)}
       />

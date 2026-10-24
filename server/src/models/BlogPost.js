@@ -7,7 +7,7 @@ const blogPostSchema = new mongoose.Schema(
     slug: slugField,
     excerpt: { type: String, trim: true, maxlength: 400 },
     content: { type: String, required: true }, // sanitized HTML, cleaned on write
-    author: { type: String, trim: true, maxlength: 80, default: 'Ajay Tour and Travels' },
+    author: { type: String, trim: true, maxlength: 80, default: 'Himyatra Tour and Travels' },
     category: { type: String, trim: true, maxlength: 60, index: true },
     tags: [{ type: String, trim: true, lowercase: true, maxlength: 40 }],
     featuredImage: imageSchemaDef,

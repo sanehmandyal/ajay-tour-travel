@@ -12,13 +12,13 @@ export default function Vehicles() {
   const { data, loading, error } = useApi('vehicles', () => api.get('/api/vehicles'));
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Our Vehicles', path: '/vehicles' }];
 
-  const wa = s.waHref('Hello Ajay Tour and Travels, I need assistance choosing a vehicle.');
+  const wa = s.waHref('Hello Himyatra Tour and Travels, I need assistance choosing a vehicle.');
 
   return (
     <>
       <Seo
         path="/vehicles"
-        title="Our Taxi Fleet & Car Hire | Ajay Tour and Travels"
+        title="Our Taxi Fleet & Car Hire | Himyatra Tour and Travels"
         description="Explore our clean, air-conditioned taxi fleet: Maruti Dzire, Toyota Innova Crysta, Maruti Ertiga, Scorpio, and Tempo Travellers in Amb Andaura & Una."
         jsonLd={[breadcrumbLd(crumbs)]}
       />
@@ -113,7 +113,7 @@ export default function Vehicles() {
           </div>
           <div className="relative grid items-center gap-8 lg:grid-cols-[1.2fr_.8fr]">
             <div>
-              <p className="eyebrow !text-teal-300">Ajay Tour &amp; Travels Quality Standard</p>
+              <p className="eyebrow !text-teal-300">Himyatra Tour &amp; Travels Quality Standard</p>
               <h2 id="fleet-promise-heading" className="h-display mt-2 !text-white">
                 Every vehicle inspected, sanitized &amp; certified before departure
               </h2>

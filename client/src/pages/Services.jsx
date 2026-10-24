@@ -8,7 +8,7 @@ export default function Services() {
     <>
       <Seo
         path="/services"
-        title="24/7 Taxi Services & Outstation Cab Booking | Ajay Tour and Travels"
+        title="24/7 Taxi Services & Outstation Cab Booking | Himyatra Tour and Travels"
         description="Book 24/7 taxi services: Amb Andaura railway station pickup, Una cab booking, outstation travel to Chandigarh, Ludhiana, Delhi, and Shaktipeeth pilgrimage tours."
         jsonLd={[breadcrumbLd(crumbs)]}
       />

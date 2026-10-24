@@ -8,7 +8,7 @@ function Shell({ path, title, description, intro, children }) {
   const crumbs = [{ name: 'Home', path: '/' }, { name: title, path }];
   return (
     <>
-      <Seo path={path} title={`${title} | Ajay Tour and Travels`} description={description} jsonLd={[breadcrumbLd(crumbs)]} />
+      <Seo path={path} title={`${title} | Himyatra Tour and Travels`} description={description} jsonLd={[breadcrumbLd(crumbs)]} />
       <PageHero eyebrow="Legal" title={title} intro={intro} crumbs={crumbs} />
       <div className="container-x py-12"><div className="prose-ajt mx-auto max-w-3xl">{children}<p className="mt-10 text-sm text-navy-700/80">{UPDATED}</p></div></div>
     </>
