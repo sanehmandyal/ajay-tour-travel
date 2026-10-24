@@ -18,7 +18,7 @@ const schema = z
     COOKIE_SAMESITE: z.enum(['lax', 'strict', 'none']).default(process.env.NODE_ENV === 'production' ? 'none' : 'lax'),
     ADMIN_ID: z.string().optional().default('admin'),
     ADMIN_EMAIL: z.string().optional().default('admin@ajaytourtravels.com'),
-    ADMIN_PASSWORD: z.string().optional().default(''),
+    ADMIN_PASSWORD: z.string().optional().default('Admin@AjayTour2026!'),
     ADMIN_NAME: z.string().optional().default('Administrator'),
     SMTP_HOST: z.string().optional().default(''),
     SMTP_PORT: z.coerce.number().default(587),

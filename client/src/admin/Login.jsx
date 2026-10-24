@@ -110,7 +110,7 @@ export default function Login() {
                     required
                     autoComplete="username"
                     className="w-full rounded-2xl border border-white/20 bg-white/10 py-3 pl-10 pr-4 text-sm text-white placeholder-white/40 shadow-inner backdrop-blur-md transition-all duration-200 focus:border-teal-400 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-teal-400/30"
-                    placeholder="admin or admin@himyatratourtravels.com"
+                    placeholder="admin or admin@ajaytourtravels.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
