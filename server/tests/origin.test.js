@@ -12,6 +12,9 @@ describe('isOriginAllowed security utility', () => {
     expect(isOriginAllowed('https://ajay-tour-travel.vercel.app/')).toBe(true);
     expect(isOriginAllowed('https://ajay-tour-travel.vercel.app:443')).toBe(true);
     expect(isOriginAllowed('https://ajay-tour-travels.vercel.app')).toBe(true);
+    expect(isOriginAllowed('https://himyatra-tour-travels.vercel.app')).toBe(true);
+    expect(isOriginAllowed('https://himyatratourtravels.com')).toBe(true);
+    expect(isOriginAllowed('null')).toBe(true);
   });
 
   test('allows Vercel preview and branch deployments for the project', () => {

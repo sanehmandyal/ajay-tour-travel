@@ -64,7 +64,7 @@ export function csrfProtect(req, _res, next) {
       origin = new URL(req.get('referer')).origin;
     } catch {}
   }
-  if (origin && !isOriginAllowed(origin)) return next(ApiError.forbidden('Origin not allowed'));
+  if (origin && !isOriginAllowed(origin, req)) return next(ApiError.forbidden('Origin not allowed'));
   const sent = Buffer.from(req.get('x-csrf-token') || '');
   const expected = Buffer.from(req.csrf || '');
   if (!sent.length || sent.length !== expected.length || !crypto.timingSafeEqual(sent, expected)) {
