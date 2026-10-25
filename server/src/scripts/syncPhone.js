@@ -38,9 +38,29 @@ export async function syncPhoneNumbers() {
         s.footer.copyright = s.footer.copyright.replace(/Ajay\s*(Tour(\s*(&|and)?\s*Travels?)?|Travels?)/gi, 'Himyatra Tour and Travels');
         changed = true;
       }
-      if (s.business?.email === 'info@ajaytourtravels.com') {
+      if (s.business?.email && /ajay/i.test(s.business.email)) {
         s.business.email = 'info@himyatratourtravels.com';
         changed = true;
+      }
+      if (s.social?.facebook && /ajay/i.test(s.social.facebook)) {
+        s.social.facebook = s.social.facebook.replace(/ajay/gi, 'himyatra');
+        changed = true;
+      }
+      if (s.social?.instagram && /ajay/i.test(s.social.instagram)) {
+        s.social.instagram = s.social.instagram.replace(/ajay/gi, 'himyatra');
+        changed = true;
+      }
+      if (s.social?.youtube && /ajay/i.test(s.social.youtube)) {
+        s.social.youtube = s.social.youtube.replace(/ajay/gi, 'himyatra');
+        changed = true;
+      }
+      if (Array.isArray(s.reviews)) {
+        for (const r of s.reviews) {
+          if (r.text && /ajay/i.test(r.text)) {
+            r.text = r.text.replace(/Ajay\s*(Tour(\s*(&|and)?\s*Travels?)?|Travels?)/gi, 'Himyatra Tour and Travels');
+            changed = true;
+          }
+        }
       }
       if (changed) {
         await s.save();

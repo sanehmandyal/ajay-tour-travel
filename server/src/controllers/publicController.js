@@ -97,26 +97,54 @@ export const getPublicSettings = asyncHandler(async (_req, res) => {
   const verified = Boolean(s.business?.contactVerified);
   const activePhone = s.business?.phone || '+91 70110 56581';
   const activeWa = s.business?.whatsapp || (activePhone ? activePhone.replace(/\D/g, '') : '917011056581');
+
+  const rawName = s.business?.name || '';
+  const brandName = (!rawName || /ajay/i.test(rawName)) ? 'Himyatra Tour and Travels' : rawName;
+  const brandEmail = (s.business?.email && !/ajay/i.test(s.business.email)) ? s.business.email : 'info@himyatratourtravels.com';
+
+  const footerAbout = s.footer?.about
+    ? s.footer.about.replace(/Ajay\s*(Tour(\s*(&|and)?\s*Travels?)?|Travels?)/gi, 'Himyatra Tour and Travels')
+    : 'Himyatra Tour and Travels is District Una’s premier taxi and travel agency based near Amb Andaura Railway Station. We provide dependable airport transfers, outstation cabs, Himachal pilgrimage yatra, and customized tour packages across Himachal Pradesh, Punjab, and Chandigarh.';
+
+  const footerCopyright = s.footer?.copyright
+    ? s.footer.copyright.replace(/Ajay\s*(Tour(\s*(&|and)?\s*Travels?)?|Travels?)/gi, 'Himyatra Tour and Travels')
+    : `© ${new Date().getFullYear()} Himyatra Tour and Travels. All rights reserved. Serving Amb Andaura, Una, Ludhiana & Chandigarh.`;
+
+  const announcementText = s.announcement?.text
+    ? s.announcement.text.replace(/Ajay\s*(Tour(\s*(&|and)?\s*Travels?)?|Travels?)/gi, 'Himyatra Tour and Travels')
+    : '';
+
   ok(res, {
     business: {
-      name: s.business?.name || 'Himyatra Tour and Travels',
-      tagline: s.business?.tagline || '',
+      name: brandName,
+      tagline: s.business?.tagline ? s.business.tagline.replace(/Ajay\s*(Tour(\s*(&|and)?\s*Travels?)?|Travels?)/gi, 'Himyatra Tour and Travels') : '',
       logoUrl: s.business?.logoUrl || '',
       serviceAreas: s.business?.serviceAreas || [],
       contactVerified: verified,
       phone: verified ? activePhone : '',
       whatsapp: verified ? activeWa : '',
-      email: verified ? (s.business?.email || '') : '',
+      email: verified ? brandEmail : '',
       address: verified ? (s.business?.address || '') : '',
       hours: verified ? (s.business?.hours || '') : '',
       googleBusinessProfileUrl: s.business?.googleBusinessProfileUrl || '',
       mapEmbedUrl: verified ? (s.business?.mapEmbedUrl || '') : '',
     },
     social: s.social || {},
-    announcement: s.announcement || {},
+    announcement: {
+      ...(s.announcement || {}),
+      text: announcementText,
+    },
     home: s.home || {},
-    footer: s.footer || {},
-    reviews: (s.reviews || []).filter((r) => r.approved).map(({ author, text, rating, source }) => ({ author, text, rating, source })),
+    footer: {
+      about: footerAbout,
+      copyright: footerCopyright,
+    },
+    reviews: (s.reviews || []).filter((r) => r.approved).map(({ author, text, rating, source }) => ({
+      author,
+      text: text ? text.replace(/Ajay\s*(Tour(\s*(&|and)?\s*Travels?)?|Travels?)/gi, 'Himyatra Tour and Travels') : text,
+      rating,
+      source,
+    })),
     analytics: s.analytics || {},
   });
 });
