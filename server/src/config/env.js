@@ -54,6 +54,8 @@ const schema = z
     const KNOWN_PROD_ORIGINS = [
       'https://ajay-tour-travel.vercel.app',
       'https://ajay-tour-travels.vercel.app',
+      'https://www.himyatratourtravel.in',
+      'https://himyatratourtravel.in',
     ];
     for (const ko of KNOWN_PROD_ORIGINS) {
       if (!origins.includes(ko)) origins.push(ko);

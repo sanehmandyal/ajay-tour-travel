@@ -59,14 +59,14 @@ function NavDropdown({ label, to, items, viewAllLabel, viewAllTo }) {
       <NavLink
         to={to}
         className={({ isActive }) =>
-          `inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-1.5 text-xs font-medium tracking-wide transition-all xl:px-3 xl:text-[13px] ${
+          `inline-flex items-center gap-0.5 whitespace-nowrap rounded-full px-2 py-1 text-xs font-medium tracking-wide transition-all xl:gap-1 xl:px-2.5 xl:py-1.5 xl:text-[13px] ${
             isActive || open ? 'bg-white/15 text-white shadow-inner font-semibold' : 'text-white/80 hover:bg-white/10 hover:text-white'
           }`
         }
         aria-expanded={open}
       >
         <span>{label}</span>
-        <ChevronDown size={13} className={`transition-transform duration-200 ${open ? 'rotate-180 text-teal-300' : 'text-white/50'}`} />
+        <ChevronDown size={12} className={`transition-transform duration-200 ${open ? 'rotate-180 text-teal-300' : 'text-white/50'}`} />
       </NavLink>
 
       <AnimatePresence>
@@ -196,24 +196,35 @@ export function Navbar() {
     : PACKAGE_DROPDOWNS;
 
   const link = ({ isActive }) =>
-    `whitespace-nowrap rounded-full px-2.5 py-1.5 text-xs font-medium tracking-wide transition-all xl:px-3 xl:text-[13px] ${
+    `whitespace-nowrap rounded-full px-2 py-1 text-xs font-medium tracking-wide transition-all xl:px-2.5 xl:py-1.5 xl:text-[13px] ${
       isActive ? 'bg-white/15 text-white shadow-inner font-semibold' : 'text-white/80 hover:bg-white/10 hover:text-white'
     }`;
 
   return (
-    <div className="pointer-events-none w-full px-3 pt-2.5 sm:px-6 sm:pt-3">
-      <div className="pointer-events-auto mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/15 bg-navy-900/95 py-2 pl-4 pr-2.5 shadow-float backdrop-blur-md">
+    <div className="pointer-events-none w-full px-2.5 pt-2 sm:px-6 sm:pt-3">
+      <div className="pointer-events-auto mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/15 bg-navy-900/95 py-1.5 pl-3 pr-2 shadow-float backdrop-blur-md sm:py-2 sm:pl-4 sm:pr-2.5">
         
-        {/* Crisp Brand Name with Official Circular Logo */}
-        <Link to="/" className="flex shrink-0 items-center gap-2.5 font-display text-base font-bold text-white transition hover:opacity-95 sm:text-lg" aria-label={`${s.business.name} home`}>
+        {/* Crisp Brand Name & Official Circular Logo: Elegant vertical lockup that never wraps awkwardly on mobile */}
+        <Link
+          to="/"
+          className="flex shrink-0 items-center gap-2 sm:gap-2.5 text-white transition hover:opacity-95"
+          aria-label="Himyatra Tour and Travels home"
+        >
           <img
             src="/logo-round.png"
             alt="Himyatra Tour and Travels Logo"
-            width="34"
-            height="34"
+            width="36"
+            height="36"
             className="h-8 w-8 sm:h-9 sm:w-9 shrink-0 rounded-full object-cover shadow-sm ring-1 ring-teal-400/40"
           />
-          <span className="whitespace-nowrap tracking-tight">{s.business.name}</span>
+          <div className="flex flex-col leading-tight">
+            <span className="font-display text-[15px] sm:text-lg font-bold tracking-tight text-white whitespace-nowrap">
+              Himyatra
+            </span>
+            <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider text-teal-300/90 whitespace-nowrap">
+              Tour & Travels
+            </span>
+          </div>
         </Link>
 
         {/* Clean Desktop Navigation with Spatial Dropdowns */}
@@ -228,11 +239,11 @@ export function Navbar() {
         </nav>
 
         {/* Action Controls: Phone + Book CTA + Discreet Admin Lock Icon */}
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           {s.callHref && (
             <a
               href={s.callHref}
-              className="hidden items-center gap-2 whitespace-nowrap rounded-full border border-teal-400/30 bg-teal-500/10 px-3 py-1.5 text-xs font-semibold text-teal-200 transition-all hover:border-teal-400/60 hover:bg-teal-500/20 active:scale-95 md:inline-flex shadow-sm"
+              className="hidden lg:inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-teal-400/30 bg-teal-500/10 px-2.5 py-1.5 text-xs font-semibold text-teal-200 transition-all hover:border-teal-400/60 hover:bg-teal-500/20 active:scale-95 shadow-sm xl:px-3"
               aria-label={`Call ${s.phone}`}
             >
               <span className="relative flex h-2 w-2">
@@ -240,14 +251,14 @@ export function Navbar() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-400" />
               </span>
               <Phone size={13} className="text-teal-300" aria-hidden="true" />
-              <span className="hidden 2xl:inline">{s.phone}</span>
-              <span className="2xl:hidden">Call Now</span>
+              <span className="hidden xl:inline">{s.phone}</span>
+              <span className="xl:hidden">Call</span>
             </a>
           )}
 
           <Link
             to="/book"
-            className="hidden items-center justify-center whitespace-nowrap rounded-full bg-gradient-to-r from-sunset-500 to-amber-500 px-4 py-1.5 text-xs lg:text-sm font-bold text-navy-950 shadow-md shadow-sunset-500/25 transition-all duration-200 hover:from-sunset-400 hover:to-amber-400 hover:shadow-lg hover:shadow-sunset-500/35 hover:-translate-y-0.5 active:translate-y-0 sm:inline-flex"
+            className="hidden sm:inline-flex items-center justify-center whitespace-nowrap rounded-full bg-gradient-to-r from-sunset-500 to-amber-500 px-3.5 py-1.5 text-xs font-bold text-navy-950 shadow-md shadow-sunset-500/25 transition-all duration-200 hover:from-sunset-400 hover:to-amber-400 hover:shadow-lg hover:shadow-sunset-500/35 hover:-translate-y-0.5 active:translate-y-0 xl:px-4 xl:text-sm"
           >
             Book Your Ride
           </Link>
@@ -255,7 +266,7 @@ export function Navbar() {
           {/* Discreet Admin Lock Button */}
           <Link
             to="/admin"
-            className="hidden h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 backdrop-blur-md transition-all hover:border-teal-400/50 hover:bg-white/15 hover:text-teal-300 sm:flex"
+            className="hidden sm:flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 backdrop-blur-md transition-all hover:border-teal-400/50 hover:bg-white/15 hover:text-teal-300"
             title="Admin Management Console"
             aria-label="Admin Management Console"
           >
@@ -265,23 +276,23 @@ export function Navbar() {
           {s.callHref && (
             <a
               href={s.callHref}
-              className="grid h-9 w-9 place-items-center rounded-full border border-teal-400/30 bg-teal-500/20 text-teal-300 transition hover:bg-teal-500/30 sm:hidden"
+              className="grid h-8 w-8 place-items-center rounded-full border border-teal-400/30 bg-teal-500/20 text-teal-300 transition hover:bg-teal-500/30 sm:hidden"
               aria-label={`Call ${s.phone}`}
             >
-              <Phone size={16} aria-hidden="true" />
+              <Phone size={14} aria-hidden="true" />
             </a>
           )}
 
           <button
             ref={btnRef}
             type="button"
-            className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-white hover:bg-white/10 lg:hidden"
+            className="grid h-8 w-8 place-items-center rounded-full border border-white/15 bg-white/5 text-white hover:bg-white/15 transition sm:h-9 sm:w-9 lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? 'Close menu' : 'Open menu'}
             onClick={() => setOpen((o) => !o)}
           >
-            {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+            {open ? <X size={17} aria-hidden="true" /> : <Menu size={17} aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -290,8 +301,11 @@ export function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div id="mobile-menu" ref={panelRef} role="dialog" aria-modal="true" aria-label="Site menu"
-            initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.2 }}
-            className="pointer-events-auto mx-auto mt-2 max-h-[calc(100dvh-5.5rem)] max-w-7xl overflow-y-auto rounded-3xl bg-navy-900 p-4 shadow-float lg:hidden">
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.18 }}
+            className="pointer-events-auto mx-auto mt-2 max-h-[calc(100dvh-5rem)] max-w-7xl overflow-y-auto rounded-3xl border border-white/15 bg-navy-950/98 p-4 shadow-float backdrop-blur-2xl lg:hidden">
             <ul className="grid gap-1">
               {[
                 ['/', 'Home'],
@@ -300,40 +314,54 @@ export function Navbar() {
                 ['/packages', 'Tour Packages'],
                 ['/services', 'Services'],
                 ['/blog', 'Travel Tips'],
-                ['/about', 'About'],
+                ['/about', 'About Us'],
                 ['/contact', 'Contact'],
                 ['/faq', 'FAQ']
               ].map(([to, label]) => (
-                <li key={to}><NavLink to={to} end={to === '/'} className={({ isActive }) => `flex min-h-[48px] items-center rounded-2xl px-4 text-base font-medium ${isActive ? 'bg-white/15 text-white' : 'text-white/90 hover:bg-white/10'}`}>{label}</NavLink></li>
+                <li key={to}>
+                  <NavLink
+                    to={to}
+                    end={to === '/'}
+                    onClick={() => setOpen(false)}
+                    className={({ isActive }) =>
+                      `flex min-h-[46px] items-center rounded-2xl px-4 text-sm sm:text-base font-medium transition ${
+                        isActive ? 'bg-white/15 text-white font-semibold shadow-inner' : 'text-white/85 hover:bg-white/10 hover:text-white'
+                      }`
+                    }
+                  >
+                    {label}
+                  </NavLink>
+                </li>
               ))}
               
               {/* Admin Portal in Mobile Menu */}
               <li className="mt-2 border-t border-white/10 pt-2">
                 <Link
                   to="/admin"
-                  className="flex min-h-[48px] items-center gap-2.5 rounded-2xl bg-teal-500/15 px-4 text-base font-semibold text-teal-300 transition hover:bg-teal-500/25"
+                  onClick={() => setOpen(false)}
+                  className="flex min-h-[46px] items-center gap-2.5 rounded-2xl bg-teal-500/15 px-4 text-sm sm:text-base font-semibold text-teal-300 transition hover:bg-teal-500/25"
                 >
-                  <Lock size={16} className="text-teal-400" aria-hidden="true" />
+                  <Lock size={15} className="text-teal-400" aria-hidden="true" />
                   <span>Admin Portal Login</span>
                 </Link>
               </li>
             </ul>
 
-            <div className="mt-4 grid grid-cols-2 gap-2">
+            <div className="mt-3.5 grid grid-cols-2 gap-2">
               {s.callHref && (
-                <a href={s.callHref} className="flex min-h-[44px] items-center justify-center gap-2 rounded-2xl bg-white/10 text-sm font-semibold text-white">
-                  <Phone size={16} className="text-teal-400" aria-hidden="true" />
+                <a href={s.callHref} className="flex min-h-[42px] items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/10 text-xs sm:text-sm font-semibold text-white transition hover:bg-white/20">
+                  <Phone size={15} className="text-teal-400" aria-hidden="true" />
                   Call Now
                 </a>
               )}
               {s.waHref && (
-                <a href={s.waHref('Hello Himyatra Tour and Travels, I would like to book a taxi.')} target="_blank" rel="noopener noreferrer" className="flex min-h-[44px] items-center justify-center gap-2 rounded-2xl bg-[#25D366]/20 text-sm font-semibold text-[#25D366]">
+                <a href={s.waHref('Hello Himyatra Tour and Travels, I would like to book a taxi.')} target="_blank" rel="noopener noreferrer" className="flex min-h-[42px] items-center justify-center gap-2 rounded-2xl bg-[#25D366]/20 text-xs sm:text-sm font-semibold text-[#25D366] transition hover:bg-[#25D366]/30">
                   <MessageCircle size={16} aria-hidden="true" />
                   WhatsApp
                 </a>
               )}
             </div>
-            <Link to="/book" className="btn-primary mt-2 w-full">Book Your Ride</Link>
+            <Link to="/book" onClick={() => setOpen(false)} className="btn-primary mt-2.5 w-full !min-h-[44px] text-sm font-bold shadow-md">Book Your Ride</Link>
           </motion.div>
         )}
       </AnimatePresence>

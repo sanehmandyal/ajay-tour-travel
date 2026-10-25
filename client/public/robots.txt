@@ -1,7 +1,8 @@
-# Replaced at build time by scripts/prerender.mjs when VITE_SITE_URL is set
 User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /admin/*
 Disallow: /book?
 Disallow: /*?q=
+
+Sitemap: https://www.himyatratourtravel.in/sitemap.xml
